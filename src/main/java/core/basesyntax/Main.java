@@ -1,9 +1,6 @@
 package core.basesyntax;
 
 import core.basesyntax.controller.CatHandler;
-import core.basesyntax.controller.ConsoleHandler;
-import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.CatDao;
 import core.basesyntax.dao.CatDaoImpl;
 import core.basesyntax.lib.Injector;
