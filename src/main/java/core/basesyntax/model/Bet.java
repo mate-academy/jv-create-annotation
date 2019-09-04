@@ -31,7 +31,7 @@ public class Bet implements Serializable {
     public String toString() {
         return "Bet{" 
             + "value=" + value 
-            + ", risk=" + risk +
-                '}';
+            + ", risk=" + risk
+            + '}';
     }
 }
