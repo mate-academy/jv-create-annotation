@@ -3,7 +3,6 @@ package core.basesyntax.lib;
 import core.basesyntax.controller.ConsoleHandler;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.factory.BetDaoFactory;
-import core.basesyntax.model.Bet;
 
 import java.lang.reflect.Field;
 
