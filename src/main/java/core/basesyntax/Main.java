@@ -18,8 +18,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("Если добавить котика, введите \n" +
-                "возраст котика и кго имя через пробел");
+        System.out.println("Если добавить котика, введите \n" 
+                           + "возраст котика и кго имя через пробел");
         CatHandler.handleCat();
         CatDao catDao = new CatDaoImpl();
         System.out.println(catDao.getAll());
