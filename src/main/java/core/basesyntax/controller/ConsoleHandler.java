@@ -2,8 +2,6 @@ package core.basesyntax.controller;
 
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserEmailDao;
-import core.basesyntax.dao.UserEmailDaoImpl;
-import core.basesyntax.factory.UserEmailDaoFactory;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.User;
 import core.basesyntax.model.UserEmail;
