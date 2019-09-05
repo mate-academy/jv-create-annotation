@@ -11,11 +11,11 @@ import java.util.List;
 public class BetDaoImpl implements BetDao {
     @Override
     public void add(Bet bet) {
-        Storage.betList.add(bet);
+        Storage.bets.add(bet);
     }
 
     @Override
     public List<Bet> getAll() {
-        return Storage.betList;
+        return Storage.bets;
     }
 }
