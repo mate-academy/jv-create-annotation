@@ -6,7 +6,6 @@ import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.dao.UserEmailDao;
 import core.basesyntax.dao.UserEmailDaoImpl;
 import core.basesyntax.lib.Injector;
-import core.basesyntax.model.UserEmail;
 
 public class Main {
 

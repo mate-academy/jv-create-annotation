@@ -7,7 +7,6 @@ import core.basesyntax.dao.UserEmailDao;
 import core.basesyntax.dao.UserEmailDaoImpl;
 import core.basesyntax.factory.UserDaoFactory;
 import core.basesyntax.factory.UserEmailDaoFactory;
-import core.basesyntax.model.UserEmail;
 
 import java.lang.reflect.Field;
 
