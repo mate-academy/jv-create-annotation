@@ -16,11 +16,13 @@ public class Injector {
 
         Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
         for (Field field : consoleHandlerFields) {
-            if (field.getDeclaredAnnotation(BetInject.class) != null) {
+            if (field.getDeclaredAnnotation(BetInject.class) != null
+                    && betDaoImplClass.getDeclaredAnnotation(BetDaoAnn.class) != null) {
                 field.setAccessible(true);
                 field.set(null, BetDaoFactory.getBetDao());
             }
-            if (field.getDeclaredAnnotation(HumanInject.class) != null) {
+            if (field.getDeclaredAnnotation(HumanInject.class) != null
+                    && humanDaoImplClass.getDeclaredAnnotation(HumanDaoAnn.class) != null) {
                 field.setAccessible(true);
                 field.set(null, HumanDaoFactory.getHumanDao());
             }
