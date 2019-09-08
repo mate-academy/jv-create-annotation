@@ -11,9 +11,6 @@ public class Bet {
 
     @Override
     public String toString() {
-        return "Bet{" +
-                "sum=" + sum +
-                ", interest=" + interest +
-                '}';
+        return "Bet{sum=" + sum + ",interest=" + interest + '}';
     }
 }
