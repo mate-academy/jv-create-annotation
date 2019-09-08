@@ -7,7 +7,7 @@ import core.basesyntax.model.Human;
 import java.util.List;
 
 @DaoHuman
-public class HumanDaoImpl implements HumanDao{
+public class HumanDaoImpl implements HumanDao {
     @Override
     public void add(Human human) {
         Storage.humans.add(human);

@@ -12,7 +12,7 @@ public class InjectorHuman {
         Class<HumanDaoImpl> humanDaoClass = HumanDaoImpl.class;
 
         Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
-        for (Field field: consoleHandlerFields) {
+        for (Field field : consoleHandlerFields) {
             if (field.getDeclaredAnnotation(InjectHuman.class) != null) {
                 field.setAccessible(true);
                 field.set(null, HumanDaoFactory.getHumanDao());

@@ -1,9 +1,7 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.HumanDao;
-import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.lib.InjectHuman;
 import core.basesyntax.model.Bet;
@@ -16,6 +14,7 @@ public class ConsoleHandler {
 
     @InjectHuman
     private static HumanDao humanDao;
+
     public static void handle() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -32,8 +31,6 @@ public class ConsoleHandler {
             } catch (Exception e) {
                 System.out.println("не коректні дані");
             }
-
-
         }
     }
 }
