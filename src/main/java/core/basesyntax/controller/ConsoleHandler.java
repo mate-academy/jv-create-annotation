@@ -18,7 +18,7 @@ public class ConsoleHandler {
     @Inject
     private static UserDao userDao;
 
-    static public void handle() {
+    public static void handle() {
         int count = 0;
         int entriesNumber = 2;
         while (count < entriesNumber) {

@@ -29,9 +29,9 @@ public class Bet implements Serializable {
 
     @Override
     public String toString() {
-        return "Bet{" +
-                "value=" + value +
-                ", risk=" + risk +
-                '}';
+        return "Bet{"
+                + "value=" + value
+                + ", risk=" + risk
+                + '}';
     }
 }

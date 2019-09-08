@@ -18,8 +18,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("Если хотите сделать ставку, введите \n" +
-                "сумму, риск, имя, фамилию через пробел.");
+        System.out.println("Если хотите сделать ставку, введите \n"
+                + "сумму, риск, имя, фамилию через пробел.");
         ConsoleHandler.handle();
         BetDao betDao = new BetDaoImpl();
         UserDao userDao = new UserDaoImpl();
