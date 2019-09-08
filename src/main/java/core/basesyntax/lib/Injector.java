@@ -29,7 +29,8 @@ public class Injector {
         }
     }
 
-    private static void setField(Class daoFactory, Field field) throws IllegalAccessException, InvocationTargetException {
+    private static void setField(Class daoFactory, Field field)
+            throws IllegalAccessException, InvocationTargetException {
         Method[] methods = daoFactory.getDeclaredMethods();
         field.setAccessible(true);
         field.set(null, methods[0].invoke(daoFactory));
