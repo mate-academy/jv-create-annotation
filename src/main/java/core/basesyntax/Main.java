@@ -5,13 +5,11 @@ import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.GamblerDaoImpl;
 import core.basesyntax.lib.Injector;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class Main {
     static {
         try {
             Injector.injectDependency();
-        } catch (IllegalAccessException | InvocationTargetException exception) {
+        } catch (IllegalAccessException exception) {
             exception.printStackTrace();
         }
     }
