@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Если хотите сделать ставку, "
-                + "введите сумму, риск и имя игрока через пробел");
+                + "введите сумму, риск и имя игрока через пробел ");
         ConsoleHandler.handle();
         BetDao betDao = BetDaoFactory.getBetDao();
         PlayerDao playerDao = PlayerDaoFactory.getPlayerDao();
