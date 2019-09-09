@@ -12,4 +12,5 @@ public class BetDaoFactory {
         }
         return INSTANCE;
     }
+
 }
