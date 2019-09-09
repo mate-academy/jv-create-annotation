@@ -10,14 +10,15 @@ import core.basesyntax.lib.Injector;
 public class Main {
     static {
         try {
-            Injector.InjectDependency();
+            Injector.injectDependency();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
-        System.out.println("Если хотите сделать ставку, введите сумму, риск и имя игрока через пробел");
+        System.out.println("Если хотите сделать ставку, "
+                + "введите сумму, риск и имя игрока через пробел");
         ConsoleHandler.handle();
         BetDao betDao = BetDaoFactory.getBetDao();
         PlayerDao playerDao = PlayerDaoFactory.getPlayerDao();
