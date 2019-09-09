@@ -15,5 +15,4 @@ public class PlayerDaoFactory {
         }
         return INSTANCE;
     }
-
 }

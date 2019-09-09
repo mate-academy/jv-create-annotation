@@ -34,5 +34,4 @@ public class Bet implements Serializable {
                 + ", risk=" + risk
                 + '}';
     }
-
 }

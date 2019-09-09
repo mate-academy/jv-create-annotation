@@ -17,5 +17,4 @@ public class PlayerDaoImpl implements PlayerDao {
     public Set<Player> getAll() {
         return Storage.players;
     }
-
 }
