@@ -9,13 +9,12 @@ public class Customer {
     private int age;
     private int money;
     private LocalDate attendanceDate;
-    private DateTimeFormatter formatter;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public Customer(String name, int age, int money, String attendanceDate) {
         this.name = name;
         this.age = age;
         this.money = money;
-        formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         this.attendanceDate = LocalDate.parse(attendanceDate, formatter);
     }
 
