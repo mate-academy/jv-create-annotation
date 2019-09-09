@@ -13,7 +13,6 @@ import java.lang.reflect.Field;
 public class Injector {
     public static void injectDependency() throws IllegalAccessException {
         Class<ConsoleHandler> consoleHandlerClass = ConsoleHandler.class;
-
         Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
         for (Field field : consoleHandlerFields) {
             if (field.getDeclaredAnnotation(Inject.class) != null) {
