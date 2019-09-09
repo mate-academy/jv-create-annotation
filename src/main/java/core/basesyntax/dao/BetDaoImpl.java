@@ -6,7 +6,6 @@ import core.basesyntax.model.Bet;
 
 import java.util.List;
 
-//  class for work with DB and table of bets
 @Dao
 public class BetDaoImpl implements BetDao {
 

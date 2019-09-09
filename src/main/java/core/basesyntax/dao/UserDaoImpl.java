@@ -10,11 +10,11 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     @Override
     public void addUser(User user) {
-        Storage.usersList.add(user);
+        Storage.users.add(user);
     }
 
     @Override
     public List<User> getAll() {
-        return Storage.usersList;
+        return Storage.users;
     }
 }
