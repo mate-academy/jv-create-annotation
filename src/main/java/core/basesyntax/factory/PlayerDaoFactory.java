@@ -4,15 +4,15 @@ import core.basesyntax.dao.PlayerDao;
 import core.basesyntax.dao.PlayerDaoImpl;
 
 public class PlayerDaoFactory {
-    private static PlayerDao INSTANCE;
+    private static PlayerDao instance;
 
     private PlayerDaoFactory() {
     }
 
     public static PlayerDao getPlayerDao() {
-        if (INSTANCE == null) {
-            INSTANCE = new PlayerDaoImpl();
+        if (instance == null) {
+            instance = new PlayerDaoImpl();
         }
-        return INSTANCE;
+        return instance;
     }
 }

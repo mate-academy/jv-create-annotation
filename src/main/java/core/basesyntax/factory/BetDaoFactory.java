@@ -4,15 +4,15 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 
 public class BetDaoFactory {
-    private static BetDao INSTANCE;
+    private static BetDao instance;
 
     private BetDaoFactory() {
     }
 
     public static BetDao getBetDao() {
-        if (INSTANCE == null) {
-            INSTANCE = new BetDaoImpl();
+        if (instance == null) {
+            instance = new BetDaoImpl();
         }
-        return INSTANCE;
+        return instance;
     }
 }
