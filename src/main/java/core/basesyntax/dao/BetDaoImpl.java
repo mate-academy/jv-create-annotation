@@ -1,12 +1,9 @@
 package core.basesyntax.dao;
 
-
 import core.basesyntax.Storage;
-
 
 import core.basesyntax.lib.Dao;
 import core.basesyntax.models.Bet;
-
 
 import java.util.List;
 
