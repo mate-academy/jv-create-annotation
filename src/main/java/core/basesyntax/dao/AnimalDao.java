@@ -1,7 +1,6 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.models.Animal;
-
 import java.util.List;
 
 public interface AnimalDao {

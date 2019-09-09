@@ -7,9 +7,8 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoFactory;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.handlers.ConsoleHandler;
-
 import java.lang.reflect.Field;
-
+import java.util.Scanner;
 
 public class Injector {
     public static void injectDependency() throws IllegalAccessException {
@@ -20,16 +19,17 @@ public class Injector {
                     && BetDaoImpl.class.getDeclaredAnnotation(Dao.class) != null) {
                 field.setAccessible(true);
                 field.set(null, BetDaoFactory.getBetDao());
-                break;
             }
-        }
-        for (Field field : consoleHandlerFields) {
-            if (field.getDeclaredAnnotation(InjectAnimal.class) != null
+            if (field.getDeclaredAnnotation(Inject.class) != null
                     && field.getType() == AnimalDao.class
                     && AnimalDaoImpl.class.getDeclaredAnnotation(Dao.class) != null) {
                 field.setAccessible(true);
                 field.set(null, AnimalDaoFactory.getAnimalDao());
-                break;
+            }
+            if (field.getDeclaredAnnotation(Inject.class) != null
+                    && field.getType() == Scanner.class) {
+                field.setAccessible(true);
+                field.set(null, new Scanner(System.in));
             }
         }
     }

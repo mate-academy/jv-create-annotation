@@ -3,18 +3,19 @@ package core.basesyntax.handlers;
 import core.basesyntax.dao.AnimalDao;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.lib.Inject;
-import core.basesyntax.lib.InjectAnimal;
 import core.basesyntax.models.Animal;
 import core.basesyntax.models.Bet;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
 
     @Inject
+    private static Scanner scanner;
+
+    @Inject
     private static BetDao betDao;
 
-    @InjectAnimal
+    @Inject
     private static AnimalDao animalDao;
 
     private static void processAnimal(String[] data) throws IllegalArgumentException {
@@ -28,7 +29,7 @@ public class ConsoleHandler {
     }
 
     public static void handle(String className) {
-        try (Scanner scanner = new Scanner(System.in)) {
+        try {
             while (true) {
                 String command = scanner.nextLine();
                 if (command.equals("0")) {
@@ -38,12 +39,19 @@ public class ConsoleHandler {
                 if (className.equals(BetDao.class.getName())) {
                     processBet(data);
                 }
-                if (className.equals(Animal.class.getName())) {
+                if (className.equals(AnimalDao.class.getName())) {
                     processAnimal(data);
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Данные введены некорректно");
+        }
+    }
+
+    public static void free() {
+        if (scanner != null) {
+            scanner.close();
         }
     }
 }
