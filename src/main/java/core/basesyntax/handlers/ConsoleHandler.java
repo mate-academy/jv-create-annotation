@@ -10,9 +10,6 @@ import java.util.Scanner;
 public class ConsoleHandler {
 
     @Inject
-    private static Scanner scanner;
-
-    @Inject
     private static BetDao betDao;
 
     @Inject
@@ -28,7 +25,7 @@ public class ConsoleHandler {
         betDao.add(bet);
     }
 
-    public static void handle(String className) {
+    public static void handle(String className, Scanner scanner) {
         try {
             while (true) {
                 String command = scanner.nextLine();
@@ -46,12 +43,6 @@ public class ConsoleHandler {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Данные введены некорректно");
-        }
-    }
-
-    public static void free() {
-        if (scanner != null) {
-            scanner.close();
         }
     }
 }
