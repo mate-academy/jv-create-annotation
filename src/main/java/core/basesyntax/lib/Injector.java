@@ -2,15 +2,15 @@ package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.CustomerDao;
-import core.basesyntax.dao.CustomerDaoImpl;
 import core.basesyntax.controller.ConsoleHandler;
 import core.basesyntax.dao.BetDaoImpl;
+import core.basesyntax.dao.CustomerDaoImpl;
 import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.factory.CustomerDaoFactory;
-
 import java.lang.reflect.Field;
 
 public class Injector {
+
     public static void injectDependency() throws IllegalAccessException {
         Class<ConsoleHandler> consoleHandlerClass = ConsoleHandler.class;
         Class<BetDaoImpl> betImplClass = BetDaoImpl.class;
