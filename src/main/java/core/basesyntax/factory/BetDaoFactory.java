@@ -7,7 +7,7 @@ public class BetDaoFactory {
     public static BetDao instance;
 
     public static BetDao getLibrary() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new BetDaoImpl();
         }
         return instance;

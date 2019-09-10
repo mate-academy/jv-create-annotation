@@ -1,8 +1,9 @@
 package core.basesyntax.dao;
 
-import core.basesyntax.model.Customer;
 import core.basesyntax.lib.Dao;
 import core.basesyntax.db.Storage;
+import core.basesyntax.model.Customer;
+
 
 import java.util.List;
 

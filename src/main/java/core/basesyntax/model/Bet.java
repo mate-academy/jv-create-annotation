@@ -28,8 +28,8 @@ public class Bet implements Serializable {
     }
 
     public String toString() {
-        return " Model bet { " +
-                " value = " + value
+        return " Model bet { "
+                + " value = " + value
                 + " risk =  " + risk;
     }
 

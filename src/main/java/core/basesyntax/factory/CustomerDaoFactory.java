@@ -8,7 +8,7 @@ public class CustomerDaoFactory {
     public static CustomerDao instance;
 
     public static CustomerDao getLibrary() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new CustomerDaoImpl();
         }
         return instance;
