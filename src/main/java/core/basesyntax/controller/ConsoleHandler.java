@@ -8,8 +8,6 @@ import core.basesyntax.model.User;
 
 import java.util.Scanner;
 
-
-
 public class ConsoleHandler {
 
     @Inject
@@ -39,6 +37,4 @@ public class ConsoleHandler {
             }
         }
     }
-
-
 }
