@@ -18,12 +18,16 @@ public class Injector {
                     && BetDaoImpl.class.getDeclaredAnnotation(Dao.class) != null) {
                 field.setAccessible(true);
                 field.set(null, BetDaoFactory.getBetDao());
+                break;
             }
+        }
+        for (Field field : consoleHandlerFields) {
             if (field.getDeclaredAnnotation(Inject.class) != null
                     && field.getType() == AnimalDao.class
                     && AnimalDaoImpl.class.getDeclaredAnnotation(Dao.class) != null) {
                 field.setAccessible(true);
                 field.set(null, AnimalDaoFactory.getAnimalDao());
+                break;
             }
         }
     }

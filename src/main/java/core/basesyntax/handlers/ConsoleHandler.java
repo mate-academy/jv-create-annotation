@@ -5,6 +5,7 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.models.Animal;
 import core.basesyntax.models.Bet;
+
 import java.util.Scanner;
 
 public class ConsoleHandler {
