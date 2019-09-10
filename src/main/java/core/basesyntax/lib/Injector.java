@@ -13,20 +13,21 @@ public class Injector {
         Class<BetDaoImpl> betDaoClass = BetDaoImpl.class;
         Class<UserDaoImpl> userDaoClass = UserDaoImpl.class;
 
-        if (betDaoClass.getDeclaredAnnotation(Dao.class) == null
-                || userDaoClass.getDeclaredAnnotation(Dao.class) == null) {
-            throw new IllegalAccessException();
-        }
-
         Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
-        for (Field f : consoleHandlerFields) {
-            if (f.getDeclaredAnnotation(Inject.class) != null) {
-                if (f.getName().equals("betDao")) {
-                    f.setAccessible(true);
-                    f.set(null, DaoFactory.getBetDaoInstance());
-                } else if (f.getName().equals("userDao")) {
-                    f.setAccessible(true);
-                    f.set(null, DaoFactory.getUserDaoInstance());
+        for (Field field : consoleHandlerFields) {
+            if (field.getDeclaredAnnotation(Inject.class) != null) {
+                if (field.getName().equals("betDao")) {
+                    if (betDaoClass.getDeclaredAnnotation(Dao.class) == null) {
+                        throw new IllegalAccessException();
+                    }
+                    field.setAccessible(true);
+                    field.set(null, DaoFactory.getBetDaoInstance());
+                } else if (field.getName().equals("userDao")) {
+                    if (userDaoClass.getDeclaredAnnotation(Dao.class) == null) {
+                        throw new IllegalAccessException();
+                    }
+                    field.setAccessible(true);
+                    field.set(null, DaoFactory.getUserDaoInstance());
                 }
             }
         }
