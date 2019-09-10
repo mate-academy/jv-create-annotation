@@ -5,4 +5,13 @@ package core.basesyntax;
  */
 public class HelloWorldTest {
 
+    public static void main(String[] args) {
+
+        //@Inject
+
+        //String
+
+        //int
+    }
+
 }
