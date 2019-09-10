@@ -12,7 +12,9 @@ import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
-    private static BetDao libraryDao;
+    private static BetDao betDao;
+    @Inject
+    private static CustomerDao customerDao;
 
     public static void handle() {
 
@@ -29,10 +31,9 @@ public class ConsoleHandler {
                 String name = data[2];
                 int id = Integer.parseInt(data[3]);
                 Bet bet = new Bet(value,risk);
-                libraryDao.add(bet);
+                betDao.add(bet);
                 Customer customers = new Customer(name,id);
-                CustomerDao cusDao = new CustomerDaoImpl();
-                cusDao.add(customers);
+                customerDao.add(customers);
             } catch (Exception e) {
                 System.err.println("Вводите данные через пробел");
             }

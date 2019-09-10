@@ -23,6 +23,5 @@ public class Main {
         System.out.println(libraryDao.getAll());
         CustomerDao customersDao = new CustomerDaoImpl();
         System.out.println(customersDao.getAll());
-
     }
 }
