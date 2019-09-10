@@ -3,7 +3,6 @@ package core.basesyntax.controller;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.PersonDao;
 import core.basesyntax.lib.Inject;
-import core.basesyntax.lib.InjectPerson;
 import core.basesyntax.models.Bet;
 import core.basesyntax.models.Person;
 
