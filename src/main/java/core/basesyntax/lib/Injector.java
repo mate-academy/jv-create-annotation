@@ -16,18 +16,20 @@ public class Injector {
         Class<RobotDaoImpl> robotDaoClass = RobotDaoImpl.class;
         Class<BetDaoImpl> betDaoClass = BetDaoImpl.class;
 
-        if (robotDaoClass.getDeclaredAnnotation(Dao.class) == null
-                || betDaoClass.getDeclaredAnnotation(Dao.class) == null) {
-            throw new IllegalArgumentException();
-        }
         Field[] controllerFields = controllerClass.getDeclaredFields();
         for (Field field : controllerFields) {
             if (field.getDeclaredAnnotation(InjectDao.class) != null) {
                 field.setAccessible(true);
                 if (field.getType() == RobotDao.class) {
+                    if (robotDaoClass.getDeclaredAnnotation(Dao.class) == null) {
+                        throw new IllegalArgumentException();
+                    }
                     field.set(null, RobotDaoFactory.getRobotDao());
                 }
                 if (field.getType() == BetDao.class) {
+                    if (betDaoClass.getDeclaredAnnotation(Dao.class) == null) {
+                        throw new IllegalArgumentException();
+                    }
                     field.set(null, BetDaoFactory.getBetDao());
                 }
             }
