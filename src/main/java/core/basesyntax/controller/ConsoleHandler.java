@@ -33,7 +33,7 @@ public class ConsoleHandler {
                 String playerName = data[2];
                 playerDao.add(new Player(playerName));
             } catch (Exception e) {
-                System.out.println("Bad Data");
+                System.out.println("Bad data");
             }
         }
     }

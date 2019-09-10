@@ -17,7 +17,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println("Input value of bet coefisient and name using space ");
+        System.out.println("Input sum coefisient and player name using space");
         ConsoleHandler.handle();
         BetDao betDao = BetDaoFactory.getBetDao();
         PlayerDao playerDao = PlayerDaoFactory.getPlayerDao();

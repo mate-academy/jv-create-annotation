@@ -1,8 +1,6 @@
 package core.basesyntax.model;
 
-import java.io.Serializable;
-
-public class Bet implements Serializable {
+public class Bet {
     private int value;
     private double risk;
 
@@ -15,12 +13,12 @@ public class Bet implements Serializable {
         return value;
     }
 
-    public double getRisk() {
-        return risk;
-    }
-
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public double getRisk() {
+        return risk;
     }
 
     public void setRisk(double risk) {
@@ -31,7 +29,6 @@ public class Bet implements Serializable {
     public String toString() {
         return "Bet{"
                 + "value=" + value
-                + ", risk=" + risk
-                + '}';
+                + ", risk=" + risk + '}';
     }
 }
