@@ -31,4 +31,5 @@ public class Bet {
                 + "value=" + value
                 + ", risk=" + risk + '}';
     }
+
 }

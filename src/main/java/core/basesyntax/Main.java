@@ -24,4 +24,5 @@ public class Main {
         System.out.println(betDao.getAll());
         System.out.println(playerDao.getAll());
     }
+
 }
