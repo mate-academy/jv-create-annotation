@@ -4,7 +4,6 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.lib.Dao;
 import core.basesyntax.models.User;
 
-import java.awt.*;
 import java.util.List;
 
 @Dao

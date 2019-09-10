@@ -16,8 +16,8 @@ public class ConsoleHandler {
     private static UserDao userDao;
 
     public static void handle() {
-        System.out.println("Введіть bet щоб додавати ставки, user щоб додавати користувачів" +
-                "\nабо 0 щоб завершити:");
+        System.out.println("Введіть bet щоб додавати ставки, user щоб додавати користувачів"
+                + "\nабо 0 щоб завершити:");
         Scanner input = new Scanner(System.in);
         String command = null;
         while (true) {
@@ -35,8 +35,8 @@ public class ConsoleHandler {
     }
 
     private static void readBets(Scanner input) {
-        System.out.println("Введіть через пробіл суму та ризик щоб додати ставку" +
-                "\nабо 0 щоб завершити додавати ставки:");
+        System.out.println("Введіть через пробіл суму та ризик щоб додати ставку"
+                + "\nабо 0 щоб завершити додавати ставки:");
         String subCommand = null;
         while (true) {
             subCommand = input.nextLine();
@@ -56,8 +56,8 @@ public class ConsoleHandler {
     }
 
     private static void readUsers(Scanner input) {
-        System.out.println("Введіть через пробіл ім'я та пароль щоб додати юзера" +
-                "\nабо 0 щоб завершити додавати юзерів:");
+        System.out.println("Введіть через пробіл ім'я та пароль щоб додати юзера"
+                + "\nабо 0 щоб завершити додавати юзерів:");
         String subCommand = null;
         while (true) {
             subCommand = input.nextLine();
