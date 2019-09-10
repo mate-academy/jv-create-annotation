@@ -1,9 +1,7 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
@@ -35,8 +33,6 @@ public class ConsoleHandler {
                 String surName = data[3];
                 Bet bet = new Bet(value, risk);
                 User user = new User(name, surName);
-                BetDao betDao = new BetDaoImpl();
-                UserDao userDao = new UserDaoImpl();
                 betDao.add(bet);
                 userDao.addUser(user);
             } catch (Exception e) {
