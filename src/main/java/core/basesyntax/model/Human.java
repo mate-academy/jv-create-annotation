@@ -1,8 +1,6 @@
 package core.basesyntax.model;
 
-import java.io.Serializable;
-
-public class Human implements Serializable {
+public class Human {
     private String name;
 
     public Human(String name) {
