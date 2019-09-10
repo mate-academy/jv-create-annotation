@@ -14,7 +14,7 @@ public class ConsoleHandler {
     @Inject
     private static BetDao betDao;
 
-    @InjectPerson
+    @Inject
     private static PersonDao personDao;
 
     public static void handle() {
