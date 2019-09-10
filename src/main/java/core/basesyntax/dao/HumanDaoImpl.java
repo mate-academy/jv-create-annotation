@@ -1,12 +1,12 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.db.Storage;
-import core.basesyntax.lib.HumanDaoAnn;
+import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Human;
 
 import java.util.List;
 
-@HumanDaoAnn
+@Dao
 public class HumanDaoImpl implements HumanDao {
     @Override
     public void add(Human human) {

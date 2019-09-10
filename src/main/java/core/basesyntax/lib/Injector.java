@@ -18,11 +18,11 @@ public class Injector {
             if (field.getDeclaredAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)
-                        && BetDaoImpl.class.isAnnotationPresent(BetDaoAnn.class)) {
+                        && BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.set(null, BetDaoFactory.getBetDao());
                 }
                 if (field.getType().equals(HumanDao.class)
-                        && HumanDaoImpl.class.isAnnotationPresent(HumanDaoAnn.class)) {
+                        && HumanDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.set(null, HumanDaoFactory.getHumanDao());
                 }
             }
