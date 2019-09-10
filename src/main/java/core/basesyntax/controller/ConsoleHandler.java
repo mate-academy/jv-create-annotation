@@ -1,4 +1,12 @@
-package core.basesyntax;
+package core.basesyntax.controller;
+
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.BetImp;
+import core.basesyntax.dao.CustomersDao;
+import core.basesyntax.dao.CustomersImp;
+import core.basesyntax.lip.Inject;
+import core.basesyntax.model.Bet;
+import core.basesyntax.model.Customers;
 
 import java.util.Scanner;
 

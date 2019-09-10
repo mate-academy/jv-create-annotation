@@ -1,4 +1,8 @@
-package core.basesyntax;
+package core.basesyntax.dao;
+
+import core.basesyntax.lip.Dao;
+import core.basesyntax.db.Storage;
+import core.basesyntax.model.Bet;
 
 import java.util.List;
 

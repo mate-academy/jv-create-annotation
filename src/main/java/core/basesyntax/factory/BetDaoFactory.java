@@ -1,4 +1,7 @@
-package core.basesyntax;
+package core.basesyntax.factory;
+
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.BetImp;
 
 public class BetDaoFactory {
     public static BetDao instance;

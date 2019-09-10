@@ -1,5 +1,10 @@
 package core.basesyntax;
 
+import core.basesyntax.controller.ConsoleHandler;
+import core.basesyntax.dao.BetImp;
+import core.basesyntax.factory.BetDaoFactory;
+import core.basesyntax.lip.Inject;
+
 import java.lang.reflect.Field;
 
 public class Injector {

@@ -1,5 +1,11 @@
 package core.basesyntax;
 
+import core.basesyntax.controller.ConsoleHandler;
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.BetImp;
+import core.basesyntax.dao.CustomersDao;
+import core.basesyntax.dao.CustomersImp;
+
 public class Main {
     static {
         try {
