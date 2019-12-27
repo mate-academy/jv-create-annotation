@@ -1,7 +1,7 @@
 package core.basesyntax.controller;
 
-import core.basesyntax.DAO.BetDao;
-import core.basesyntax.DAO.CasinoDAO;
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.CasinoDao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.Casino;
@@ -13,15 +13,15 @@ public class ConsoleHandler {
     private static BetDao betDao;
 
     @Inject
-    private static CasinoDAO casinoDAO;
+    private static CasinoDao casinoDAO;
 
-    public static void handle(){
+    public static void handle() {
         Casino casino = new Casino("Bet", true);
         casinoDAO.add(casino);
-        try(Scanner scanner = new Scanner(System.in)){
-            while (true){
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
                 String command = scanner.nextLine();
-                if(command.equals("0")){
+                if (command.equals("0")) {
                     return;
                 }
                 String[] data = command.split(" ");
@@ -30,7 +30,7 @@ public class ConsoleHandler {
                 Bet bet = new Bet(value, risk);
                 betDao.add(bet);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Wrong input format!");
         }
     }

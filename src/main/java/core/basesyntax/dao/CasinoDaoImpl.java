@@ -1,12 +1,11 @@
-package core.basesyntax.DAO;
-
+package core.basesyntax.dao;
 
 import core.basesyntax.db.Storage;
 import core.basesyntax.model.Casino;
 
 import java.util.List;
 
-public class CasinoDaoImpl implements CasinoDAO {
+public class CasinoDaoImpl implements CasinoDao {
     @Override
     public void add(Casino casino) {
         Storage.casinos.add(casino);

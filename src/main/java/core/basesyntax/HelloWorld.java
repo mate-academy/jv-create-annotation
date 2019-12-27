@@ -1,8 +1,8 @@
 package core.basesyntax;
 
-import core.basesyntax.DAO.BetDaoImpl;
-import core.basesyntax.DAO.CasinoDaoImpl;
 import core.basesyntax.controller.ConsoleHandler;
+import core.basesyntax.dao.BetDaoImpl;
+import core.basesyntax.dao.CasinoDaoImpl;
 import core.basesyntax.lib.Injector;
 
 /**

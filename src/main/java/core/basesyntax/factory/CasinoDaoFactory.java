@@ -1,13 +1,13 @@
 package core.basesyntax.factory;
 
-import core.basesyntax.DAO.CasinoDAO;
-import core.basesyntax.DAO.CasinoDaoImpl;
+import core.basesyntax.dao.CasinoDao;
+import core.basesyntax.dao.CasinoDaoImpl;
 
 public class CasinoDaoFactory {
-    private static CasinoDAO instance;
+    private static CasinoDao instance;
 
-    public static CasinoDAO getCasinoDao(){
-        if(instance == null){
+    public static CasinoDao getCasinoDao() {
+        if (instance == null) {
             instance = new CasinoDaoImpl();
         }
         return instance;

@@ -1,10 +1,11 @@
-package core.basesyntax.DAO;
+package core.basesyntax.dao;
 
 import core.basesyntax.model.Casino;
 
 import java.util.List;
 
-public interface CasinoDAO {
+public interface CasinoDao {
     public void add(Casino casino);
+
     public List<Casino> getAll();
 }
