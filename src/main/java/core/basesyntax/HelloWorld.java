@@ -18,7 +18,6 @@ public class HelloWorld {
     }
 
     public static void main(String[] args) {
-        ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.handle();
+        ConsoleHandler.handle();
     }
 }
