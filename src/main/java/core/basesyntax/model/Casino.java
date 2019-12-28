@@ -24,4 +24,15 @@ public class Casino {
     public void setAdult(boolean adult) {
         this.adult = adult;
     }
+
+    @Override
+    public String toString() {
+        return "Casino{"
+                + "name='"
+                + name
+                + '\''
+                + ", adult="
+                + adult
+                + '}';
+    }
 }
