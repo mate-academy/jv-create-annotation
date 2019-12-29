@@ -7,6 +7,10 @@ import model.Bet;
 import java.util.Scanner;
 
 public class ConsoleHandler {
+    //синглтоп(типа). Один экземпляр класса для работы. Подходит только для работы с
+    //ннапример одной моделью и одным консолХэндлером
+    static final betDao betDao = new betDaoImpl();
+
     public static void handle() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -19,7 +23,6 @@ public class ConsoleHandler {
                 int value = Integer.parseInt(data[0]);
                 double risk = Double.parseDouble(data[1]);
                 Bet bet = new Bet(value, risk);
-                betDao betDao = new betDaoImpl();
                 betDao.add(bet);
             } catch (Exception e) {
                 System.out.println("Data invalid. Try enter \"Value[ ]risk\" again.");
