@@ -12,6 +12,7 @@ public class ConsoleHandler {
     static final betDao betDao = new betDaoImpl();
 
     public static void handle() {
+
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
