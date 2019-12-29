@@ -1,24 +1,32 @@
 package lib;
 
 import controller.ConsoleHandler;
-import dao.betDaoImpl;
-import factory.betDaoFactory;
+import dao.BetDao;
+import dao.BetDaoImpl;
+import dao.HumanDao;
+import dao.HumanDaoIml;
+import factory.BetDaoFactory;
+import factory.HumanDaoFactory;
 
 import java.lang.reflect.Field;
 
-//рефлексия
 public class Injector {
     public static void InjectDependency() throws IllegalAccessException {
-        //объект класса который описывает класс
-        //получаем объект типа класс который описывает класс консол хэндлер
         Class<ConsoleHandler> consoleHandlerClass = ConsoleHandler.class;
-        Class<betDaoImpl> betDaoClass = betDaoImpl.class;
+        Class<BetDaoImpl> betDaoClass = BetDaoImpl.class;
+        Class<HumanDaoIml> humanDaoImlClass = HumanDaoIml.class;
 
         Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
         for (Field field:consoleHandlerFields) {
             if (field.getDeclaredAnnotation(Inject.class) != null) {
-                field.setAccessible(true);
-                field.set(null, betDaoFactory.getBetDao());
+                if (field.getType().equals(BetDao.class)) {
+                    field.setAccessible(true);
+                    field.set(null, BetDaoFactory.getBetDao());
+                }
+                if (field.getType().equals(HumanDao.class)) {
+                    field.setAccessible(true);
+                    field.set(null, HumanDaoFactory.getHumanDao());
+                }
             }
         }
     }

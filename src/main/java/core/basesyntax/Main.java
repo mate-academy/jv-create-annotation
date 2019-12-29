@@ -1,17 +1,30 @@
 package core.basesyntax;
 
 import controller.ConsoleHandler;
-import dao.betDao;
-import dao.betDaoImpl;
+import dao.BetDao;
+import dao.BetDaoImpl;
+import dao.HumanDao;
+import dao.HumanDaoIml;
+import lib.Injector;
 
-/**
- * Feel free to remove this class and create your own.
- */
 public class Main {
+
+    static {
+        try {
+            Injector.InjectDependency();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.print("Enter value and risk with whitespace: \n -> ");
+        System.out.print("Enter your name, age and bet value, risk with whitespace " +
+                "name age value risk" +
+                "\nor \"0\" if you want exit: \n -> ");
         ConsoleHandler.handle();
-        betDao betDao = new betDaoImpl();
+        BetDao betDao = new BetDaoImpl();
+        HumanDao humanDao = new HumanDaoIml();
         System.out.println(betDao.getAll());
+        System.out.println(humanDao.getAll());
     }
 }

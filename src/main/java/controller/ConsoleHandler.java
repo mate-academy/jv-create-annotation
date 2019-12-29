@@ -1,26 +1,20 @@
 package controller;
 
-import dao.betDao;
-import dao.betDaoImpl;
-import factory.betDaoFactory;
+import dao.BetDao;
+import dao.HumanDao;
 import lib.Inject;
 import model.Bet;
+import model.Human;
 
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    //синглтоп(типа). Один экземпляр класса для работы. Подходит только для работы с
-    //ннапример одной моделью и одным консолХэндлером
-    //возвращает всегда один инстанс
-    //логика создания БэтДао теперь не в консолхэндлере и проще изменить свзязь теперь фабрика
-    //
-    //нужна более слабая связь что бы было проще подстроиться на дргую базу или другую
-    //реализацию базы данных(сторэйдж)
-    //что бы друг о друге почти ничего не знали или вообще не знали
 
-    //определяет тип данных - ищет такую реализацию и внедряет
     @Inject
-    private static final betDao betDao = betDaoFactory.getBetDao();
+    private static BetDao betDao;
+
+    @Inject
+    private static HumanDao humanDao;
 
     public static void handle() {
 
@@ -32,12 +26,20 @@ public class ConsoleHandler {
             }
             try {
                 String[] data = command.split(" ");
-                int value = Integer.parseInt(data[0]);
-                double risk = Double.parseDouble(data[1]);
+                if (Integer.parseInt(data[1]) < 18) {
+                    System.out.println("Acces denied. You are under 18.");
+                    break;
+                }
+                String name = data[0];
+                int age = Integer.parseInt(data[1]);
+                int value = Integer.parseInt(data[2]);
+                double risk = Double.parseDouble(data[3]);
                 Bet bet = new Bet(value, risk);
+                Human human = new Human(name, age, bet);
                 betDao.add(bet);
+                humanDao.addHuman(human);
             } catch (Exception e) {
-                System.out.println("Data invalid. Try enter \"Value[ ]risk\" again.");
+                System.out.println("Data invalid. Try enter \"name[ ]age[ ]value(int)[ ]risk(double)");
             }
 
         }

@@ -6,10 +6,8 @@ import model.Bet;
 
 import java.util.List;
 
-//Логика работы с базой данных что ы не дублировать
 @Dao
-//
-public class betDaoImpl implements betDao {
+public class BetDaoImpl implements BetDao {
     @Override
     public void add(Bet bet) {
         Storage.bets.add(bet);
