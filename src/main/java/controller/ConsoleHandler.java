@@ -2,6 +2,7 @@ package controller;
 
 import dao.betDao;
 import dao.betDaoImpl;
+import factory.betDaoFactory;
 import model.Bet;
 
 import java.util.Scanner;
@@ -9,7 +10,8 @@ import java.util.Scanner;
 public class ConsoleHandler {
     //синглтоп(типа). Один экземпляр класса для работы. Подходит только для работы с
     //ннапример одной моделью и одным консолХэндлером
-    static final betDao betDao = new betDaoImpl();
+    //возвращает всегда один инстанс
+    private static final betDao betDao = betDaoFactory.getBetDao();
 
     public static void handle() {
 
