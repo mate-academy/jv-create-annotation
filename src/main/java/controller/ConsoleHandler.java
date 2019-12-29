@@ -3,6 +3,7 @@ package controller;
 import dao.betDao;
 import dao.betDaoImpl;
 import factory.betDaoFactory;
+import lib.Inject;
 import model.Bet;
 
 import java.util.Scanner;
@@ -17,6 +18,8 @@ public class ConsoleHandler {
     //реализацию базы данных(сторэйдж)
     //что бы друг о друге почти ничего не знали или вообще не знали
 
+    //определяет тип данных - ищет такую реализацию и внедряет
+    @Inject
     private static final betDao betDao = betDaoFactory.getBetDao();
 
     public static void handle() {
