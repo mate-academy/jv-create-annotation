@@ -7,7 +7,7 @@ import core.basesyntax.model.RequestVeselka;
 import java.util.List;
 
 @Dao
-public class RequestVeselkaDaoImpl implements RequestVeselkaDao {
+public class VeselkaDaoImpl implements RequestVeselkaDao {
     @Override
     public void makeRequest(RequestVeselka requestVeselka) {
         Storage.REQUEST_VESELKAS.add(requestVeselka);
