@@ -3,8 +3,7 @@ package core.basesyntax.controller;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.library.Inject;
-import core.basesyntax.model.Bet;
-
+import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -22,10 +21,9 @@ public class ConsoleHandler {
             }
             try {
                 String[] data = command.split(" ");
-                int value = Integer.parseInt(data[0]);
-                double risk = Double.parseDouble(data[1]);
-                betDao.add(new Bet(value, risk));
-            } catch (Exception e) {
+                int id = Integer.parseInt(data[0]);
+                userDao.add(new User(id, data[1]));
+            } catch (NumberFormatException e) {
                 System.out.println("Wrong entered data!");
             }
         }
