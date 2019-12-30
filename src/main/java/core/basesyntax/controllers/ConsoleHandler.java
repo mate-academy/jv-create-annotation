@@ -9,15 +9,14 @@ import core.basesyntax.model.Lottery;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-
-    private static Scanner scanner = new Scanner(System.in);
-    private static String command;
     @Inject
     private static BetDao betDao;
     @Inject
     private static LotteryDao lotteryDao;
 
     public static void handle() {
+        Scanner scanner = new Scanner(System.in);
+        String command;
         while (true) {
             command = scanner.nextLine();
             try {
@@ -42,6 +41,8 @@ public class ConsoleHandler {
         System.out.println("Enter the amount of money and "
                 + "5 digits on your choice splitted by space."
                 + "\nTo exit, press 0");
+        Scanner scanner = new Scanner(System.in);
+        String command;
         while (true) {
             command = scanner.nextLine();
             if (command.equals("0")) {
@@ -62,6 +63,8 @@ public class ConsoleHandler {
     private static void doBet() {
         System.out.println("Enter the bet and risk through the space."
                 + "\nTo exit, press 0");
+        Scanner scanner = new Scanner(System.in);
+        String command;
         while (true) {
             command = scanner.nextLine();
             if (command.equals("0")) {
