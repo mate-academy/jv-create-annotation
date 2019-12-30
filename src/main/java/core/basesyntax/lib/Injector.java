@@ -21,13 +21,21 @@ public class Injector {
         for (Field field : fields) {
             if (field.getDeclaredAnnotation(Inject.class) != null
                     && field.getType().equals(BetDao.class)) {
-                field.setAccessible(true);
-                field.set(null, BetDaoFactory.getBetDao());
+                if (betDaoClass.getDeclaredAnnotation(Dao.class) != null) {
+                    field.setAccessible(true);
+                    field.set(null, BetDaoFactory.getBetDao());
+                } else {
+                    System.err.println("Wrong DAO format");
+                }
             }
             if (field.getDeclaredAnnotation(Inject.class) != null
                     && field.getType().equals(CasinoDao.class)) {
-                field.setAccessible(true);
-                field.set(null, CasinoDaoFactory.getCasinoDao());
+                if (casinoDaoClass.getDeclaredAnnotation(Dao.class) != null) {
+                    field.setAccessible(true);
+                    field.set(null, CasinoDaoFactory.getCasinoDao());
+                } else {
+                    System.err.println("Wrong DAO format");
+                }
             }
         }
     }
