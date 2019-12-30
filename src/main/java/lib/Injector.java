@@ -11,7 +11,7 @@ import factory.HumanDaoFactory;
 import java.lang.reflect.Field;
 
 public class Injector {
-    public static void InjectDependency() throws IllegalAccessException {
+    public static void injectDependency() throws IllegalAccessException {
         Class<ConsoleHandler> consoleHandlerClass = ConsoleHandler.class;
         Class<BetDaoImpl> betDaoClass = BetDaoImpl.class;
         Class<HumanDaoIml> humanDaoImlClass = HumanDaoIml.class;

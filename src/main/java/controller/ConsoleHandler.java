@@ -2,11 +2,12 @@ package controller;
 
 import dao.BetDao;
 import dao.HumanDao;
+
+import java.util.Scanner;
+
 import lib.Inject;
 import model.Bet;
 import model.Human;
-
-import java.util.Scanner;
 
 public class ConsoleHandler {
 
@@ -39,7 +40,8 @@ public class ConsoleHandler {
                 betDao.add(bet);
                 humanDao.addHuman(human);
             } catch (Exception e) {
-                System.out.println("Data invalid. Try enter \"name[ ]age[ ]value(int)[ ]risk(double)");
+                System.out.println("Data invalid. "
+                        + "Try enter \"name[ ]age[ ]value(int)[ ]risk(double)");
             }
 
         }

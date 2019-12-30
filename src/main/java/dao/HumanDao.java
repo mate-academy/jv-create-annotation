@@ -1,10 +1,11 @@
 package dao;
 
-import model.Human;
-
 import java.util.List;
+
+import model.Human;
 
 public interface HumanDao {
     void addHuman(Human human);
+
     List<Human> getAll();
 }
