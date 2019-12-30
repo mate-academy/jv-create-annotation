@@ -33,7 +33,7 @@ public class Injector {
                         field.setAccessible(true);
                         field.set(null, PlayerDaoFactory.getPlayerDao());
                     } else {
-                        System.out.println("BetDao hasn't been found");
+                        System.out.println("Player hasn't been found");
                     }
                 }
             }
