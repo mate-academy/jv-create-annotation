@@ -7,7 +7,7 @@ import core.basesyntax.model.RequestBarvinok;
 import java.util.List;
 
 @Dao
-public class RequestBarvinokDaoImpl implements RequestBarvinokDao {
+public class BarvinokDaoImpl implements RequestBarvinokDao {
     @Override
     public void makeRequest(RequestBarvinok requestBarvinok) {
         Storage.REQUEST_BARVINOK.add(requestBarvinok);
