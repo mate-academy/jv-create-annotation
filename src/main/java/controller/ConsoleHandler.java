@@ -28,7 +28,7 @@ public class ConsoleHandler {
             try {
                 String[] data = command.split(" ");
                 if (Integer.parseInt(data[1]) < 18) {
-                    System.out.println("Acces denied. You are under 18.");
+                    System.out.println("Access denied. You are under 18.");
                     break;
                 }
                 String name = data[0];

@@ -6,9 +6,6 @@ import java.util.List;
 import model.Bet;
 import model.Human;
 
-
-
-//DATA_BASE WITH TABLES BETS AND HUMANS
 public class Storage {
     public static final List<Bet> bets = new ArrayList<>();
     public static final List<Human> humans = new ArrayList<>();
