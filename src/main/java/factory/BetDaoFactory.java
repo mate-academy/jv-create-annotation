@@ -7,7 +7,7 @@ public class BetDaoFactory {
 
     private static BetDao instance;
 
-    public static BetDao getBetDao(){
+    public static BetDao getBetDao() {
         return instance == null ? instance = new BetDaoImpl() : instance;
     }
 }

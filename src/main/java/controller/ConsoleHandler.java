@@ -1,16 +1,20 @@
 package controller;
 
 import dao.BetDao;
+import dao.HumanDao;
+import java.util.Scanner;
 import lib.Inject;
 import model.Bet;
-
-import java.util.Scanner;
+import model.Human;
 
 // принимает данные от пользователя через консоль
 
 public class ConsoleHandler {
     @Inject
     private static BetDao betDao;
+
+    @Inject
+    private static HumanDao humanDao;
 
     public static void handle() {
         while (true != false) {
@@ -23,12 +27,18 @@ public class ConsoleHandler {
                 String[] input = command.split(" ");
                 int value = Integer.parseInt(input[0]);
                 double risk = Double.parseDouble(input[1]);
+                String name = input[2];
+                int money = Integer.parseInt(input[3]);
+
                 Bet bet = new Bet(value, risk);
+                Human human = new Human(name, money);
 
                 betDao.add(bet);
+                humanDao.add(human);
 
             } catch (Exception e) {
-                System.out.println("Wrong input! Input value and risk");
+                System.out.println("Wrong input! Input value, risk, "
+                        + "name and amount of money, that you planing to loose");
             }
         }
     }
