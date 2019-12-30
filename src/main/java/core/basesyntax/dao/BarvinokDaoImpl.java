@@ -7,14 +7,14 @@ import core.basesyntax.model.RequestBarvinok;
 import java.util.List;
 
 @Dao
-public class RequestBarvinokDaoImpl implements RequestBarvinokDao {
+public class BarvinokDaoImpl implements BarvinokDao {
     @Override
-    public void makeRequest(RequestBarvinok requestBarvinok) {
-        Storage.REQUEST_BARVINOK.add(requestBarvinok);
+    public void makeBarvinokRequest(RequestBarvinok requestBarvinok) {
+        Storage.requestBarvinok.add(requestBarvinok);
     }
 
     @Override
     public List<RequestBarvinok> getAllList() {
-        return Storage.REQUEST_BARVINOK;
+        return Storage.requestBarvinok;
     }
 }

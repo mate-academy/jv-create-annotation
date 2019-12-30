@@ -1,16 +1,16 @@
 package core.basesyntax.factory;
 
-import core.basesyntax.dao.RequestVeselkaDao;
-import core.basesyntax.dao.RequestVeselkaDaoImpl;
+import core.basesyntax.dao.VeselkaDao;
+import core.basesyntax.dao.VeselkaDaoImpl;
 
 public class RequestVeselkaDaoFactory {
 
-    public static RequestVeselkaDao INSTASE;
+    public static VeselkaDao veselkaInstanse;
 
-    public static RequestVeselkaDao getRequestVeselkaDao() {
-        if (INSTASE == null) {
-            INSTASE = new RequestVeselkaDaoImpl();
+    public static VeselkaDao getRequestVeselkaDao() {
+        if (veselkaInstanse == null) {
+            veselkaInstanse = new VeselkaDaoImpl();
         }
-        return INSTASE;
+        return veselkaInstanse;
     }
 }

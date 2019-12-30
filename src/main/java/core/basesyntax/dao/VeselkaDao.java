@@ -4,8 +4,8 @@ import core.basesyntax.model.RequestVeselka;
 
 import java.util.List;
 
-public interface RequestVeselkaDao {
-    void makeRequest(RequestVeselka requestVeselka);
+public interface VeselkaDao {
+    void makeVeselkaRequest(RequestVeselka requestVeselka);
 
     List<RequestVeselka> getAllList();
 }

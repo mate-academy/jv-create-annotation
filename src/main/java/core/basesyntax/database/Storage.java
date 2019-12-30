@@ -7,6 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    public static final List<RequestVeselka> REQUEST_VESELKAS = new ArrayList<>();
-    public static final List<RequestBarvinok> REQUEST_BARVINOK = new ArrayList<>();
+    public static final List<RequestVeselka> requestVeselka = new ArrayList<>();
+    public static final List<RequestBarvinok> requestBarvinok = new ArrayList<>();
 }

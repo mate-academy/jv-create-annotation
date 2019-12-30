@@ -1,10 +1,10 @@
 package core.basesyntax;
 
 import core.basesyntax.controller.ConsolHendler;
-import core.basesyntax.dao.RequestBarvinokDao;
-import core.basesyntax.dao.RequestBarvinokDaoImpl;
-import core.basesyntax.dao.RequestVeselkaDao;
-import core.basesyntax.dao.RequestVeselkaDaoImpl;
+import core.basesyntax.dao.BarvinokDao;
+import core.basesyntax.dao.BarvinokDaoImpl;
+import core.basesyntax.dao.VeselkaDao;
+import core.basesyntax.dao.VeselkaDaoImpl;
 import core.basesyntax.lib.Injector;
 
 import java.time.LocalDate;
@@ -43,13 +43,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String choice = sc.nextLine();
         if (choice.equals("1")) {
-            ConsolHendler.handle1();
-            RequestVeselkaDao requestVeselkaDao = new RequestVeselkaDaoImpl();
-            System.out.println(requestVeselkaDao.getAllList());
+            ConsolHendler.setToVeselkaLine();
+            VeselkaDao veselkaDao = new VeselkaDaoImpl();
+            System.out.println(veselkaDao.getAllList());
         } else if (choice.equals("2")) {
-            ConsolHendler.handle2();
-            RequestBarvinokDao requestBarvinokDao = new RequestBarvinokDaoImpl();
-            System.out.println(requestBarvinokDao.getAllList());
+            ConsolHendler.setToBarvinokLine();
+            BarvinokDao barvinokDao = new BarvinokDaoImpl();
+            System.out.println(barvinokDao.getAllList());
         } else if (choice.equals("0")) {
             System.exit(0);
         }

@@ -1,9 +1,7 @@
 package core.basesyntax.controller;
 
-import core.basesyntax.dao.RequestBarvinokDao;
-import core.basesyntax.dao.RequestBarvinokDaoImpl;
-import core.basesyntax.dao.RequestVeselkaDao;
-import core.basesyntax.dao.RequestVeselkaDaoImpl;
+import core.basesyntax.dao.BarvinokDao;
+import core.basesyntax.dao.VeselkaDao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.RequestBarvinok;
 import core.basesyntax.model.RequestVeselka;
@@ -12,12 +10,12 @@ import java.util.Scanner;
 
 public class ConsolHendler {
     @Inject
-    public static RequestVeselkaDao requestVeselkaDao;
+    public static VeselkaDao veselkaDao;
 
     @Inject
-    public static RequestBarvinokDao requestBarvinokDao;
+    public static BarvinokDao barvinokDao;
 
-    public static void handle1() {
+    public static void setToVeselkaLine() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
@@ -29,15 +27,14 @@ public class ConsolHendler {
                 String name = data[0];
                 int id = Integer.parseInt(data[1]);
                 RequestVeselka requestVeselka = new RequestVeselka(name, id);
-                RequestVeselkaDao requestVeselkaDao = new RequestVeselkaDaoImpl();
-                requestVeselkaDao.makeRequest(requestVeselka);
+                veselkaDao.makeVeselkaRequest(requestVeselka);
             } catch (Exception e) {
                 System.out.println("Помилка введення, повторіть спробу");
             }
         }
     }
 
-    public static void handle2() {
+    public static void setToBarvinokLine() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
@@ -49,8 +46,7 @@ public class ConsolHendler {
                 String name = data[0];
                 int id = Integer.parseInt(data[1]);
                 RequestBarvinok requestBarvinok = new RequestBarvinok(name, id);
-                RequestBarvinokDao requestBarvinokDao = new RequestBarvinokDaoImpl();
-                requestBarvinokDao.makeRequest(requestBarvinok);
+                barvinokDao.makeBarvinokRequest(requestBarvinok);
             } catch (Exception e) {
                 System.out.println("Помилка введення, повторіть спробу");
             }
