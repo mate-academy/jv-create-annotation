@@ -10,7 +10,6 @@ public class HumanDaoFactory {
     public static HumanDao getHumanDao() {
         if (instance == null) {
             instance =  new HumanDaoImpl();
-            return instance;
         }
         return instance;
     }

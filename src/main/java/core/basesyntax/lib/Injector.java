@@ -17,26 +17,23 @@ public class Injector {
         Class<BetDaoImpl> betDaoClass = BetDaoImpl.class;
         Class<HumanDaoImpl> humanDaoClass = HumanDaoImpl.class;
 
+        if (betDaoClass.getAnnotation(Dao.class) == null
+                || humanDaoClass.getAnnotation(Dao.class) == null) {
+            throw new AnotationNoExistException("Анотація Dao відсутня");
+        }
         Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
         for (Field field: consoleHandlerFields) {
-            if (field.getType() == BetDao.class) {
-                if (field.getDeclaredAnnotation(Inject.class) != null
-                        && betDaoClass.getAnnotation(Dao.class) != null) {
+            if (field.getDeclaredAnnotation(Inject.class) != null) {
+                if (field.getType() == BetDao.class) {
                     field.setAccessible(true);
                     field.set(null, BetDaoFactory.getBetDao());
-                } else {
-                    throw new AnotationNoExistException("Анотація відсутня");
                 }
-            }
-
-            if (field.getType() == HumanDao.class) {
-                if (field.getDeclaredAnnotation(Inject.class) != null
-                        && humanDaoClass.getAnnotation(Dao.class) != null) {
+                if (field.getType() == HumanDao.class) {
                     field.setAccessible(true);
                     field.set(null, HumanDaoFactory.getHumanDao());
-                } else {
-                    throw new AnotationNoExistException("Анотація відсутня");
                 }
+            } else {
+                throw new AnotationNoExistException("Анотація Inject відсутня");
             }
         }
     }
