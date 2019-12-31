@@ -1,8 +1,6 @@
 package core.basesyntax.src.model;
 
-import java.io.Serializable;
-
-public class Bet implements Serializable {
+public class Bet {
     private int value;
     private double risk;
 
