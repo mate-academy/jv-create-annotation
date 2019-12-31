@@ -1,6 +1,6 @@
 package model;
 
-public class Bet{
+public class Bet {
 
     private int value;
     private double risk;
