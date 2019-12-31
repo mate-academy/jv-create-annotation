@@ -2,9 +2,6 @@ package core.basesyntax.model;
 
 import java.util.Objects;
 
-/**
- * Feel free to remove this class and create your own.
- */
 public class Player {
     private String firstName;
     private String lastName;
