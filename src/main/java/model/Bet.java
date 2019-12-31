@@ -1,10 +1,6 @@
 package model;
 
-import java.io.Serializable;
-
-// Класс, реализующий ставки
-
-public class Bet implements Serializable {
+public class Bet{
 
     private int value;
     private double risk;

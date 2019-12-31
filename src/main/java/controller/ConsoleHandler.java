@@ -7,8 +7,6 @@ import lib.Inject;
 import model.Bet;
 import model.Human;
 
-// принимает данные от пользователя через консоль
-
 public class ConsoleHandler {
     @Inject
     private static BetDao betDao;
