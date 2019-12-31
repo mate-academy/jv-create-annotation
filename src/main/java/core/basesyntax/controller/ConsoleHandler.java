@@ -33,9 +33,5 @@ public class ConsoleHandler {
             ex.printStackTrace();
             System.out.println("Incorrect data");
         }
-
     }
 }
-
-
-
