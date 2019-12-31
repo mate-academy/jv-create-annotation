@@ -18,7 +18,6 @@ public class Injector {
         Class<ConsoleHandler> consoleHandlerClass = ConsoleHandler.class;
         Class<BetDaoImpl> betDaoImplClass = BetDaoImpl.class;
         Class<GamerDaoImpl> gamerDaoImplClass = GamerDaoImpl.class;
-
         Field[] consoleHandlerClassDeclaredFields = consoleHandlerClass.getDeclaredFields();
         for (Field field : consoleHandlerClassDeclaredFields) {
             if (field.getDeclaredAnnotation(Inject.class) != null
