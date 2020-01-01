@@ -27,8 +27,8 @@ public class Bet {
 
     @Override
     public String toString() {
-        return "model.Bet{" +
-                "value = "
+        return "model.Bet{"
+                + "value = "
                 + value
                 + ", risk "
                 + risk + "}";
