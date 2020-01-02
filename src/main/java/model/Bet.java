@@ -1,7 +1,5 @@
 package model;
 
-import java.io.Serializable;
-
 public class Bet {
     private int value;
     private double risk;
