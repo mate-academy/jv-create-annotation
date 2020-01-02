@@ -3,22 +3,22 @@ package core.basesyntax.lib;
 import core.basesyntax.controller.ConsoleHandler;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.dao.CustomDaoClass;
+import core.basesyntax.dao.PersonDao;
+import core.basesyntax.dao.PersonDaoImpl;
 import core.basesyntax.exceptions.AnnotationMismatchException;
-import core.basesyntax.factory.AnotherBetDaoFactory;
 import core.basesyntax.factory.BetDaoFactory;
+import core.basesyntax.factory.PersonDaoFactory;
 import java.lang.reflect.Field;
 
 public class Injector {
     public static void inject() throws IllegalAccessException, AnnotationMismatchException {
         Class<ConsoleHandler> consoleHandlerClass = ConsoleHandler.class;
         Class<BetDaoImpl> betDaoImpClass = BetDaoImpl.class;
-        Class<CustomDaoClass> customDaoClass = CustomDaoClass.class;
+        Class<PersonDaoImpl> personDao = PersonDaoImpl.class;
 
         Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
 
         for (Field elem : consoleHandlerFields) {
-            System.out.println(elem + " : " + elem.getAnnotatedType());
             if (elem.getDeclaredAnnotation(Inject.class) != null
                     && elem.getType().equals(BetDao.class)) {
                 if (betDaoImpClass.isAnnotationPresent(Dao.class)) {
@@ -29,10 +29,10 @@ public class Injector {
                 }
             }
             if (elem.getDeclaredAnnotation(Inject.class) != null
-                    && elem.getType().equals(CustomDaoClass.class)) {
-                if (customDaoClass.isAnnotationPresent(Dao.class)) {
+                    && elem.getType().equals(PersonDao.class)) {
+                if (personDao.isAnnotationPresent(Dao.class)) {
                     elem.setAccessible(true);
-                    elem.set(null, AnotherBetDaoFactory.getBetDao());
+                    elem.set(null, PersonDaoFactory.getPersonDao());
                 } else {
                     throw new AnnotationMismatchException();
                 }
