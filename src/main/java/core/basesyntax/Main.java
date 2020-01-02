@@ -6,9 +6,6 @@ import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.lib.Injector;
-/**
- * Feel free to remove this class and create your own.
- */
 
 public class Main {
 
