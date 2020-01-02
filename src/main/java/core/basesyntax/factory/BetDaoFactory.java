@@ -4,7 +4,7 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 
 public class BetDaoFactory {
-    private static BetDaoImpl betDaoImpl;
+    private static BetDao betDaoImpl;
 
     public static BetDao getBetDao() {
         if (betDaoImpl == null) {

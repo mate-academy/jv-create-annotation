@@ -18,21 +18,21 @@ public class Injector {
 
         Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
 
-        for (Field elem : consoleHandlerFields) {
-            if (elem.getDeclaredAnnotation(Inject.class) != null
-                    && elem.getType().equals(BetDao.class)) {
+        for (Field field : consoleHandlerFields) {
+            if (field.getDeclaredAnnotation(Inject.class) != null
+                    && field.getType().equals(BetDao.class)) {
                 if (betDaoImpClass.isAnnotationPresent(Dao.class)) {
-                    elem.setAccessible(true);
-                    elem.set(null, BetDaoFactory.getBetDao());
+                    field.setAccessible(true);
+                    field.set(null, BetDaoFactory.getBetDao());
                 } else {
                     throw new AnnotationMismatchException();
                 }
             }
-            if (elem.getDeclaredAnnotation(Inject.class) != null
-                    && elem.getType().equals(PersonDao.class)) {
+            if (field.getDeclaredAnnotation(Inject.class) != null
+                    && field.getType().equals(PersonDao.class)) {
                 if (personDao.isAnnotationPresent(Dao.class)) {
-                    elem.setAccessible(true);
-                    elem.set(null, PersonDaoFactory.getPersonDao());
+                    field.setAccessible(true);
+                    field.set(null, PersonDaoFactory.getPersonDao());
                 } else {
                     throw new AnnotationMismatchException();
                 }
