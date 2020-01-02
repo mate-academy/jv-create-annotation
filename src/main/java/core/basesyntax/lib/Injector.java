@@ -26,7 +26,7 @@ public class Injector {
                     field.setAccessible(true);
                     field.set(null, BetDaoFactory.getBetDao());
                 } else {
-                    throw new AnnotationNotFoundException();
+                    throw new AnnotationNotFoundException("No Dao annotation found");
                 }
             }
             if (field.getDeclaredAnnotation(Inject.class) != null
@@ -35,7 +35,7 @@ public class Injector {
                     field.setAccessible(true);
                     field.set(null, GamerDaoFactory.getGamerDao());
                 } else {
-                    throw new AnnotationNotFoundException();
+                    throw new AnnotationNotFoundException("No Dao annotation found");
                 }
             }
         }
