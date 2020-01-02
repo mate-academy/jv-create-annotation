@@ -18,14 +18,14 @@ public class Injector {
         for (Field field : consoleHandlerFields) {
             if (field.getDeclaredAnnotation(Inject.class) != null
                     && BetDaoImpl.class.getDeclaredAnnotation(Dao.class) != null
-                    && field.getType() == BetDao.class) {
+                    && field.getType().equals(BetDao.class)) {
                 field.setAccessible(true);
                 field.set(null, BetDaoFactory.getBetDao());
             }
 
             if (field.getDeclaredAnnotation(Inject.class) != null
                     && PersonDaoImpl.class.getDeclaredAnnotation(Dao.class) != null
-                    && field.getType() == PersonDao.class) {
+                    && field.getType().equals(PersonDao.class)) {
                 field.setAccessible(true);
                 field.set(null, PersonDaoFactory.getPersonDao());
             }
