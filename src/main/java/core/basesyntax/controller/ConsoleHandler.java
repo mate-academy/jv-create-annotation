@@ -54,12 +54,4 @@ public class ConsoleHandler {
             System.out.println("Дані введені некоректно");
         }
     }
-
-    public static BetDao getBetDao() {
-        return betDao;
-    }
-
-    public static PersonDao getPersonDao() {
-        return personDao;
-    }
 }

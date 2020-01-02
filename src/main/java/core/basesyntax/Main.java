@@ -3,6 +3,8 @@ package core.basesyntax;
 import core.basesyntax.controller.ConsoleHandler;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.PersonDao;
+import core.basesyntax.factory.BetDaoFactory;
+import core.basesyntax.factory.PersonDaoFactory;
 import core.basesyntax.lib.Injector;
 
 public class Main {
@@ -19,12 +21,12 @@ public class Main {
         System.out.println("Якщо хочете зробити ставку, введіть \n"
                             + "суму і риск через пробіл");
         ConsoleHandler.handle();
-        BetDao betDao = ConsoleHandler.getBetDao();
+        BetDao betDao = BetDaoFactory.getBetDao();
         System.out.println(betDao.getAll());
 
         System.out.println("Введіть ім'я і вік людини через пробіл");
         ConsoleHandler.handlePerson();
-        PersonDao personDao = ConsoleHandler.getPersonDao();
+        PersonDao personDao = PersonDaoFactory.getPersonDao();
         System.out.println(personDao.getAll());
     }
 }
