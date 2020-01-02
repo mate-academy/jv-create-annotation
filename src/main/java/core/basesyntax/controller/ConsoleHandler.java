@@ -13,14 +13,14 @@ import java.io.InputStreamReader;
 public class ConsoleHandler {
 
     @Inject
-    protected static UserDao userDao;
+    private static UserDao userDao;
     @Inject
-    protected static BetDao betDao;
+    private static BetDao betDao;
 
     public static void input() {
-        try (BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader bufferReader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
-                String command = bReader.readLine();
+                String command = bufferReader.readLine();
                 if (command.equals("0")) {
                     return;
                 }
@@ -37,7 +37,6 @@ public class ConsoleHandler {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Wrong input data!");
-            return;
         }
     }
 }

@@ -1,7 +1,9 @@
 package core.basesyntax.lib;
 
 import core.basesyntax.controller.ConsoleHandler;
+import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
+import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.factory.UserDaoFactory;
@@ -18,13 +20,13 @@ public class Injector {
         Field[] consoleHandlerFields = consoleHandlerClass.getDeclaredFields();
         for (Field field : consoleHandlerFields) {
             if (field.isAnnotationPresent(Inject.class)
-                    && field.getType().getSimpleName().equals("UserDao")
+                    && field.getType().equals(UserDao.class)
                     && userDaoClass.isAnnotationPresent(Dao.class)) {
                 field.setAccessible(true);
                 field.set(null, UserDaoFactory.getUserDao());
             }
             if (field.isAnnotationPresent(Inject.class)
-                    && field.getType().getSimpleName().equals("BetDao")
+                    && field.getType().equals(BetDao.class)
                     && betDaoClass.isAnnotationPresent(Dao.class)) {
                 field.setAccessible(true);
                 field.set(null, BetDaoFactory.getBetDao());
