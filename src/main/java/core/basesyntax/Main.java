@@ -7,9 +7,6 @@ import dao.HumanDao;
 import dao.HumanDaoImpl;
 import lib.Injector;
 
-/**
- * Feel free to remove this class and create your own.
- */
 public class Main {
 
     static {

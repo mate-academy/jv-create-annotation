@@ -2,9 +2,6 @@ package model;
 
 import java.io.Serializable;
 
-/**
- * Feel free to remove this class and create your own.
- */
 public class Bet implements Serializable {
     private int value;
     private double risk;

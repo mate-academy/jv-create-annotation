@@ -20,9 +20,9 @@ public class Injector {
         Field[] consoleHandlerfields = consoleHandlerClass.getDeclaredFields();
         for (Field field : consoleHandlerfields) {
             if (field.getDeclaredAnnotation(Inject.class) != null) {
-                field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)) {
                     if (betDaoImplClass.getDeclaredAnnotation(Dao.class) != null) {
+                        field.setAccessible(true);
                         field.set(null, BetDaoFactory.getBetDao());
                     } else {
                         System.out.println("DAO not found");
@@ -30,6 +30,7 @@ public class Injector {
                 }
                 if (field.getType().equals(HumanDao.class)) {
                     if (humanDaoImplClass.getDeclaredAnnotation(Dao.class) != null) {
+                        field.setAccessible(true);
                         field.set(null, HumanDaoFactory.getHumanDao());
                     } else {
                         System.out.println("DAO not found");
