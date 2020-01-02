@@ -12,7 +12,6 @@ import core.basesyntax.factories.GamerDaoFactory;
 import java.lang.reflect.Field;
 
 public class Injector {
-
     public static void injectDependency()
             throws IllegalAccessException, AnnotationNotFoundException {
         Class<ConsoleHandler> consoleHandlerClass = ConsoleHandler.class;
