@@ -1,9 +1,8 @@
 package core.basesyntax.library;
 
 import core.basesyntax.controller.App;
-import core.basesyntax.factory.HumanDaoFactory;
 import core.basesyntax.dao.HumanHumanDaoImpl;
-
+import core.basesyntax.factory.HumanDaoFactory;
 import java.lang.reflect.Field;
 
 public class Injector {

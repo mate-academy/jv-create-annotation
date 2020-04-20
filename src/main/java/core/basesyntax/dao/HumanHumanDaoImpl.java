@@ -3,7 +3,6 @@ package core.basesyntax.dao;
 import core.basesyntax.db.Storage;
 import core.basesyntax.library.Dao;
 import core.basesyntax.model.Human;
-
 import java.util.List;
 
 @Dao
