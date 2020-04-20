@@ -10,7 +10,7 @@ public class Main {
     static {
         try {
             Injector.injectDependency();
-        } catch (IllegalAccessException e) {
+        } catch (IllegalAccessException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

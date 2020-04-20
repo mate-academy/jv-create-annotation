@@ -1,6 +1,10 @@
 package core.basesyntax.model;
 
+import core.basesyntax.library.Inject;
+
 public class Human {
+    @Inject
+    private static String work;
     private String name;
     private int age;
 
@@ -14,6 +18,7 @@ public class Human {
         return "Human{"
                 + "name='" + name + '\''
                 + ", age=" + age
+                + ", work=" + work
                 + '}';
     }
 }
