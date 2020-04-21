@@ -1,6 +1,8 @@
 package core.basesyntax.lib;
 
 import core.basesyntax.dao.BaseDao;
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.UserDao;
 import core.basesyntax.factory.DaoFactory;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -19,12 +21,22 @@ public class Injector {
         for (Field field : clazz.getDeclaredFields()) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                BaseDao dao = factory.getDao(field.getType());
+                BaseDao dao = getDao(field.getType());
                 if (dao.getClass().getAnnotation(Dao.class) != null) {
                     field.set(instance, dao);
                 }
             }
         }
         return instance;
+    }
+
+    private BaseDao getDao(Class<?> type) {
+        if (type == BetDao.class) {
+            return factory.getBetDao();
+        }
+        if (type == UserDao.class) {
+            return factory.getUserDao();
+        }
+        throw new IllegalArgumentException("Illegal Dao class " + type);
     }
 }
