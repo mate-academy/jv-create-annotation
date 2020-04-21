@@ -5,7 +5,6 @@ import core.basesyntax.dao.PlayerDao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.Player;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -21,10 +20,10 @@ public class ConsoleHandler {
 
     public void handle() {
 
-        System.out.println("Введите команду: " +
-                "\nbet, чтобы ввести ставку," +
-                "\nplayer, чтобы добавить нового игрока и" +
-                "\nq, чтобы выйти из приложения");
+        System.out.println("Введите команду: "
+                + "\nbet, чтобы ввести ставку,"
+                + "\nplayer, чтобы добавить нового игрока и"
+                + "\nq, чтобы выйти из приложения");
         command = scanner.nextLine();
         switch (command) {
             case ("bet") :
