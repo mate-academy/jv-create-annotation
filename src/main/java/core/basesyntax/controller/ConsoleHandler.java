@@ -34,8 +34,10 @@ public class ConsoleHandler {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("You forgot username!");
             }
-            userDao.addUser(user);
-            betDao.add(bet);
+            if(user != null){
+                userDao.addUser(user);
+                betDao.add(bet);
+            }
             System.out.println(userDao.getAllUsers().toString());
             System.out.println(betDao.getAll().toString());
         }
