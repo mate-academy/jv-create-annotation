@@ -38,6 +38,7 @@ public class ConsoleHandler {
 
             betDao.add(bet);
             userDao.add(user);
+
             System.out.println(bet == null ? null : bet.toString());
             System.out.println(user == null ? null : user.toString());
         }
