@@ -4,17 +4,14 @@ import core.basesyntax.dao.BaseDao;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.factory.DaoFactory;
+import core.basesyntax.factory.Factory;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
-    private DaoFactory factory;
+    private static DaoFactory factory = new Factory();
 
-    public Injector(DaoFactory factory) {
-        this.factory = factory;
-    }
-
-    public <T> T getInstance(Class<T> clazz) throws NoSuchMethodException,
+    public static <T> T getInstance(Class<T> clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, InstantiationException {
         T instance = clazz.getDeclaredConstructor().newInstance();
 
@@ -27,7 +24,7 @@ public class Injector {
         return instance;
     }
 
-    private BaseDao getDaoImpl(Class<?> type) {
+    private static BaseDao getDaoImpl(Class<?> type) {
         BaseDao dao = null;
         if (type == BetDao.class) {
             dao = factory.getBetDao();

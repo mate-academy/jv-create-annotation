@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import core.basesyntax.controller.ConsoleHandler;
-import core.basesyntax.factory.Factory;
 import core.basesyntax.lib.Injector;
 import java.lang.reflect.InvocationTargetException;
 
@@ -9,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         ConsoleHandler handler;
         try {
-            handler = new Injector(new Factory()).getInstance(ConsoleHandler.class);
+            handler = Injector.getInstance(ConsoleHandler.class);
         } catch (NoSuchMethodException | IllegalAccessException
                 | InvocationTargetException | InstantiationException e) {
             throw new RuntimeException(e);
