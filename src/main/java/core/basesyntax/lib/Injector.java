@@ -21,22 +21,24 @@ public class Injector {
         for (Field field : clazz.getDeclaredFields()) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                BaseDao dao = getDao(field.getType());
-                if (dao.getClass().getAnnotation(Dao.class) != null) {
-                    field.set(instance, dao);
-                }
+                field.set(instance, getDaoImpl(field.getType()));
             }
         }
         return instance;
     }
 
-    private BaseDao getDao(Class<?> type) {
+    private BaseDao getDaoImpl(Class<?> type) {
+        BaseDao dao = null;
         if (type == BetDao.class) {
-            return factory.getBetDao();
+            dao = factory.getBetDao();
         }
         if (type == UserDao.class) {
-            return factory.getUserDao();
+            dao = factory.getUserDao();
         }
-        throw new IllegalArgumentException("Illegal Dao class " + type);
+
+        if (dao != null && dao.getClass().getAnnotation(Dao.class) != null) {
+            return dao;
+        }
+        throw new IllegalArgumentException("Dao implementation not found for " + type);
     }
 }
