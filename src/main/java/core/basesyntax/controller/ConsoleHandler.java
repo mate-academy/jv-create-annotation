@@ -18,24 +18,27 @@ public class ConsoleHandler {
     public void handle() {
         Scanner scanner = new Scanner(System.in);
         Bet bet = null;
+        User user = null;
         while (true) {
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("q")) {
                 break;
             }
             try {
-                String[] values = input.split(" ");
-                int value = Integer.parseInt(values[0]);
-                double risk = Double.parseDouble(values[1]);
+                String[] betAndUserData = input.split(" ");
+                int value = Integer.parseInt(betAndUserData[0]);
+                double risk = Double.parseDouble(betAndUserData[1]);
                 bet = new Bet(value, risk);
+                String name = betAndUserData[2];
+                int age = Integer.parseInt(betAndUserData[3]);
+                user = new User(name, age);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Enter correct numbers, please!");
+                System.out.println("Enter correct information, please!");
             }
             betDao.add(bet);
-            userDao.add(new User("Герман", 30));
+            userDao.add(user);
         }
         System.out.println(Factory.getBetDao().getAllBets());
         System.out.println(Factory.getUserDao().getAllUsers());
-
     }
 }
