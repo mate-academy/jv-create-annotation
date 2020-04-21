@@ -10,11 +10,11 @@ public class HumanDaoImpl implements HumanDao {
 
     @Override
     public void add(Human human) {
-        Storage.HUMANS.add(human);
+        Storage.humans.add(human);
     }
 
     @Override
     public List<Human> getAll() {
-        return Storage.HUMANS;
+        return Storage.humans;
     }
 }
