@@ -6,11 +6,11 @@ import core.basesyntax.dao.PersonDao;
 import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.factory.PersonDaoFactory;
 import core.basesyntax.lib.Injector;
-
 import java.lang.reflect.InvocationTargetException;
 
 public class Main {
-    public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws InvocationTargetException,
+            NoSuchMethodException, InstantiationException, IllegalAccessException {
         ConsoleHandler handler = (ConsoleHandler) Injector.getInstance(ConsoleHandler.class);
         handler.handle();
 

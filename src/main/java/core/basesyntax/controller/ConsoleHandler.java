@@ -1,11 +1,10 @@
 package core.basesyntax.controller;
 
-import core.basesyntax.model.Bet;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.PersonDao;
 import core.basesyntax.lib.Inject;
+import core.basesyntax.model.Bet;
 import core.basesyntax.model.Person;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
