@@ -7,28 +7,20 @@ import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
 
 public class Factory implements DaoFactory {
-    private static class BetDaoHolder {
-        private static BetDao betDao = new BetDaoImpl();
-    }
-
-    private static class UserDaoHolder {
-        private static UserDao userDao = new UserDaoImpl();
-    }
-
     public BetDao getBetDao() {
-        return BetDaoHolder.betDao;
+        return BetDaoImpl.getInstance();
     }
 
     public UserDao getUserDao() {
-        return UserDaoHolder.userDao;
+        return UserDaoImpl.getInstance();
     }
 
     public BaseDao getDao(Class<?> type) {
         if (type == BetDao.class) {
-            return BetDaoHolder.betDao;
+            return getBetDao();
         }
         if (type == UserDao.class) {
-            return UserDaoHolder.userDao;
+            return getUserDao();
         }
         throw new IllegalArgumentException("Illegal Dao class " + type);
     }
