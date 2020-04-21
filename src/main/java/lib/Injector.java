@@ -19,7 +19,7 @@ public class Injector {
 
         for (Field field : fields) {
             if (field.getAnnotation(Inject.class) != null
-                    && field.getType().getSimpleName().equalsIgnoreCase("BetDao")) {
+                    && field.getType().equals(BetDao.class)) {
                 field.setAccessible(true);
                 field.set(instance, BetDaoFactory.getBetDao());
             }
