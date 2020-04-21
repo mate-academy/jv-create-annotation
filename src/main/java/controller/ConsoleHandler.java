@@ -2,11 +2,10 @@ package controller;
 
 import dao.BetDao;
 import dao.UserDao;
+import java.util.Scanner;
 import lib.Inject;
 import model.Bet;
 import model.User;
-
-import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
@@ -46,7 +45,8 @@ public class ConsoleHandler {
                 String[] userData = command.split(" ");
                 user = new User(userData[0],userData[1]);
             } catch (NullPointerException e) {
-                System.out.println("Incorrect input, please enter email and account number correctly");
+                System.out.println("Incorrect input,"
+                        + " please enter email and account number correctly");
             }
             userDao.add(user);
             System.out.println("User added: " + user);

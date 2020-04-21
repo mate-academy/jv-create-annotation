@@ -4,7 +4,6 @@ public class User {
     private String email;
     private String accNumber;
 
-
     public User(String email, String accNumber) {
         this.email = email;
         this.accNumber = accNumber;
@@ -28,9 +27,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "email='" + email + '\'' +
-                ", accNumber='" + accNumber + '\'' +
-                '}';
+        return "User{" + "email='" + email + '\''
+                + ", accNumber='" + accNumber + '\'' + '}';
     }
 }

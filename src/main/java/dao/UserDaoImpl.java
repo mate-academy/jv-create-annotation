@@ -1,13 +1,13 @@
 package dao;
 
 import db.Storage;
+import java.util.List;
 import lib.Dao;
 import model.User;
 
-import java.util.List;
-
 @Dao
 public class UserDaoImpl implements UserDao {
+
     @Override
     public void add(User user) {
         Storage.users.add(user);
