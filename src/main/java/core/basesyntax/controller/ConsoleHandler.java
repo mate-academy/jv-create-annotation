@@ -30,15 +30,14 @@ public class ConsoleHandler {
                 bet = new Bet(value, risk);
 
                 String firstName = betData[2];
-                String lastNmae = betData[3];
-                user = new User(firstName, lastNmae);
+                String lastName = betData[3];
+                user = new User(firstName, lastName);
             } catch (NumberFormatException e) {
                 System.out.println("Enter correct data");
             }
 
             betDao.add(bet);
             userDao.add(user);
-
             System.out.println(bet == null ? null : bet.toString());
             System.out.println(user == null ? null : user.toString());
         }
