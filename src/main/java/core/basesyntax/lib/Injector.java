@@ -17,17 +17,19 @@ public class Injector {
         Field[] declaredFields = clazz.getDeclaredFields();
 
         for (Field field : declaredFields) {
-            if (field.getAnnotation(Inject.class) != null
-                    && field.getType().equals(BetDao.class)
-                    && field.getName().equals("betDao")) {
-                field.setAccessible(true);
-                field.set(instance, Factory.getBetDao());
-            }
-            if (field.getAnnotation(Inject.class) != null
-                    && field.getType().equals(CatDao.class)
-                    && field.getName().equals("catDao")) {
-                field.setAccessible(true);
-                field.set(instance, Factory.getCatDao());
+            if (field.getDeclaredAnnotation(Inject.class) != null) {
+                if (field.getAnnotation(Inject.class) != null
+                        && field.getType().equals(BetDao.class)
+                        && field.getName().equals("betDao")) {
+                    field.setAccessible(true);
+                    field.set(instance, Factory.getBetDao());
+                }
+                if (field.getAnnotation(Inject.class) != null
+                        && field.getType().equals(CatDao.class)
+                        && field.getName().equals("catDao")) {
+                    field.setAccessible(true);
+                    field.set(instance, Factory.getCatDao());
+                }
             }
         }
         return instance;
