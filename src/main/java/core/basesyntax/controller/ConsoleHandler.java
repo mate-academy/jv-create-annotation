@@ -14,7 +14,7 @@ public class ConsoleHandler {
     private UserDao userDao;
 
     public void handle() {
-        System.out.println("Введіть ім'я та фамілію користувача");
+        System.out.println("Введіть ваші ім'я та фамілію");
         Scanner scanner = new Scanner(System.in);
         User user;
         while (true) {
