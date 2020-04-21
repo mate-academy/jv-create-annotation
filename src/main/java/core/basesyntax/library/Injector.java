@@ -11,7 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws IllegalAccessException,
-            NoSuchMethodException, InvocationTargetException, InstantiationException {
+            NoSuchMethodException, InvocationTargetException,
+            InstantiationException, NoDaoAnnotationException {
 
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
@@ -20,6 +21,11 @@ public class Injector {
 
         for (Field field : classFields) {
             if (field.getDeclaredAnnotation(Inject.class) != null) {
+                if (BetDaoImpl.class.getAnnotation(Dao.class) == null
+                        || UserDaoImpl.class.getAnnotation(Dao.class) == null) {
+                    throw new NoDaoAnnotationException("No Dao implementation "
+                            + "in implemented classes");
+                }
                 if (field.getType().equals(BetDao.class)
                         && BetDaoImpl.class.getAnnotation(Dao.class) != null) {
                     field.setAccessible(true);
