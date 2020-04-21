@@ -1,9 +1,11 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.db.Storage;
+import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Cat;
 import java.util.List;
 
+@Dao
 public class CatDaoImpl implements CatDao {
 
     @Override
