@@ -9,6 +9,11 @@ import model.Person;
 
 public class ConsoleHandler {
 
+    private int value;
+    private double risk;
+    private String name;
+    private int id;
+
     @Inject
     private BetDao betDao;
 
@@ -24,15 +29,15 @@ public class ConsoleHandler {
             }
             try {
                 String[] input = userInput.split(" ");
-                int value = Integer.parseInt(input[0]);
-                double risk = Double.parseDouble(input[1]);
-                String name = input[2];
-                int id = Integer.parseInt(input[3]);
-                betDao.add(new Bet(value, risk));
-                personDao.add(new Person(id, name));
+                value = Integer.parseInt(input[0]);
+                risk = Double.parseDouble(input[1]);
+                name = input[2];
+                id = Integer.parseInt(input[3]);
             } catch (NumberFormatException e) {
                 System.out.println("Wrong input!");
             }
+            betDao.add(new Bet(value, risk));
+            personDao.add(new Person(id, name));
         }
     }
 }
