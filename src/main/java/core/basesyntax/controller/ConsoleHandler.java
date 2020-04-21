@@ -14,41 +14,30 @@ public class ConsoleHandler {
     private UserDao userDao;
 
     public void handle() {
-        System.out.println("Введіть ваші ім'я та фамілію");
         Scanner scanner = new Scanner(System.in);
-        User user;
         while (true) {
-            String[] userData = scanner.nextLine().split(" ");
-            try {
-                String name = userData[0];
-                String surname = userData[1];
-                user = new User(name, surname);
-                break;
-            } catch (Exception e) {
-                System.out.println("Будь ласка введіть коректні дані");
-            }
-        }
-        userDao.add(user);
-        System.out.println(user.toString());
-
-        System.out.println("Введіть value та risk для вашої ставки");
-        while (true) {
-            String command = scanner.nextLine();
-            if (command.equalsIgnoreCase("q")) {
+            User user = null;
+            Bet bet = null;
+            System.out.println("Введіть ваші ім'я, фамілію, value та risk вашої ставки");
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("q")) {
                 return;
             }
-            Bet bet = null;
+            String[] data = input.split(" ");
             try {
-                String[] betData = command.split(" ");
-                int value = Integer.parseInt(betData[0]);
-                double risk = Double.parseDouble(betData[1]);
+                String name = data[0];
+                String surname = data[1];
+                int value = Integer.parseInt(data[2]);
+                double risk = Double.parseDouble(data[3]);
+                user = new User(name, surname);
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
                 System.out.println("Будь ласка введіть коректні дані");
             }
+            userDao.add(user);
             betDao.add(bet);
-            System.out.println(bet == null ? null : bet.toString());
+            System.out.println(user == null ? "User: Не вірні дані" : user.toString());
+            System.out.println(bet == null ? "Bet: Не вірні дані" : bet.toString());
         }
-
     }
 }
