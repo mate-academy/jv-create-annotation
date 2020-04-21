@@ -1,27 +1,33 @@
 package core.basesyntax.library;
 
-import core.basesyntax.factory.HumanDaoFactory;
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.UserDao;
+import core.basesyntax.factory.Factory;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
-    public static void injectDependency() throws IllegalAccessException, ClassNotFoundException {
-        Class<?> appClass = Class.forName("core.basesyntax.controller.App");
-        Class<?> humanClass = Class.forName("core.basesyntax.model.Human");
+    public static Object getInstance(Class clazz) throws IllegalAccessException,
+            NoSuchMethodException, InvocationTargetException, InstantiationException {
 
-        Field[] appFields = appClass.getDeclaredFields();
-        for (Field field : appFields) {
+        Constructor constructor = clazz.getDeclaredConstructor();
+        Object instance = constructor.newInstance();
+
+        Field[] classFields = clazz.getDeclaredFields();
+
+        for (Field field : classFields) {
             if (field.getDeclaredAnnotation(Inject.class) != null) {
-                field.setAccessible(true);
-                field.set(null, HumanDaoFactory.getHumanDao());
+                if (field.getType().equals(BetDao.class)) {
+                    field.setAccessible(true);
+                    field.set(instance, Factory.getBetDao());
+                }
+                if (field.getType().equals(UserDao.class)) {
+                    field.setAccessible(true);
+                    field.set(instance, Factory.getUserDao());
+                }
             }
         }
-
-        Field[] humanFields = humanClass.getDeclaredFields();
-        for (Field field : humanFields) {
-            if (field.getDeclaredAnnotation(Inject.class) != null) {
-                field.setAccessible(true);
-                field.set(null, "Mate Academy");
-            }
-        }
+        return instance;
     }
 }
