@@ -4,7 +4,8 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
-import core.basesyntax.factory.Factory;
+import core.basesyntax.factory.BetDaoFactory;
+import core.basesyntax.factory.UserDaoFactory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -22,12 +23,12 @@ public class Injector {
                 if (userDaoImplClass.getAnnotation(Dao.class) != null
                         && field.getType().equals(UserDao.class)) {
                     field.setAccessible(true);
-                    field.set(instance, Factory.getUserDao());
+                    field.set(instance, UserDaoFactory.getUserDao());
                 }
                 if (betDaoImplClass.getAnnotation(Dao.class) != null
                         && field.getType().equals(BetDao.class)) {
                     field.setAccessible(true);
-                    field.set(instance, Factory.getBetDao());
+                    field.set(instance, BetDaoFactory.getBetDao());
                 }
             }
         }

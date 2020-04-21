@@ -37,8 +37,6 @@ public class ConsoleHandler {
             }
             userDao.add(user);
             betDao.add(bet);
-            System.out.println(user == null ? "null" : user.toString());
-            System.out.println(bet == null ? "null" : bet.toString());
         }
     }
 }
