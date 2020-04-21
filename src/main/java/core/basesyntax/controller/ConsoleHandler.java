@@ -5,8 +5,6 @@ import core.basesyntax.dao.PersonDao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.Person;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -30,7 +28,6 @@ public class ConsoleHandler {
             Person person = new Person(name[0], name[1]);
             personDao.add(person);
 
-
             Bet bet = null;
             try {
                 System.out.print("Введыть розмыр ставки та ризик церез пробіл: ");
@@ -38,7 +35,7 @@ public class ConsoleHandler {
                 String[] betData = command.split(" ");
                 int value = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
-                bet  = new Bet(value, risk);
+                bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
                 System.out.println("Будь ласка, введіть коректні дані.");
             }

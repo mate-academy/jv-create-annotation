@@ -5,7 +5,6 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.PersonDao;
 import core.basesyntax.factory.Factory;
 import core.basesyntax.lib.Injector;
-
 import java.lang.reflect.InvocationTargetException;
 
 public class Main {

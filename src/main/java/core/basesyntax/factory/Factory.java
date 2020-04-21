@@ -4,7 +4,6 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.PersonDao;
 import core.basesyntax.dao.PersonDaoImpl;
-import core.basesyntax.model.Person;
 
 public class Factory {
     private static BetDao betDao;
