@@ -6,7 +6,6 @@ import core.basesyntax.lib.Dao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.Human;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -35,9 +34,12 @@ public class ConsoleHandler {
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Некоректні дані");
             }
-            betDao.add(bet);
-            humanDao.add(human);
-            System.out.println(bet == null || human == null ? null : bet.toString() + human.toString());
+            if (bet != null && human != null) {
+                betDao.add(bet);
+                humanDao.add(human);
+            }
+            System.out.println(bet == null || human == null ? null
+                    : bet.toString() + human.toString());
         }
     }
 }

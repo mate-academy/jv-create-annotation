@@ -2,9 +2,6 @@ package core.basesyntax.lib;
 
 import core.basesyntax.dao.HumanDaoImpl;
 import core.basesyntax.facrory.Factory;
-import core.basesyntax.model.Human;
-
-import javax.xml.namespace.QName;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
