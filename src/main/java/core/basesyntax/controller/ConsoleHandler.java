@@ -34,10 +34,12 @@ public class ConsoleHandler {
             } catch (NumberFormatException e) {
                 System.out.println("Будь ласка введіть коректні дані");
             }
-            userDao.add(user);
-            betDao.add(bet);
-            System.out.println(user == null ? "User: Не вірні дані" : user.toString());
-            System.out.println(bet == null ? "Bet: Не вірні дані" : bet.toString());
+            if (user != null && bet != null) {
+                userDao.add(user);
+                betDao.add(bet);
+                System.out.println(user.toString());
+                System.out.println(bet.toString());
+            }
         }
     }
 }
