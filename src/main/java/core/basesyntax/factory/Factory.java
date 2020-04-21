@@ -16,10 +16,10 @@ public class Factory {
         return betDao;
     }
 
-    public static UserDaoImpl getUserDao() {
+    public static UserDao getUserDao() {
         if (userDao == null) {
             userDao = new UserDaoImpl();
         }
-        return (UserDaoImpl) userDao;
+        return userDao;
     }
 }
