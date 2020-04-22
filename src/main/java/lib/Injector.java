@@ -2,6 +2,7 @@ package lib;
 
 import dao.BetDao;
 import dao.PersonDao;
+import exeption.NoSuchDaoException;
 import factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -36,11 +37,5 @@ public class Injector {
             }
         }
         return instance;
-    }
-
-    public static class NoSuchDaoException extends Exception {
-        public NoSuchDaoException(String message) {
-            super(message);
-        }
     }
 }
