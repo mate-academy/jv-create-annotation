@@ -21,18 +21,18 @@ public class Injector {
         Class<BetDaoImpl> betDaoImplClass = BetDaoImpl.class;
         Field[] fields = clazz.getDeclaredFields();
 
-        if (clazz.getAnnotation(Dao.class) == null) {
+        if (!clazz.isAnnotationPresent(Dao.class)) {
             throw new AbsentDaoAnnotatedFieldException("Dao not found for this class");
         }
 
         for (Field field : fields) {
             if (field.getAnnotation(Inject.class) != null) {
-                if (userDaoImplClass.getAnnotation(Dao.class) != null
+                if (userDaoImplClass.isAnnotationPresent(Dao.class)
                         && field.getType().equals(UserDao.class)) {
                     field.setAccessible(true);
                     field.set(instance, UserDaoFactory.getUserDao());
                 }
-                if (betDaoImplClass.getAnnotation(Dao.class) != null
+                if (betDaoImplClass.isAnnotationPresent(Dao.class)
                         && field.getType().equals(BetDao.class)) {
                     field.setAccessible(true);
                     field.set(instance, BetDaoFactory.getBetDao());
