@@ -11,7 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws IllegalAccessException,
-            InvocationTargetException, InstantiationException, NoSuchMethodException, DaoNotExistsException {
+            InvocationTargetException, InstantiationException,
+            NoSuchMethodException, DaoNotExistsException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -33,7 +34,7 @@ public class Injector {
                             .isAnnotationPresent(Dao.class)) {
                         field.set(instance, PersonFactory.getPersonDao());
                     } else {
-                        throw new DaoNotExistsException();
+                        throw new DaoNotExistsException("Dao exception");
                     }
                 }
             }

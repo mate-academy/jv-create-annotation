@@ -1,7 +1,7 @@
 package exception;
 
 public class DaoNotExistsException extends Exception {
-    public DaoNotExistsException() {
+    public DaoNotExistsException(String s) {
         super();
     }
 }

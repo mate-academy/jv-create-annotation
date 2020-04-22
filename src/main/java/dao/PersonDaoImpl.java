@@ -1,9 +1,9 @@
 package dao;
 
 import db.Storage;
+import java.util.List;
 import lib.Dao;
 import model.Person;
-import java.util.List;
 
 @Dao
 public class PersonDaoImpl implements PersonDao {
