@@ -18,7 +18,6 @@ public class Injector {
 
         for (Field field: declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
-                Class clazz1 = field.getClass();
                 if (field.getType() == UserDao.class) {
                     field.setAccessible(true);
                     UserDao userDao = Factory.getUserDao();
