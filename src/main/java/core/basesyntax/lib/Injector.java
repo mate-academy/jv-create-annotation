@@ -23,10 +23,13 @@ public class Injector {
                 if (field.getType().equals(BetDao.class)
                         && BetDaoImpl.class.getAnnotation(Dao.class) != null) {
                     field.set(instance, Factory.getBetDao());
-                }
-                if (field.getType().equals(PlayerDao.class)
-                        && PlayerDaoImpl.class.getAnnotation(Dao.class) != null) {
-                    field.set(instance, Factory.getPlayerDao());
+                } else {
+                    if (field.getType().equals(PlayerDao.class)
+                            && PlayerDaoImpl.class.getAnnotation(Dao.class) != null) {
+                        field.set(instance, Factory.getPlayerDao());
+                    } else {
+                        throw new NoAnnotationException("");
+                    }
                 }
             }
         }
