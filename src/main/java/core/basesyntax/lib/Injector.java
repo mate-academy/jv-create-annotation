@@ -20,7 +20,6 @@ public class Injector {
         Class<UserDaoImpl> userDaoImplClass = UserDaoImpl.class;
         Class<BetDaoImpl> betDaoImplClass = BetDaoImpl.class;
         Field[] fields = clazz.getDeclaredFields();
-
         for (Field field : fields) {
             if (field.getAnnotation(Inject.class) != null) {
                 if (userDaoImplClass.isAnnotationPresent(Dao.class)
