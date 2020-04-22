@@ -2,6 +2,7 @@ package lib;
 
 import dao.BetDao;
 import dao.PersonDao;
+import exception.DaoNotExistsException;
 import factory.BetFactory;
 import factory.PersonFactory;
 import java.lang.reflect.Constructor;
@@ -10,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws IllegalAccessException,
-            InvocationTargetException, InstantiationException, NoSuchMethodException {
+            InvocationTargetException, InstantiationException, NoSuchMethodException, DaoNotExistsException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -31,6 +32,8 @@ public class Injector {
                             .getClass()
                             .isAnnotationPresent(Dao.class)) {
                         field.set(instance, PersonFactory.getPersonDao());
+                    } else {
+                        throw new DaoNotExistsException();
                     }
                 }
             }
