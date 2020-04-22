@@ -10,8 +10,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
-    public static Object getInstance(Class cl) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static Object getInstance(Class cl) throws NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException, InstantiationException,
+            DataAccessObjectImplNotFoundException {
         Constructor constructor = cl.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = cl.getDeclaredFields();
@@ -25,6 +26,9 @@ public class Injector {
                 } else if (field.getType().equals(BetDao.class)
                         && BetDaoImpl.class.getAnnotation(Dao.class) != null) {
                     field.set(instance, Factory.getBetDao());
+                } else {
+                    throw new DataAccessObjectImplNotFoundException(
+                            "DAO implementation is absent");
                 }
             }
         }
