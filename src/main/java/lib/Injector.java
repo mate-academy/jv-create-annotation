@@ -22,7 +22,7 @@ public class Injector {
                     if (betDao.getClass().isAnnotationPresent(Dao.class)) {
                         field.set(instance, betDao);
                     } else {
-                        throw new NoSuchDaoException("This class not have anotation Dao");
+                        throw new NoSuchDaoException("This class not have annotation Dao");
                     }
                 } else if (field.getType() == PersonDao.class) {
                     field.setAccessible(true);
@@ -30,7 +30,7 @@ public class Injector {
                     if (personDao.getClass().isAnnotationPresent(Dao.class)) {
                         field.set(instance, personDao);
                     } else {
-                        throw new NoSuchDaoException("This class not have anotation Dao");
+                        throw new NoSuchDaoException("This class not have annotation Dao");
                     }
                 }
             }
