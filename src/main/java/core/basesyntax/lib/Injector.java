@@ -15,20 +15,17 @@ public class Injector {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
-        if (!Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)
-                || !Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
-            throw new NoAnnotationDao();
-        }
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
                 if (field.getType() == BetDao.class
                         && Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
-                }
-                if (field.getType() == HumanDao.class
+                } else if (field.getType() == HumanDao.class
                         && Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getHumanDao());
+                } else {
+                    throw new NoAnnotationDao();
                 }
             }
         }
