@@ -1,5 +1,6 @@
 package core.basesyntax.lib;
 
+import core.basesyntax.Exceptions.NoSuchAnnotationException;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.PersonDao;
 import core.basesyntax.factory.BetDaoFactory;
@@ -10,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+            IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchAnnotationException {
 
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
@@ -25,14 +26,18 @@ public class Injector {
                         .getClass()
                         .isAnnotationPresent(Dao.class)) {
                     field.set(instance, BetDaoFactory.getBetDao());
+                } else {
+                    if (field.getType() == PersonDao.class
+                            && PersonDaoFactory
+                            .getPersonDao()
+                            .getClass()
+                            .isAnnotationPresent(Dao.class)) {
+                        field.set(instance, PersonDaoFactory.getPersonDao());
+                    } else {
+                        throw new NoSuchAnnotationException("Can not find Dao annotation");
+                    }
                 }
-                if (field.getType() == PersonDao.class
-                        && PersonDaoFactory
-                        .getPersonDao()
-                        .getClass()
-                        .isAnnotationPresent(Dao.class)) {
-                    field.set(instance, PersonDaoFactory.getPersonDao());
-                }
+
             }
         }
         return instance;
