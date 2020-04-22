@@ -1,9 +1,9 @@
 package core.basesyntax;
 
-import core.basesyntax.Exceptions.NoSuchAnnotationException;
 import core.basesyntax.controller.ConsoleHandler;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.PersonDao;
+import core.basesyntax.exceptions.NoSuchAnnotationException;
 import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.factory.PersonDaoFactory;
 import core.basesyntax.lib.Injector;
@@ -11,7 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Main {
     public static void main(String[] args) throws InvocationTargetException,
-            NoSuchMethodException, InstantiationException, IllegalAccessException, NoSuchAnnotationException {
+            NoSuchMethodException, InstantiationException,
+            IllegalAccessException, NoSuchAnnotationException {
         ConsoleHandler handler = (ConsoleHandler) Injector.getInstance(ConsoleHandler.class);
         handler.handle();
 

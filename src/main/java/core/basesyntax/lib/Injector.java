@@ -1,8 +1,8 @@
 package core.basesyntax.lib;
 
-import core.basesyntax.Exceptions.NoSuchAnnotationException;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.PersonDao;
+import core.basesyntax.exceptions.NoSuchAnnotationException;
 import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.factory.PersonDaoFactory;
 import java.lang.reflect.Constructor;
@@ -11,7 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchAnnotationException {
+            IllegalAccessException, InvocationTargetException,
+            InstantiationException, NoSuchAnnotationException {
 
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
