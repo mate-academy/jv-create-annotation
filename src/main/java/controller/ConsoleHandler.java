@@ -9,11 +9,6 @@ import model.Person;
 
 public class ConsoleHandler {
 
-    private int value;
-    private double risk;
-    private String name;
-    private int id;
-
     @Inject
     private BetDao betDao;
 
@@ -21,6 +16,10 @@ public class ConsoleHandler {
     private PersonDao personDao;
 
     public void handle() {
+        int value = 0;
+        double risk = 0;
+        String name = null;
+        int id = 0;
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String userInput = scanner.nextLine();
