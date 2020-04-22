@@ -18,7 +18,7 @@ public class ConsoleHandler {
         while (true) {
             User user = null;
             Bet bet = null;
-            System.out.println("Введіть ваші ім'я, фамілію, value та risk вашої ставки");
+            System.out.println("Enter your name, surname, value and risk of your bet");
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("q")) {
                 return;
@@ -32,7 +32,7 @@ public class ConsoleHandler {
                 user = new User(name, surname);
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
-                System.out.println("Будь ласка введіть коректні дані");
+                System.out.println("Please enter correct data");
             }
             if (user != null && bet != null) {
                 userDao.add(user);
