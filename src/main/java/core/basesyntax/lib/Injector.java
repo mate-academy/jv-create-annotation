@@ -3,13 +3,13 @@ package core.basesyntax.lib;
 import core.basesyntax.dao.BaseDao;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.factory.DaoFactory;
+import core.basesyntax.exceptions.DaoImpNotFoundException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
-    private static DaoFactory factory = new Factory();
+    private static Factory factory = new Factory();
 
     public static <T> T getInstance(Class<T> clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, InstantiationException {
@@ -36,6 +36,6 @@ public class Injector {
         if (dao != null && dao.getClass().getAnnotation(Dao.class) != null) {
             return dao;
         }
-        throw new IllegalArgumentException("Dao implementation not found for " + type);
+        throw new DaoImpNotFoundException("Dao implementation not found for " + type);
     }
 }

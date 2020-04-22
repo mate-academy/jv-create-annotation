@@ -5,12 +5,20 @@ import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
 
-public class Factory implements DaoFactory {
+public class Factory {
+    private static class BetDaoHolder {
+        private static BetDao betDao = new BetDaoImpl();
+    }
+
+    private static class UserDaoHolder {
+        private static UserDao userDao = new UserDaoImpl();
+    }
+
     public BetDao getBetDao() {
-        return BetDaoImpl.getInstance();
+        return BetDaoHolder.betDao;
     }
 
     public UserDao getUserDao() {
-        return UserDaoImpl.getInstance();
+        return UserDaoHolder.userDao;
     }
 }

@@ -9,25 +9,17 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     private Storage<User> userStorage;
 
-    private UserDaoImpl() {
+    public UserDaoImpl() {
         userStorage = new Storage<>();
-    }
-
-    private static class UserDaoHolder {
-        private static UserDao userDao = new UserDaoImpl();
-    }
-
-    public static UserDao getInstance() {
-        return UserDaoHolder.userDao;
     }
 
     @Override
     public void add(User user) {
-        userStorage.add(user);
+        userStorage.items.add(user);
     }
 
     @Override
     public List<User> getAll() {
-        return userStorage.getItems();
+        return userStorage.items;
     }
 }

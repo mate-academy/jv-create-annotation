@@ -9,25 +9,17 @@ import java.util.List;
 public class BetDaoImpl implements BetDao {
     private Storage<Bet> betStorage;
 
-    private BetDaoImpl() {
+    public BetDaoImpl() {
         this.betStorage = new Storage<>();
-    }
-
-    private static class BetDaoHolder {
-        private static BetDao betDao = new BetDaoImpl();
-    }
-
-    public static BetDao getInstance() {
-        return BetDaoHolder.betDao;
     }
 
     @Override
     public void add(Bet item) {
-        betStorage.add(item);
+        betStorage.items.add(item);
     }
 
     @Override
     public List<Bet> getAll() {
-        return betStorage.getItems();
+        return betStorage.items;
     }
 }
