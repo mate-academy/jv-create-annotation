@@ -2,6 +2,7 @@ package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.PersonDao;
+import core.basesyntax.exceptions.AnnotationDaoIsNotExist;
 import core.basesyntax.factory.BetFactory;
 import core.basesyntax.factory.PersonFactory;
 import java.lang.reflect.Constructor;
@@ -11,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
-            InstantiationException, ClassNotFoundException {
+            InstantiationException, ClassNotFoundException, AnnotationDaoIsNotExist {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
 
@@ -31,7 +32,11 @@ public class Injector {
                 }
                 Constructor newClazzConstructor = newClazz.getDeclaredConstructor();
                 field.setAccessible(true);
-                field.set(instance, newClazz.isAnnotationPresent(Dao.class) ? newInstance : null);
+                if (!newClazz.isAnnotationPresent(Dao.class)) {
+                    throw new AnnotationDaoIsNotExist("Dao annotation does not exist. TypeField: "
+                            + field.getType() + "FieldName: " + field.getName());
+                }
+                field.set(instance, newInstance);
             }
         }
         return instance;

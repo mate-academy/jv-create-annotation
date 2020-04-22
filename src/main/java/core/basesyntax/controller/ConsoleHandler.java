@@ -12,7 +12,6 @@ public class ConsoleHandler {
 
     @Inject
     private PersonDao personDao;
-    // Too many places
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +20,7 @@ public class ConsoleHandler {
             System.out.println("Input value and risk for your bet");
             String command = scanner.nextLine();
             String name = scanner.nextLine();
-            personDao.addName(name);
+            personDao.addUserWithName(name);
             if (command.equalsIgnoreCase("q")) {
                 return;
             }

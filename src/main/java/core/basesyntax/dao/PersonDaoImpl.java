@@ -8,7 +8,7 @@ import core.basesyntax.model.Person;
 public class PersonDaoImpl implements PersonDao {
 
     @Override
-    public void addName(String name) {
+    public void addUserWithName(String name) {
         Person person = new Person();
         person.setName(name);
         Storage.personData.add(person);
