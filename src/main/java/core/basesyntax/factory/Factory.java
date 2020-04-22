@@ -10,12 +10,16 @@ public class Factory {
     private static PlayerDao playerDao;
 
     public static BetDao getBetDao() {
-        betDao = new BetDaoImpl();
+        if (betDao == null) {
+            betDao = new BetDaoImpl();
+        }
         return betDao;
     }
 
     public static PlayerDao getPlayerDao() {
-        playerDao = new PlayerDaoImpl();
+        if (playerDao == null) {
+            playerDao = new PlayerDaoImpl();
+        }
         return playerDao;
     }
 }
