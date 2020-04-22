@@ -7,19 +7,13 @@ import java.util.List;
 
 @Dao
 public class BetDaoImpl implements BetDao {
-    private Storage<Bet> betStorage;
-
-    public BetDaoImpl() {
-        this.betStorage = new Storage<>();
-    }
-
     @Override
     public void add(Bet item) {
-        betStorage.items.add(item);
+        Storage.bets.add(item);
     }
 
     @Override
     public List<Bet> getAll() {
-        return betStorage.items;
+        return Storage.bets;
     }
 }
