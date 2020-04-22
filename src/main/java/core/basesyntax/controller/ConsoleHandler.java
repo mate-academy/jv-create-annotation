@@ -19,8 +19,8 @@ public class ConsoleHandler {
             User user = null;
             Bet bet = null;
             String userInput = scanner.nextLine();
-            if (userInput.equalsIgnoreCase("q")) {
-                System.out.println("That's all, folks...");
+            if (userInput.equalsIgnoreCase("Q")) {
+                System.out.println("Thank you for using our service!");
                 return;
             }
             String[] credentials = userInput.split(" ");
@@ -32,7 +32,7 @@ public class ConsoleHandler {
                 user = new User(userName, userId);
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
-                System.out.println("Your input is incorrect, try again. To quit, enter 'q'");
+                System.out.println("Please enter a valid info. To quit, enter 'q'");
 
             }
             userDao.add(user);

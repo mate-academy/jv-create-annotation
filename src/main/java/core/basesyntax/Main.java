@@ -10,8 +10,9 @@ public class Main {
             NoSuchMethodException, InstantiationException, IllegalAccessException,
             InvalidDaoAnnotationException {
         ConsoleHandler handler = (ConsoleHandler) Injector.getInstance(ConsoleHandler.class);
-        System.out.println("Enter credentials in a given order: "
-                + "1: username, 2: userId, 3: value, 4: risk.");
+        System.out.println("Enter 1: username, 2: userId, 3: value, 4: risk.? \nDavide it with space. To quit enter Q");
+
+
         handler.handle();
     }
 }
