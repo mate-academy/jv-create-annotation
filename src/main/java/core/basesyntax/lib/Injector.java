@@ -4,6 +4,7 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.HumanDao;
 import core.basesyntax.dao.HumanDaoImpl;
+import core.basesyntax.exception.NoSuchAnnotationException;
 import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.factory.HumanDaoFactory;
 import java.lang.reflect.Constructor;
@@ -12,7 +13,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+            IllegalAccessException, InvocationTargetException, InstantiationException,
+            NoSuchAnnotationException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Class<BetDaoImpl> betDaoClass = BetDaoImpl.class;
@@ -24,11 +26,12 @@ public class Injector {
                         && field.getType().equals(HumanDao.class)) {
                     field.setAccessible(true);
                     field.set(instance, HumanDaoFactory.getHumanDao());
-                }
-                if (betDaoClass.getAnnotation(Dao.class) != null
+                } else if (betDaoClass.getAnnotation(Dao.class) != null
                         && field.getType().equals(BetDao.class)) {
                     field.setAccessible(true);
                     field.set(instance, BetDaoFactory.getBetDao());
+                } else {
+                    throw new NoSuchAnnotationException("No such annotation.");
                 }
             }
         }
