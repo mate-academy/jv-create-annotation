@@ -3,7 +3,6 @@ import static core.basesyntax.lib.Injector.getInstance;
 import core.basesyntax.controler.ConsoleHandler;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.HumanDao;
-import core.basesyntax.dao.HumanDaoImpl;
 import core.basesyntax.facrory.Factory;
 import java.lang.reflect.InvocationTargetException;
 
@@ -14,7 +13,7 @@ public class Main {
         System.out.println("Введіть дані в такому порядку: ставка, риск, імя, вік");
         consoleHandler.handle();
         BetDao betDao = Factory.getBetDao();
-        HumanDao humanDao = new HumanDaoImpl();
+        HumanDao humanDao = Factory.getHumanDao();
         System.out.println("Всі ставки: " + betDao.getAll());
         System.out.println("Всі гравці: " + humanDao.getAll());
     }

@@ -16,10 +16,12 @@ public class Injector {
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                if (field.getType() == BetDao.class) {
+                if (field.getType() == BetDao.class
+                        && Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
                 }
-                if (field.getType() == HumanDao.class) {
+                if (field.getType() == HumanDao.class
+                        && Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getHumanDao());
                 }
             }
