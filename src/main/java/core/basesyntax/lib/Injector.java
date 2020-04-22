@@ -14,19 +14,22 @@ public class Injector {
         Object instance = constructor.newInstance();
         Field[] fields = clazz.getDeclaredFields();
 
-        if (Factory.getBetDao().getClass().getAnnotationsByType(Dao.class) == null
-                || Factory.getPersonDao().getClass().getAnnotationsByType(Dao.class) == null) {
-            throw new NoDaoAnnotationException("No Dao implementation "
-                    + "in implemented classes");
-        }
         for (Field field : fields) {
             if (field.getAnnotation(Inject.class)
                     != null && field.getType().equals(BetDao.class)) {
+                if (Factory.getBetDao().getClass().getAnnotationsByType(Dao.class) == null) {
+                    throw new NoDaoAnnotationException("No Dao implementation "
+                            + "in implemented classes");
+                }
                 field.setAccessible(true);
                 field.set(instance, Factory.getBetDao());
             }
             if (field.getAnnotation(Inject.class)
                     != null && field.getType().equals(PersonDao.class)) {
+                if (Factory.getPersonDao().getClass().getAnnotationsByType(Dao.class) == null) {
+                    throw new NoDaoAnnotationException("No Dao implementation "
+                            + "in implemented classes");
+                }
                 field.setAccessible(true);
                 field.set(instance, Factory.getPersonDao());
             }

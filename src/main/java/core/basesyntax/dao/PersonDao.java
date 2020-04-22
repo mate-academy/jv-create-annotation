@@ -1,10 +1,10 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.model.Person;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public interface PersonDao {
     void add(Person person);
 
-    ArrayList<Person> getAll();
+    HashSet<Person> getAll();
 }
