@@ -2,15 +2,15 @@ package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.PlayerDao;
-import core.basesyntax.lib.Dao;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.Player;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    @Dao
+    @Inject
     private BetDao betDao;
-    @Dao
+    @Inject
     private PlayerDao playerDao;
 
     public void handle() {

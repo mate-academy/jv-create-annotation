@@ -9,7 +9,6 @@ import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
@@ -18,23 +17,17 @@ public class Injector {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] instanceFields = clazz.getDeclaredFields();
-        Method[] methods = clazz.getDeclaredMethods();
         for (Field field : instanceFields) {
-            if (field.getAnnotation(Dao.class) != null
-                    && field.getType() == BetDao.class) {
-                if (BetDaoImpl.class.getAnnotation(Dao.class) == null) {
-                    throw new NoAnnotationException("");
-                }
+            if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                field.set(instance, Factory.getBetDao());
-            }
-            if (field.getAnnotation(Dao.class) != null
-                    && field.getType() == PlayerDao.class) {
-                if (PlayerDaoImpl.class.getAnnotation(Dao.class) == null) {
-                    throw new NoAnnotationException("");
+                if (field.getType().equals(BetDao.class)
+                        && BetDaoImpl.class.getAnnotation(Dao.class) != null) {
+                    field.set(instance, Factory.getBetDao());
                 }
-                field.setAccessible(true);
-                field.set(instance, Factory.getPlayerDao());
+                if (field.getType().equals(PlayerDao.class)
+                        && PlayerDaoImpl.class.getAnnotation(Dao.class) != null) {
+                    field.set(instance, Factory.getPlayerDao());
+                }
             }
         }
         return instance;
