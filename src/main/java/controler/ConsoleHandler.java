@@ -29,7 +29,7 @@ public class ConsoleHandler {
                 double risk = Double.parseDouble(personBetData[2]);
                 bet = new Bet(value, risk);
                 person = new Person(bet, name);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Будьласка введіть коеректні данні");
             }
             if (bet != null) {

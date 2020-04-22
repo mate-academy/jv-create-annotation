@@ -9,7 +9,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws IllegalAccessException,
-            InvocationTargetException, InstantiationException, NoSuchMethodException {
+            InvocationTargetException, InstantiationException,
+            NoSuchMethodException, NoSuchDaoException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -20,6 +21,8 @@ public class Injector {
                     BetDao betDao = Factory.getBetDao();
                     if (betDao.getClass().isAnnotationPresent(Dao.class)) {
                         field.set(instance, betDao);
+                    } else {
+                        throw new NoSuchDaoException("This class not have abotation Dao");
                     }
                 } else if (field.getType() == PersonDao.class) {
                     field.setAccessible(true);
@@ -31,5 +34,11 @@ public class Injector {
             }
         }
         return instance;
+    }
+
+    public static class NoSuchDaoException extends Exception {
+        public NoSuchDaoException(String message) {
+            super(message);
+        }
     }
 }

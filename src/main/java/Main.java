@@ -8,7 +8,8 @@ import lib.Injector;
 public class Main {
 
     public static void main(String[] args) throws InvocationTargetException,
-            NoSuchMethodException, InstantiationException, IllegalAccessException {
+            NoSuchMethodException, InstantiationException,
+            IllegalAccessException, Injector.NoSuchDaoException {
         ConsoleHandler handler = (ConsoleHandler) Injector.getInstance(ConsoleHandler.class);
         System.out.println("Введіть ваше І'мя value та risk для вашої ставки ");
         handler.handle();
