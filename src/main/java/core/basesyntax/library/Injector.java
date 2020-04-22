@@ -30,7 +30,7 @@ public class Injector {
                             && UserDaoImpl.class.getAnnotation(Dao.class) != null) {
                         field.setAccessible(true);
                         field.set(instance, Factory.getUserDao());
-                    } else{
+                    } else {
                         throw new NoAnnotationException("No Dao implementation "
                                 + "in implemented classes");
                     }
