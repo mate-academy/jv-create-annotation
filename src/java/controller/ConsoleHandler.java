@@ -21,20 +21,25 @@ public class ConsoleHandler {
             if (command.equalsIgnoreCase("q")) {
                 return;
             }
+            int value = 0;
+            double risk = 0;
+            String name = "";
+            int age = 0;
             try {
                 String[] betData = command.split(" ");
-                int value = Integer.parseInt(betData[0]);
-                double risk = Double.parseDouble(betData[1]);
-                String name = betData[2];
-                int age = Integer.parseInt(betData[3]);
-                Person person = new Person(name, age);
-                Bet bet = new Bet(value, risk);
-                betDao.addBet(bet);
-                personDao.addPerson(person);
-                System.out.println(bet.toString() + " " + person.toString());
+                value = Integer.parseInt(betData[0]);
+                risk = Double.parseDouble(betData[1]);
+                name = betData[2];
+                age = Integer.parseInt(betData[3]);
+
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Невірно введені дані.");
             }
+            Person person = new Person(name, age);
+            Bet bet = new Bet(value, risk);
+            betDao.addBet(bet);
+            personDao.addPerson(person);
+            System.out.println(bet.toString() + " " + person.toString());
             command = scanner.nextLine();
         }
     }
