@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -25,19 +25,19 @@ public class ConsoleHandler {
             }
             String[] data = command.split(" ");
             try {
-                int value = Integer.parseInt(data[2]);
-                double risk = Double.parseDouble(data[3]);
                 String name = data[0];
                 int age = Integer.parseInt(data[1]);
-                bet = new Bet(value, risk);
+                int value = Integer.parseInt(data[2]);
+                double risk = Double.parseDouble(data[3]);
                 user = new User(name, age);
-            } catch (Exception e) {
-                System.out.println(bet == null ? null : "Пожалуйста, введите корректные данные");
+                bet = new Bet(value, risk);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Пожалуйста, введите корректные данные");
             }
             if (user != null && bet != null) {
+                userDao.add(user);
                 betDao.add(bet);
                 System.out.println(bet.toString());
-                userDao.add(user);
                 System.out.println(user.toString());
             }
         }

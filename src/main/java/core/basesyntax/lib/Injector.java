@@ -9,9 +9,11 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
+@Dao
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+            IllegalAccessException, InvocationTargetException,
+            InstantiationException, DaoNotFoundException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Class<BetDaoImpl> betDaoImplClass = BetDaoImpl.class;
@@ -23,11 +25,12 @@ public class Injector {
                         && field.getType().equals(BetDao.class)) {
                     field.setAccessible(true);
                     field.set(instance, Factory.getBetDao());
-                }
-                if (userDaoImplClass.getAnnotation(Dao.class) != null
+                } else if (userDaoImplClass.getAnnotation(Dao.class) != null
                         && field.getType().equals(UserDao.class)) {
                     field.setAccessible(true);
                     field.set(instance, Factory.getUserDao());
+                } else {
+                    throw new DaoNotFoundException();
                 }
             }
         }
