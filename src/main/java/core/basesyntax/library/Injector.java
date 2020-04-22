@@ -21,20 +21,19 @@ public class Injector {
 
         for (Field field : classFields) {
             if (field.getDeclaredAnnotation(Inject.class) != null) {
-                if (BetDaoImpl.class.getAnnotation(Dao.class) == null
-                        && UserDaoImpl.class.getAnnotation(Dao.class) == null) {
-                    throw new NoAnnotationException("No Dao implementation "
-                            + "in implemented classes");
-                }
-                if (field.getType().equals(BetDao.class)
-                        && BetDaoImpl.class.getAnnotation(Dao.class) != null) {
-                    field.setAccessible(true);
-                    field.set(instance, Factory.getBetDao());
-                }
-                if (field.getType().equals(UserDao.class)
-                        && UserDaoImpl.class.getAnnotation(Dao.class) != null) {
-                    field.setAccessible(true);
-                    field.set(instance, Factory.getUserDao());
+                if (field.getDeclaredAnnotation(Inject.class) != null) {
+                    if (field.getType().equals(BetDao.class)
+                            && BetDaoImpl.class.getAnnotation(Dao.class) != null) {
+                        field.setAccessible(true);
+                        field.set(instance, Factory.getBetDao());
+                    } else if (field.getType().equals(UserDao.class)
+                            && UserDaoImpl.class.getAnnotation(Dao.class) != null) {
+                        field.setAccessible(true);
+                        field.set(instance, Factory.getUserDao());
+                    } else{
+                        throw new NoAnnotationException("No Dao implementation "
+                                + "in implemented classes");
+                    }
                 }
             }
         }
