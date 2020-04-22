@@ -1,5 +1,7 @@
 package core.basesyntax.lib;
 
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.HumanDao;
 import core.basesyntax.dao.HumanDaoImpl;
 import core.basesyntax.facrory.Factory;
 import java.lang.reflect.Constructor;
@@ -15,11 +17,12 @@ public class Injector {
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                field.set(instance, Factory.getBetDao());
-            }
-            if (field.getAnnotation(Dao.class) != null) {
-                field.setAccessible(true);
-                field.set(instance, new HumanDaoImpl());
+                if (field.getType() == BetDao.class) {
+                    field.set(instance, Factory.getBetDao());
+                }
+                if (field.getType() == HumanDao.class) {
+                    field.set(instance, Factory.getHumanDao());
+                }
             }
         }
         return instance;

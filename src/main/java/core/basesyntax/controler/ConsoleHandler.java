@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class ConsoleHandler {
     @Inject
     private BetDao betDao;
-    @Dao
+    @Inject
     private HumanDao humanDao;
 
     public void handle() {
