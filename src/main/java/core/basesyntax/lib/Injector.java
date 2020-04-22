@@ -13,32 +13,26 @@ import java.lang.reflect.InvocationTargetException;
 public class Injector {
 
     public static Object getInstance(Class clazz) throws IllegalAccessException,
-            InvocationTargetException, InstantiationException, NoSuchMethodException,
-            InjectionException {
+            InvocationTargetException, InstantiationException, NoSuchMethodException {
 
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
 
-        try {
-            for (Field field : declaredFields) {
-                if (field.getDeclaredAnnotation(Inject.class) != null) {
-                    if (field.getType().equals(BetDao.class)
-                            && BetDaoImpl.class.getAnnotation(Dao.class) != null
-                            && field.getName().equals("betDao")) {
-                        field.setAccessible(true);
-                        field.set(instance, Factory.getBetDao());
-                    }
-                    if (field.getType().equals(CatDao.class)
-                            && CatDaoImpl.class.getAnnotation(Dao.class) != null
-                            && field.getName().equals("catDao")) {
-                        field.setAccessible(true);
-                        field.set(instance, Factory.getCatDao());
-                    }
+        for (Field field : declaredFields) {
+            if (field.getDeclaredAnnotation(Inject.class) != null) {
+                if (field.getType().equals(BetDao.class)
+                        && BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                    field.setAccessible(true);
+                    field.set(instance, Factory.getBetDao());
+                } else if (field.getType().equals(CatDao.class)
+                        && CatDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                    field.setAccessible(true);
+                    field.set(instance, Factory.getCatDao());
+                } else {
+                    throw new InjectionException("Failed to inject");
                 }
             }
-        } catch (Exception e) {
-            throw new InjectionException("Failed to inject");
         }
         return instance;
     }
