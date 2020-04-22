@@ -1,5 +1,6 @@
 package core.basesyntax.lib;
 
+import core.basesyntax.exception.NoSuchDaoImplementationException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -23,6 +24,9 @@ public class Injector {
                         Object methodReturn = method.invoke(null);
                         if (methodReturn.getClass().isAnnotationPresent(Dao.class)) {
                             field.set(instance, methodReturn);
+                        } else {
+                            throw new NoSuchDaoImplementationException(
+                                    "Injections class not exist @Dao annotation.");
                         }
                     }
                 }

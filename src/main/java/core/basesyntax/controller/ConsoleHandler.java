@@ -18,17 +18,24 @@ public class ConsoleHandler {
 
         System.out.printf("Для завершення заповнення введіть \"q\".\n");
         while (true) {
-            System.out.print("Введіть ім'я та фамілію: ");
-            String command = scanner.nextLine();
-            if (command.equalsIgnoreCase("q")) {
-                return;
+            String command = "";
+
+            Person person = null;
+            Bet bet = null;
+            try {
+                System.out.print("Введіть ім'я та фамілію: ");
+                command = scanner.nextLine();
+                if (command.equalsIgnoreCase("q")) {
+                    return;
+                }
+
+                String[] name = command.split(" ");
+                person = new Person(name[0], name[1]);
+            } catch (Exception e) {
+                System.out.println("Будь ласка, введіть коректн ім'я та фамілію.");
+                continue;
             }
 
-            String[] name = command.split(" ");
-            Person person = new Person(name[0], name[1]);
-            personDao.add(person);
-
-            Bet bet = null;
             try {
                 System.out.print("Введыть розмыр ставки та ризик церез пробіл: ");
                 command = scanner.nextLine();
@@ -38,8 +45,12 @@ public class ConsoleHandler {
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
                 System.out.println("Будь ласка, введіть коректні дані.");
+                continue;
             }
+
+            personDao.add(person);
             betDao.add(bet);
+
             System.out.println(person == null ? null : person.toString());
             System.out.println(bet == null ? null : bet.toString());
         }
