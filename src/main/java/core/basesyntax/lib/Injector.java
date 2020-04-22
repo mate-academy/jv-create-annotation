@@ -4,6 +4,7 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.HumanDao;
 import core.basesyntax.dao.HumanDaoImpl;
+import core.basesyntax.exceptions.NoDaoException;
 import core.basesyntax.exceptions.NoInjectException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
@@ -13,7 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
-            InstantiationException, NoInjectException {
+            InstantiationException, NoInjectException, NoDaoException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -23,10 +24,12 @@ public class Injector {
                 if (field.getType().equals(BetDao.class)
                         && BetDaoImpl.class.getAnnotation(Dao.class) != null) {
                     field.set(instance, Factory.getBetDao());
-                }
-                if (field.getType().equals(HumanDao.class)
+                } else if (field.getType().equals(HumanDao.class)
                         && HumanDaoImpl.class.getAnnotation(Dao.class) != null) {
                     field.set(instance, Factory.getHumanDao());
+                } else {
+                    throw new NoDaoException("You can't initialise the fields "
+                            + "of this class(Inject annotation is absent)");
                 }
             } else {
                 throw new NoInjectException("You can't initialise the fields "
