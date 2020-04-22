@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class Injector {
+    private static final String DAO_PACKAGE = "core.basesyntax.dao.";
 
     public static Object getInstance(Class<?> clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
@@ -24,7 +25,7 @@ public class Injector {
                 throw new NoSuchAnnotationException("no 'Inject' annotation was found");
             }
 
-            String daoName = "core.basesyntax.dao." + field.getType().getSimpleName() + "Impl";
+            String daoName = DAO_PACKAGE + field.getType().getSimpleName() + "Impl";
             Class<?> daoClass = Class.forName(daoName);
             if (daoClass.getAnnotation(Dao.class) == null) {
                 throw new NoSuchAnnotationException("no 'Dao' annotation was found");
