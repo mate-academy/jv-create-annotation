@@ -2,7 +2,6 @@ package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.HumanDao;
-import core.basesyntax.dao.HumanDaoImpl;
 import core.basesyntax.facrory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

@@ -2,7 +2,6 @@ package core.basesyntax.controler;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.HumanDao;
-import core.basesyntax.lib.Dao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.Human;
