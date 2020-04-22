@@ -14,7 +14,8 @@ import java.lang.reflect.InvocationTargetException;
 public class Injector {
 
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException, NotSuchAnnotationException {
+            IllegalAccessException, InvocationTargetException,
+            InstantiationException, NotSuchAnnotationException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Class<BetDaoImpl> betDaoImplClass = BetDaoImpl.class;
