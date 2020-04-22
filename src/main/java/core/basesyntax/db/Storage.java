@@ -1,8 +1,7 @@
 package core.basesyntax.db;
 
-import core.basesyntax.Model.Bet;
-import core.basesyntax.Model.User;
-
+import core.basesyntax.model.Bet;
+import core.basesyntax.model.User;
 import java.util.ArrayList;
 import java.util.List;
 

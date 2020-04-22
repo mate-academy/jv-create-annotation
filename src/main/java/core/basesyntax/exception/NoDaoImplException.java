@@ -1,4 +1,4 @@
-package core.basesyntax.Exception;
+package core.basesyntax.exception;
 
 public class NoDaoImplException extends Exception {
     public NoDaoImplException(String message) {

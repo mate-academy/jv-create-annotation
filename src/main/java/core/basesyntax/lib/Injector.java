@@ -1,9 +1,9 @@
 package core.basesyntax.lib;
 
-import core.basesyntax.Exception.NoDaoImplException;
-import core.basesyntax.Factory.Factory;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
+import core.basesyntax.exception.NoDaoImplException;
+import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -11,7 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 public class Injector {
 
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException, NoDaoImplException {
+            IllegalAccessException, InvocationTargetException,
+            InstantiationException, NoDaoImplException {
         Constructor constructor = clazz.getDeclaredConstructor();
 
         Object instance = constructor.newInstance();

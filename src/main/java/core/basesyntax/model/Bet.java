@@ -1,4 +1,4 @@
-package core.basesyntax.Model;
+package core.basesyntax.model;
 
 public class Bet {
     private int value;
@@ -27,9 +27,6 @@ public class Bet {
 
     @Override
     public String toString() {
-        return "Bet{" +
-                "value=" + value +
-                ", risk=" + risk +
-                '}';
+        return "Bet{" + "value=" + value + ", risk=" + risk + '}';
     }
 }

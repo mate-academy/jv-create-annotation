@@ -1,11 +1,10 @@
-package core.basesyntax.Controller;
+package core.basesyntax.controller;
 
-import core.basesyntax.Model.Bet;
-import core.basesyntax.Model.User;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.lib.Inject;
-
+import core.basesyntax.model.Bet;
+import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsolHandler {
@@ -14,9 +13,9 @@ public class ConsolHandler {
     @Inject
     UserDao userDao;
 
-    public void handler(){
+    public void handler() {
         Scanner scanner = new Scanner(System.in);
-        while (true){
+        while (true) {
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("q")) {
                 return;
@@ -37,6 +36,5 @@ public class ConsolHandler {
             betDao.add(bet);
             userDao.add(user);
         }
-
-        }
     }
+}
