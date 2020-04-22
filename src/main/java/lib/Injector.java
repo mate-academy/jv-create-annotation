@@ -23,7 +23,8 @@ public class Injector {
 
         for (Field field : fields) {
             if (field.getAnnotation(Inject.class) != null
-                    && field.getType().equals(BetDao.class)) {
+                    && field.getType().equals(BetDao.class)
+                    && checkDaoClassSelection(BetDaoImpl.class)) {
                 field.setAccessible(true);
                 field.set(instance, BetDaoFactory.getBetDao());
             }
