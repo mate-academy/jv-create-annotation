@@ -1,15 +1,16 @@
 package core.basesyntax.controller;
 
-import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.dao.Dao;
-import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.dao.UniversalDao;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private final Dao<Bet> betDao = new BetDaoImpl();
-    private final Dao<User> userDao = new UserDaoImpl();
+    @Inject
+    UniversalDao<Bet> betUniversalDao;
+    @Inject
+    UniversalDao<User> userUniversalDao;
     private final Scanner scanner = new Scanner(System.in);
 
     public void handle() {
@@ -34,7 +35,7 @@ public class ConsoleHandler {
             } catch (NumberFormatException e) {
                 System.out.println("Input correct information please!");
             }
-            betDao.add(bet);
+            betUniversalDao.add(bet);
             System.out.println(bet == null ? null : bet.toString());
         }
     }
@@ -53,7 +54,7 @@ public class ConsoleHandler {
             System.out.println("Bad input data!");
             handleUser();
         }
-        userDao.add(user);
+        userUniversalDao.add(user);
     }
 
     private void checkInput(String[] input) {

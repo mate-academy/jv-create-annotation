@@ -1,10 +1,12 @@
 package core.basesyntax.dao;
 
+import core.basesyntax.lib.Dao;
 import core.basesyntax.model.User;
 import db.Storage;
 import java.util.List;
 
-public class UserDaoImpl implements Dao<User> {
+@Dao
+public class UserDaoImpl implements UniversalDao<User> {
     @Override
     public void add(User user) {
         Storage.users.add(user);
