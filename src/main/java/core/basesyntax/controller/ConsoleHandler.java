@@ -3,11 +3,11 @@ package core.basesyntax.controller;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.model.Bet;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
     BetDao betDao = new BetDaoImpl();
+
     public void handle() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
