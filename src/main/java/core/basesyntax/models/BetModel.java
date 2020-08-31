@@ -1,4 +1,4 @@
-package models;
+package core.basesyntax.models;
 
 public class BetModel {
     private int bet;
