@@ -1,12 +1,14 @@
 package core.basesyntax;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UserStorage {
-    private Map<User, Bet> userList = new HashMap<>();
+    private List<User> userList = new ArrayList<>();
 
-    public Map<User, Bet> getUserMap() {
+    public List<User> getUserList() {
         return userList;
     }
 }

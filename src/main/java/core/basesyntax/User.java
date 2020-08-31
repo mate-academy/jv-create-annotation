@@ -26,38 +26,10 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        if (name != null) {
-            result = prime * result + name.hashCode();
-        }
-        result = prime * result + id;
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass().equals(User.class)) {
-            User user = (User) obj;
-            return name != null ? name.equals(user.name)
-                    : user.name == null
-                    && id == user.id;
-        }
-        return false;
-    }
-
-    @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                '}';
+        return "User{"
+                + "name='" + name + '\''
+                + ", id=" + id
+                + '}';
     }
 }

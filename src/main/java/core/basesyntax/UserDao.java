@@ -1,8 +1,9 @@
 package core.basesyntax;
 
-import java.util.Map;
+import java.util.List;
 
 public interface UserDao {
-    void add(User user, Bet bet);
-    Map<User, Bet> getAll();
+    void add(User use);
+
+    List<User> getAll();
 }

@@ -2,7 +2,6 @@ package core.basesyntax;
 
 import java.util.Scanner;
 
-
 public class ConsoleHandler {
     BetDao betDao = new BetDaoImpl();
     UserDao userDao = new UserDaoImpl();
@@ -28,8 +27,9 @@ public class ConsoleHandler {
                 System.out.println("Write correct data");
             }
             betDao.add(bet);
-            userDao.add(user, bet);
-            System.out.println((user == null) ? null : ((bet == null) ? null : (user.toString() + " " + bet.toString())));
+            userDao.add(user);
+            System.out.println((user == null) ? null : ((bet == null)
+                    ? null : (user.toString() + " " + bet.toString())));
         }
     }
 }
