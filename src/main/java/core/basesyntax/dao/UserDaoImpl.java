@@ -27,7 +27,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserByName(String name) {
-        return Storage.users.stream().filter(n -> n.getName().equals(name)).findFirst().get();
+        return Storage.users.stream()
+                .filter(n -> n.getName().equals(name))
+                .findFirst()
+                .get();
     }
 
     @Override
