@@ -2,7 +2,6 @@ package core.basesyntax.dao;
 
 import core.basesyntax.data.UserStorage;
 import core.basesyntax.model.User;
-
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {

@@ -2,7 +2,6 @@ package core.basesyntax.dao;
 
 import core.basesyntax.data.BetStorage;
 import core.basesyntax.model.Bet;
-
 import java.util.List;
 
 public class BetDaoImpl implements BetDao {
@@ -16,6 +15,4 @@ public class BetDaoImpl implements BetDao {
     public List<Bet> getAll() {
         return BetStorage.bets;
     }
-
-
 }
