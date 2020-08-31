@@ -2,7 +2,6 @@ package dao;
 
 import database.Storage;
 import model.Bet;
-import model.User;
 
 public class UserDaoImpl implements UserDao {
     @Override

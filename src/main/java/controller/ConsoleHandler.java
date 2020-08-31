@@ -4,13 +4,12 @@ import dao.BetDao;
 import dao.BetDaoImpl;
 import dao.UserDao;
 import dao.UserDaoImpl;
+import java.util.Scanner;
 import model.Bet;
 import model.User;
 
-import java.util.Scanner;
-
 public class ConsoleHandler {
-    BetDao betDAO = new BetDaoImpl();
+    BetDao betDao = new BetDaoImpl();
     UserDao userDao = new UserDaoImpl();
 
     public void handle() {
@@ -35,7 +34,7 @@ public class ConsoleHandler {
             } catch (NumberFormatException e) {
                 System.out.println("Будь ласка, введіть коректну ставку");
             }
-            betDAO.add(bet);
+            betDao.add(bet);
             userDao.bet(bet);
             System.out.println(bet == null ? null : bet.toString());
             System.out.println(user == null ? null : user.toString());
