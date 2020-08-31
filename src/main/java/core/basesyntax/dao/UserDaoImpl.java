@@ -1,10 +1,12 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.db.Storage;
+import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.List;
 
+@Dao
 public class UserDaoImpl implements UserDao {
     public boolean isLegalGambling(User user) {
         if (user == null) {
