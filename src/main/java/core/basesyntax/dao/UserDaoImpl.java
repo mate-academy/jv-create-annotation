@@ -3,6 +3,8 @@ package core.basesyntax.dao;
 import core.basesyntax.db.Storage;
 import core.basesyntax.model.User;
 
+import java.util.List;
+
 public class UserDaoImpl implements UserDao {
     @Override
     public void add(User user) {
@@ -15,5 +17,10 @@ public class UserDaoImpl implements UserDao {
                 .filter(u -> u.getLogin().equals(login))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("No such User"));
+    }
+
+    @Override
+    public List<User> getAll() {
+        return Storage.userList;
     }
 }
