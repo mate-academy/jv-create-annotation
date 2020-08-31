@@ -2,20 +2,19 @@ package core.basesyntax.model;
 
 public class Player {
     private String firstName;
-    private String lastName;
     private int id;
+
+    public Player(String firstName, int id) {
+        this.firstName = firstName;
+        this.id = id;
+    }
 
     public Player(String firstName, String lastName) {
         this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public String getFirstName() {
         return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public int getId() {
@@ -26,18 +25,15 @@ public class Player {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
+    @Override
     public String toString() {
-        return "User{"
-                + "first name:" + firstName
-                + ", last name: " + lastName
-                + "}";
+        return "Player{"
+                + "firstName='" + firstName + '\''
+                + ", id=" + id
+                + '}';
     }
 }
