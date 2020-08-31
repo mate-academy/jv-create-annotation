@@ -1,16 +1,13 @@
 package core.basesyntax.model;
 
-import java.time.LocalDate;
 
 public class Order {
     private String nameOfProduct;
     private int quantity;
-    private LocalDate date;
 
-    public Order(String nameOfProduct, int quantity, LocalDate date) {
+    public Order(String nameOfProduct, int quantity) {
         this.nameOfProduct = nameOfProduct;
         this.quantity = quantity;
-        this.date = date;
     }
 
     public String getNameOfProduct() {
@@ -29,20 +26,11 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     @Override
     public String toString() {
-        return "Order{"
-                + "nameOfProduct='" + nameOfProduct + '\''
-                + ", quantity=" + quantity
-                + ", date=" + date
-                + '}';
+        return "Order{" +
+                "nameOfProduct='" + nameOfProduct + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }
