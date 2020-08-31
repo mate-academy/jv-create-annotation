@@ -1,9 +1,8 @@
 package core.basesyntax.model;
 
 import core.basesyntax.model.controller.ConsoleHandler;
-import core.basesyntax.model.dao.BetDao;
 import core.basesyntax.model.dao.BetDaoImpl;
-import core.basesyntax.model.dao.UserDao;
+import core.basesyntax.model.dao.Dao;
 import core.basesyntax.model.dao.UserDaoImpl;
 
 public class Main {
@@ -12,8 +11,8 @@ public class Main {
         System.out.println("Enter value and risk for your bet.");
         handler.handle();
 
-        BetDao betDao = new BetDaoImpl();
-        UserDao userDao = new UserDaoImpl();
+        Dao betDao = new BetDaoImpl();
+        Dao userDao = new UserDaoImpl();
         System.out.println("all bets " + betDao.getAll()
                 + "\n" + "all users" + userDao.getAll());
     }
