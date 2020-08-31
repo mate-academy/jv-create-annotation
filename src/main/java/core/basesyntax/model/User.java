@@ -1,10 +1,13 @@
 package core.basesyntax.model;
 
+import java.util.List;
+
 public class User {
     private static long id = 1;
     private String username;
     private String email;
     private String password;
+    private List<Bet> userBets;
 
     public User(String username, String email, String password) {
         id++;
@@ -39,5 +42,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Bet> getUserBets() {
+        return userBets;
+    }
+
+    public void setUserBets(List<Bet> userBets) {
+        this.userBets = userBets;
     }
 }
