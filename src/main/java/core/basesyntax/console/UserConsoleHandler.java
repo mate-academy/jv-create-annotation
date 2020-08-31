@@ -24,7 +24,7 @@ public class UserConsoleHandler {
                 String surname = betUserData[1];
                 int age = Integer.valueOf(betUserData[2]);
                 betUser = new BetUser(name, surname, age);
-            } catch (NumberFormatException e) {
+            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("incorrect data");
             }
             Storage.betUsers.add(betUser);

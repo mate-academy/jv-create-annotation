@@ -23,7 +23,7 @@ public class ConsoleHandler {
                 int betValue = Integer.valueOf(data[0]);
                 double betRisk = Double.valueOf(data[1]);
                 bet = new Bet(betValue, betRisk);
-            } catch (NumberFormatException e) {
+            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("Please enter correct data");
             }
             betDao.add(bet);
