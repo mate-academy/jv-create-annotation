@@ -13,7 +13,7 @@ import core.basesyntax.model.User;
 /**
  * Feel free to remove this class and create your own.
  */
-public class HelloWorld {
+public class Application {
     public static void main(String[] args) {
         Storage<User> userStorage = new Storage<>();
         ModelDao<User> userDao = new UserDaoImpl(userStorage);
