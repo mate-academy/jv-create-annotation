@@ -21,7 +21,7 @@ public class ConsoleHandler {
                 int amount = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(amount, risk);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("You entered numbers in wrong format!"
                         + "\nRemember: amount first, risk second");
             }
