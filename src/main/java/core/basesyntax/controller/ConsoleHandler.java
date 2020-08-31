@@ -4,7 +4,6 @@ import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.dao.interfaces.BetDao;
 import core.basesyntax.dao.interfaces.UserDao;
-import core.basesyntax.dao.Storage;
 import core.basesyntax.model.Bet;
 import java.util.Scanner;
 
@@ -28,6 +27,6 @@ public class ConsoleHandler {
             }
         }
 
-        System.out.println(Storage.bets.toString());
+        System.out.println(betDao.getAll().toString());
     }
 }
