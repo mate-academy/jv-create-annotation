@@ -8,10 +8,9 @@ import java.util.Scanner;
 
 public class UserConsoleHandler {
     BetUserDao betUserDao = new BetUserDaoImplementation();
-    Scanner scanner = new Scanner(System.in);
 
     public void userConsole() {
-
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             String line = scanner.nextLine();
             if (line.equalsIgnoreCase("q")) {
