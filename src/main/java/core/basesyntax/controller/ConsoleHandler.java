@@ -1,41 +1,63 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.imp.BetDaoImpl;
+import core.basesyntax.dao.imp.UserDaoImpl;
 import core.basesyntax.model.Bet;
+import core.basesyntax.model.User;
+
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private BetDao betDao = new BetDaoImpl();
+    private BetDao betDao;
+    private UserDao userDao;
 
     public ConsoleHandler() {
-
-    }
-
-    public ConsoleHandler(BetDao betDao) {
-        this.betDao = betDao;
+        betDao = new BetDaoImpl();
+        userDao = new UserDaoImpl();
     }
 
     public void handle() {
-        System.out.println("Enter value and risk of bet");
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            String command = scanner.nextLine();
-            if (command.equalsIgnoreCase("q")) {
+            System.out.println("Enter name and password:");
+            String userCommand = scanner.nextLine();
+            if (userCommand.equalsIgnoreCase("end")) {
                 return;
             }
-            Bet bet = null;
+            User user;
             try {
-                String[] betData = command.split(" ");
-                int value = Integer.parseInt(betData[0]);
-                double risk = Double.parseDouble(betData[1]);
-                bet = new Bet(value, risk);
-
-            } catch (NumberFormatException e) {
+                String[] userData = userCommand.split(" ");
+                String name = userData[0];
+                String password = userData[1];
+                user = new User(name, password);
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 System.out.println("The entered data is incorrect");
+                continue;
             }
-            betDao.add(bet);
-            System.out.println(bet == null ? null : bet.toString());
+            userDao.add(user);
+            System.out.println(user);
+            while (true) {
+                System.out.println("Enter value and risk of bet:");
+                String command = scanner.nextLine();
+                if (command.equalsIgnoreCase("q")) {
+                    break;
+                }
+                Bet bet;
+                try {
+                    String[] betData = command.split(" ");
+                    int value = Integer.parseInt(betData[0]);
+                    double risk = Double.parseDouble(betData[1]);
+                    bet = new Bet(value, risk);
+
+                } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                    System.out.println("The entered data is incorrect");
+                    continue;
+                }
+                betDao.add(bet);
+                System.out.println(bet);
+            }
         }
     }
 }
