@@ -25,8 +25,7 @@ public class ConsoleHandler {
                 betDao.add(bet);
                 System.out.println(bet);
             } catch (NumberFormatException e) {
-                System.out.println("Пожалуйста, введите корректные данные "
-                        + "или нажмите 'q', чтобы выйти");
+                System.out.println("Please, enter correct data or press 'q' to exit");
             }
         }
     }
