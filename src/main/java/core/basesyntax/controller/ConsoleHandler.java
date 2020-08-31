@@ -25,6 +25,7 @@ public class ConsoleHandler {
                 return;
             }
             String[] betData = command.split(" ");
+            checkInput(betData);
             Bet bet = null;
             try {
                 int value = Integer.parseInt(betData[0]);
@@ -42,6 +43,7 @@ public class ConsoleHandler {
         System.out.println("Please input your name and age:");
         String input = scanner.nextLine();
         String[] userData = input.split(" ");
+        checkInput(userData);
         User user = null;
         try {
             String name = userData[0];
@@ -52,5 +54,11 @@ public class ConsoleHandler {
             handleUser();
         }
         userDao.add(user);
+    }
+
+    private void checkInput(String[] input) {
+        if (input.length != 2) {
+            throw new IllegalArgumentException("All of fields can't be null!");
+        }
     }
 }
