@@ -4,14 +4,14 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.model.Bet;
 import java.util.List;
 
-public class BetDaoImpl implements BetDao {
+public class BetDaoImpl implements Dao<Bet> {
     @Override
-    public void addBet(Bet bet) {
+    public void add(Bet bet) {
         Storage.bets.add(bet);
     }
 
     @Override
-    public List<Bet> getAllBets() {
+    public List<Bet> getAll() {
         return Storage.bets;
     }
 }
