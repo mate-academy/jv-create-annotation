@@ -4,14 +4,14 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.model.User;
 import java.util.List;
 
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements Dao<User> {
     @Override
     public void add(User user) {
         Storage.users.add(user);
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> getAll() {
         return Storage.users;
     }
 }
