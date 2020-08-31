@@ -4,7 +4,7 @@ import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.dao.interfaces.BetDao;
 import core.basesyntax.dao.interfaces.UserDao;
-import core.basesyntax.db.Storage;
+import core.basesyntax.dao.Storage;
 import core.basesyntax.model.Bet;
 import java.util.Scanner;
 
