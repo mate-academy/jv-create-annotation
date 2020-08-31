@@ -9,8 +9,13 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
-    UserDao userDao = new UserDaoImpl();
+    private BetDao betDao;
+    private UserDao userDao;
+
+    public ConsoleHandler() {
+        this.betDao = new BetDaoImpl();
+        this.userDao = new UserDaoImpl();
+    }
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -31,6 +36,7 @@ public class ConsoleHandler {
                     Bet bet = new Bet(value, risk);
                     betDao.add(bet);
                     scanner.close();
+                    System.out.println(betDao.getAll());
                     return;
                 }
                 if (command.equals("user")) {
@@ -42,6 +48,7 @@ public class ConsoleHandler {
                     User user = new User(login, email);
                     userDao.add(user);
                     scanner.close();
+                    System.out.println(userDao.getAll());
                     return;
                 }
             } catch (IllegalArgumentException e) {
