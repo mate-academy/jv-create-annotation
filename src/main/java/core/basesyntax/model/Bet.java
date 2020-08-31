@@ -24,4 +24,9 @@ public class Bet {
     public void setRisk(double risk) {
         this.risk = risk;
     }
+
+    @Override
+    public String toString() {
+        return "Bet: " + value + " " + risk;
+    }
 }
