@@ -27,11 +27,14 @@ public class ConsoleHandler {
         try {
             user.setAge(Integer.parseInt(scanner.nextLine()));
             if (user.getAge() < 18) {
-                throw new NumberFormatException();
+                throw new IllegalArgumentException();
             }
         } catch (NumberFormatException e) {
             System.out.println("Enter acceptable age");
             return null;
+        } catch (IllegalArgumentException e) {
+            System.out.println("You are underage for this, try again in "
+                    + (18 - user.getAge()) + " years.");
         }
         if (user.getName().equals("") || user.getSurname().equals("")) {
             throw new IllegalArgumentException("Don't try to enter empty row.");
