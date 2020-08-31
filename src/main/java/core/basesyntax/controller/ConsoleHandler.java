@@ -9,8 +9,8 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
-    UserDao userDao = new UserDaoImpl();
+    private BetDao betDao = new BetDaoImpl();
+    private UserDao userDao = new UserDaoImpl();
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
