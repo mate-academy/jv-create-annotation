@@ -34,7 +34,7 @@ public class ConsoleHandler {
                 double risk = Double.parseDouble(userAndBetData[3]);
                 bet = new Bet(value, risk);
                 user = new User(name, age);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please, input correct data");
                 continue;
             } catch (IllegalArgumentException e) {
