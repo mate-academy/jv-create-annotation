@@ -21,7 +21,8 @@ public class Injector {
                 field.setAccessible(true);
                 field.set(instance, Factory.getBetDao());
             }
-            if (field.getAnnotation(Inject.class) != null && field.getType().equals(UserDao.class)) {
+            if (field.getAnnotation(Inject.class) != null
+                    && field.getType().equals(UserDao.class)) {
                 field.setAccessible(true);
                 field.set(instance, Factory.getUserDao());
             }
