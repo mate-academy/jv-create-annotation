@@ -4,7 +4,7 @@ import core.basesyntax.model.User;
 import java.util.List;
 
 public interface UserDao {
-    public void add(User user);
+    void add(User user);
 
-    public List<User> getAll();
+    List<User> getAll();
 }
