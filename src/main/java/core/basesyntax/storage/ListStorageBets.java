@@ -1,7 +1,6 @@
 package core.basesyntax.storage;
 
 import core.basesyntax.model.Bet;
-
 import java.util.ArrayList;
 import java.util.List;
 

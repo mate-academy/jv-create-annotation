@@ -50,8 +50,8 @@ public class Bet {
         }
 
         Bet bet1 = (Bet) obj;
-        return value == bet1.value &&
-                Double.compare(bet1.risk, risk) == 0;
+        return value == bet1.value
+                && Double.compare(bet1.risk, risk) == 0;
     }
 
     @Override
