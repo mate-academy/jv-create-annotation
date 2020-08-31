@@ -2,7 +2,6 @@ package core.basesyntax.db;
 
 import core.basesyntax.models.BetModel;
 import core.basesyntax.models.UserModel;
-
 import java.util.ArrayList;
 import java.util.List;
 

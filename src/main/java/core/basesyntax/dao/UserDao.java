@@ -8,5 +8,4 @@ public interface UserDao {
 
     List<UserModel> users();
 
-
 }
