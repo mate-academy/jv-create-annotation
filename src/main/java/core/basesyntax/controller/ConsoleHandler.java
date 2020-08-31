@@ -1,6 +1,5 @@
 package core.basesyntax.controller;
 
-
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.Dao;
 import core.basesyntax.dao.UserDaoImpl;

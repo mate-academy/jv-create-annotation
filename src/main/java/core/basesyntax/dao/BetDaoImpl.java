@@ -4,7 +4,7 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.model.Bet;
 import java.util.List;
 
-public class BetDaoImpl implements Dao<Bet>{
+public class BetDaoImpl implements Dao<Bet> {
 
     @Override
     public void add(Bet bet) {
