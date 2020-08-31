@@ -14,11 +14,14 @@ public class BetConsoleHandler implements ConsoleHandler {
     @Override
     public void handle() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введіть будь ласка дані для Bet!!!");
+        System.out.println("Enter data for Bet, please!!!");
         while (true) {
             String consoleData = scanner.nextLine();
             if (consoleData.equals("q")) {
                 return;
+            }
+            if (consoleData.isEmpty() || consoleData.split(" ").length != 2) {
+                throw new IllegalArgumentException("Enter right quantity of parameters, please!!!");
             }
             try {
                 String[] arrayData = consoleData.split(" ");
@@ -27,7 +30,7 @@ public class BetConsoleHandler implements ConsoleHandler {
                 Bet bet = new Bet(value, risk);
                 betDao.addModelToDb(bet);
             } catch (NumberFormatException e) {
-                System.out.println("Введіть будь ласка коректні дані!!!");
+                System.out.println("Enter right parameters, please!!!");
             }
         }
     }
