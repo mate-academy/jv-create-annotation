@@ -13,59 +13,39 @@ public class ConsoleHandler {
     UserDao userDao = new UserDaoImpl();
 
     public void handle() {
-        handleBet(handleUser());
-    }
-
-    private User handleUser() {
-        User user = new User();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your name");
-        user.setName(scanner.nextLine());
-        System.out.println("Enter your surname");
-        user.setSurname(scanner.nextLine());
-        System.out.println("Enter your age");
-        try {
-            user.setAge(Integer.parseInt(scanner.nextLine()));
-            if (user.getAge() < 18) {
-                throw new IllegalArgumentException();
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Enter acceptable age");
-            return null;
-        } catch (IllegalArgumentException e) {
-            System.out.println("You are underage for this, try again in "
-                    + (18 - user.getAge()) + " years.");
-        }
-        if (user.getName().equals("") || user.getSurname().equals("")) {
-            throw new IllegalArgumentException("Don't try to enter empty row.");
-        }
-        userDao.add(user);
-        return user;
-    }
-
-    private void handleBet(User user) {
-        if (user == null) {
-            System.out.println("You are not authorized. Login before making bets");
-            return;
-        }
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter value and risk for your bet");
         while (true) {
+            Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("q")) {
                 return;
             }
             Bet bet = null;
+            User user = null;
             try {
                 String[] betData = command.split(" ");
-                int value = Integer.parseInt(betData[0]);
-                double risk = Double.parseDouble(betData[1]);
-                bet = new Bet(value, risk, user);
+                String name = betData[0];
+                String surname = betData[1];
+                int age = Integer.parseInt(betData[2]);
+                if (age < 18) {
+                    throw new IllegalArgumentException("You are to young to do bets");
+                }
+                int value = Integer.parseInt(betData[3]);
+                double risk = Double.parseDouble(betData[4]);
+                bet = new Bet(value, risk);
+                user = new User(name, surname, age);
             } catch (NumberFormatException e) {
-                System.out.println("Enter valid data, please");
+                System.out.println("You have entered unparsable data. "
+                        + "Try again or enter 'q' to quit");
+                handle();
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("You've entered too little information. "
+                        + "Try again or enter 'q' to quit");
+                handle();
             }
             betDao.add(bet);
-            System.out.println(bet == null ? null : bet.toString());
+            userDao.add(user);
+            System.out.println(bet == null || user == null
+                    ? null : bet.toString() + " " + user.toString());
             System.out.println("Keep betting or enter 'q' to quit");
         }
     }
