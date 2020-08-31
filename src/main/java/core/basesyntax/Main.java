@@ -7,5 +7,4 @@ public class Main {
         ConsoleHandler handler = new ConsoleHandler();
         handler.handle();
     }
-
 }
