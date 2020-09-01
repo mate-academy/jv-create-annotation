@@ -6,6 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    public static final List<Bet> bets = new ArrayList<>();
-    public static final List<User> users = new ArrayList<>();
+    private static final List<Bet> bets = new ArrayList<>();
+    private static final List<User> users = new ArrayList<>();
+
+    public static List<Bet> getBets() {
+        return bets;
+    }
+
+    public static List<User> getUsers() {
+        return users;
+    }
 }

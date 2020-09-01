@@ -4,22 +4,33 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.imp.BetDaoImpl;
 import core.basesyntax.dao.imp.UserDaoImpl;
+import core.basesyntax.exceptions.UnknownDaoImplException;
 
 public class Factory {
-    private static BetDao betDao;
-    private static UserDao userDao;
+    private static final Factory factory = new Factory();
+
+    private Factory() {
+
+    }
+
+    private Factory getInstance() {
+        return factory;
+    }
 
     public static BetDao getBetDaoImpl() {
-        if (betDao == null) {
             return new BetDaoImpl();
-        }
-        return betDao;
     }
 
     public static UserDao getUserDaoImpl() {
-        if (userDao == null) {
-            return new UserDaoImpl();
+        return new UserDaoImpl();
+    }
+
+    public static Object getDaoImpl(Class<?> type) {
+        if (type.equals(UserDao.class)) {
+           return Factory.getUserDaoImpl();
+        } else if (type.equals(BetDao.class)) {
+           return Factory.getBetDaoImpl();
         }
-        return userDao;
+        throw new UnknownDaoImplException("Unknown dao implementation");
     }
 }
