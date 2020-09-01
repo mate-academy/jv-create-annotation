@@ -15,25 +15,26 @@ public class ConsoleHandler {
     UserDao userDao = new UserDaoImpl();
 
     public void handle() {
-        while (true) {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-                System.out.println("Enter your name and id");
-                String userInfo = reader.readLine();
-                String[] userData = userInfo.split(" ");
-                userDao.add(new User(userData[0], Integer.parseInt(userData[1])));
-
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            System.out.println("Enter your name and id");
+            String userInfo = reader.readLine();
+            String[] userData = userInfo.split(" ");
+            userDao.add(new User(userData[0], Integer.parseInt(userData[1])));
+            while (true) {
                 System.out.println("Enter value and risk for your bet");
                 String betInfo = reader.readLine();
-                if (betInfo.equals(" ")) {
-                    return;
+                if (betInfo.equals("q")) {
+                    break;
                 }
                 String[] betData = betInfo.split(" ");
                 betDao.add(new Bet(Integer.parseInt(betData[0]), Double.parseDouble(betData[1])));
-            } catch (IOException e) {
-                throw new RuntimeException("Unable to read data", e);
-            } catch (NumberFormatException e) {
-                throw new RuntimeException("Please enter correct data", e);
             }
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to read data", e);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            throw new RuntimeException("Please enter correct data", e);
         }
+        System.out.println(userDao.getAll());
+        System.out.println(betDao.getAll());
     }
 }
