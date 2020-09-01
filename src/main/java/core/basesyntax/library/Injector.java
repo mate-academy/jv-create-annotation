@@ -2,9 +2,7 @@ package core.basesyntax.library;
 
 import core.basesyntax.controller.ConsoleHandler;
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.exceptions.NoSuchAnnotationException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
