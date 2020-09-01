@@ -1,9 +1,12 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.db.Storage;
+import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Car;
+import java.util.List;
 import java.util.NoSuchElementException;
 
+@Dao
 public class CarDaoImpl implements CarDao {
     @Override
     public void add(Car car) {
@@ -33,5 +36,10 @@ public class CarDaoImpl implements CarDao {
             return;
         }
         throw new NoSuchElementException("No such element");
+    }
+
+    @Override
+    public List<Car> getAll() {
+        return Storage.cars_storage;
     }
 }

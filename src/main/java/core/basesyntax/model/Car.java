@@ -24,4 +24,9 @@ public class Car {
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
+
+    @Override
+    public String toString() {
+        return "model = " + model + ", maxSpeed = " + maxSpeed;
+    }
 }

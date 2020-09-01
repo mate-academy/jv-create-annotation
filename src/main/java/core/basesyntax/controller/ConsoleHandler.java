@@ -1,17 +1,22 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.CarDao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
+import core.basesyntax.model.Car;
 import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
     private BetDao betDao;
+    @Inject
+    private CarDao carDao;
 
     public void handle() {
         System.out.println("Please enter your bet");
         Scanner scanner = new Scanner(System.in);
+        carDao.add(new Car("DeLorean", 300));
 
         while (true) {
             String input = scanner.nextLine();
