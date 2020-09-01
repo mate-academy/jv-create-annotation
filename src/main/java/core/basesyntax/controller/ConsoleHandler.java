@@ -17,6 +17,8 @@ public class ConsoleHandler {
         while (true) {
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("q")) {
+                System.out.println(userDao.getAllUsers());
+                System.out.println(betDao.getAllBets());
                 return;
             }
             Bet bet;

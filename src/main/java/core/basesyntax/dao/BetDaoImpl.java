@@ -11,7 +11,7 @@ public class BetDaoImpl implements BetDao {
     }
 
     @Override
-    public List<Bet> getAll() {
+    public List<Bet> getAllBets() {
         return Storage.bets;
     }
 }
