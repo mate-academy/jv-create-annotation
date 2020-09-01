@@ -4,8 +4,6 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
-import core.basesyntax.exceptions.NoAnnotationException;
-import core.basesyntax.lib.Dao;
 
 public class Factory {
     private static BetDao betDao;
@@ -13,22 +11,14 @@ public class Factory {
 
     public static BetDao getBetDao() {
         if (betDao == null) {
-            if (BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
-                betDao = new BetDaoImpl();
-            } else {
-                throw new NoAnnotationException("Annotation was not found.");
-            }
+            betDao = new BetDaoImpl();
         }
         return betDao;
     }
 
     public static UserDao getUserDao() {
         if (userDao == null) {
-            if (UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
-                userDao = new UserDaoImpl();
-            } else {
-                throw new NoAnnotationException("Annotation was not found.");
-            }
+            userDao = new UserDaoImpl();
         }
         return userDao;
     }
