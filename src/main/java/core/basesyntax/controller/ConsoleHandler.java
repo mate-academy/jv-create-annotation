@@ -18,8 +18,8 @@ public class ConsoleHandler {
     }
 
     private void handleBet() {
-        System.out.println("Please input your bet value and risk:");
         while (true) {
+            System.out.println("Please input your bet value and risk:");
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("q")) {
                 return;
@@ -32,7 +32,8 @@ public class ConsoleHandler {
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
-                throw new RuntimeException("Bad input information!");
+                System.out.println("Bad input information!");
+                continue;
             }
             betDao.add(bet);
             System.out.println(bet.toString());
