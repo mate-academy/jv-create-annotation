@@ -1,6 +1,6 @@
 package core.basesyntax.dao;
 
-import core.basesyntax.model.Bet;
+
 import core.basesyntax.model.User;
 import java.util.List;
 
@@ -10,10 +10,4 @@ public interface UserDao {
     User getUserById(long id);
 
     List<User> getAllUsers();
-
-    void changeUserPassword(long id, String newPassword);
-
-    List<Bet> getAllUserBets(long id);
-
-    boolean addBetToUser(User user, Bet bet);
 }

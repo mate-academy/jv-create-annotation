@@ -13,12 +13,19 @@ public class ConsoleHandler {
     private BetDao betDao = new BetDaoImpl();
 
     public void handle() {
-        System.out.println("Please register new User(name,email,password)");
+        System.out.println("Register new User(name,email,password)");
         Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine();
-        String[] userData = command.split(" ");
-        User user = new User(userData[0], userData[1], userData[2]);
-        userDao.addUser(user);
+        User user = null;
+        Bet bet = null;
+        try {
+            String[] userData = command.split(" ");
+            user = new User(userData[0], userData[1], userData[2]);
+            userDao.addUser(user);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please input the correct values");
+            handle();
+        }
         while (true) {
             if (command.equalsIgnoreCase("q")) {
                 return;
@@ -29,9 +36,11 @@ public class ConsoleHandler {
                 String[] betDate = command.split(" ");
                 int value = Integer.parseInt(betDate[0]);
                 double risk = Double.parseDouble(betDate[1]);
-                Bet bet = new Bet(value, risk);
+                bet = new Bet(value, risk);
                 betDao.addBet(bet);
-                userDao.addBetToUser(user, bet);
+                userDao.getUserById(user.getId())
+                        .getUserBets()
+                        .add(bet);
                 System.out.println("Enter \"q\" for quit");
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please input the correct values");

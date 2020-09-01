@@ -2,8 +2,8 @@ package core.basesyntax.dao.impl;
 
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.db.Storage;
-import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
+
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -25,21 +25,5 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         return Storage.userStorage;
-    }
-
-    @Override
-    public void changeUserPassword(long id, String newPassword) {
-        getUserById(id).setPassword(newPassword);
-    }
-
-    @Override
-    public List<Bet> getAllUserBets(long id) {
-        return getUserById(id).getUserBets();
-    }
-
-    @Override
-    public boolean addBetToUser(User user, Bet bet) {
-        return user.getUserBets()
-                .add(bet);
     }
 }
