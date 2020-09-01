@@ -26,7 +26,7 @@ public class ConsoleHandler {
                 Bet bet = new Bet(value, risk);
                 betDao.add(bet);
                 System.out.println(bet);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Enter correct data");
             }
         }
