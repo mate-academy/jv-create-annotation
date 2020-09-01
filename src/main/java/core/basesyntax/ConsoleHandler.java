@@ -5,46 +5,33 @@ import java.util.Scanner;
 public class ConsoleHandler {
     private BetDao betDao;
     private UserDao userDao;
-    private String command;
-    private Scanner scanner;
-    private Splitter splitter;
 
-    public ConsoleHandler() {
-        userDao = new UserDao();
-        betDao = new BetDao();
-        splitter = new Splitter();
+    public ConsoleHandler(BetDao betDao, UserDao userDao) {
+        this.betDao = betDao;
+        this.userDao = userDao;
     }
 
     public void handle() {
-        System.out.println("Enter your password and login for game!");
-        scanner = new Scanner(System.in);
-        String[] input = splitter.split(scanner.nextLine());
-        userDao.save(new User(input[0], input[1]));
-        System.out.println("Enter risk and value for your bet");
-        appListen();
-    }
+        Scanner scanner = new Scanner(System.in);
+        Splitter splitter = new Splitter();
+        System.out.println("Enter your login and password to make a bet!");
+        String userData = scanner.nextLine();
+        String[] splitedUser = splitter.split(userData);
+        userDao.save(new User(splitedUser[0],
+                splitedUser[1]));
 
-    private void appListen() {
-        command = scanner.nextLine();
-        try {
-            inputManage();
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-            appListen();
-        }
-    }
-
-    private void inputManage() {
-        if (command.equals("quit")) {
-            System.exit(0);
-        }
-        String[] input = splitter.split(command);
-        try {
-            betDao.save(new Bet(Integer.parseInt(input[0]), Double.parseDouble(input[1])));
-            System.out.println("Bet is saved!");
-            appListen();
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Wrong bet format!");
+        while (true) {
+            System.out.println("Please, enter your bet value and risk!");
+            String betData = scanner.nextLine();
+            try {
+                String[] splitedBet = splitter.split(betData);
+                betDao.save(new Bet(Integer.parseInt(splitedBet[0]),
+                        Double.parseDouble(splitedBet[1])));
+            } catch (NumberFormatException e) {
+                throw new RuntimeException("Wrong input data!");
+            }
+            System.out.println(betDao.getAll().toString());
+            System.out.println(userDao.getAll().toString());
         }
     }
 }
