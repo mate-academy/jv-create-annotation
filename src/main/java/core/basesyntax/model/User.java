@@ -25,12 +25,8 @@ public class User {
         this.age = age;
     }
 
-    public static boolean isLegalGambling(User user) {
-        if (user == null) {
-            System.out.println("Minimum user information in appropriate format "
-                    + "must be provided to be sure you are allowed to make debts");
-            return false;
-        } else if (user.age < 21) {
+    public boolean isLegalGambling() {
+        if (this.age < 21) {
             System.out.println("It's not legal to make debts under age of 21! "
                     + "But feel free to explore the app as a guest user");
             return false;

@@ -27,7 +27,10 @@ public class ConsoleHandler {
             if (command.equalsIgnoreCase(NEW_USER)) {
                 visitor = newVisitor(scanner);
             }
-            if (command.equalsIgnoreCase(NEW_BET) && User.isLegalGambling(visitor)) {
+            if (visitor == null && command.equalsIgnoreCase(NEW_BET)) {
+                System.out.println("Minimum user information in appropriate format "
+                        + "must be provided to be sure you are allowed to make debts");
+            } else if (command.equalsIgnoreCase(NEW_BET) && visitor.isLegalGambling()) {
                 System.out.println(newBet(scanner));
             }
             System.out.println("\nEnter 'n' to create a new user, 'b' to make a bet "

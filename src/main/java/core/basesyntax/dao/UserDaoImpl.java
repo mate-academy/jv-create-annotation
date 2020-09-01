@@ -7,7 +7,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     @Override
     public void saveAsGambler(User user) {
-        if (User.isLegalGambling(user)) {
+        if (user.isLegalGambling()) {
             Storage.legit_gamblers.add(user);
         }
     }
