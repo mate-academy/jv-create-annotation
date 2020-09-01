@@ -66,11 +66,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{"
-                + "userId=" + userId
-                + ", name='" + name + '\''
-                + ", login='" + login + '\''
-                + ", password='" + password + '\''
-                + '}';
+        return "User"
+                + "\n userId \t = \t" + userId
+                + "\n name \t\t = \t" + name
+                + "\n login \t\t = \t" + login
+                + "\n password \t = \t" + password;
     }
 }
