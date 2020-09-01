@@ -1,15 +1,17 @@
 package core.basesyntax.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString(of = {"value", "risk"})
+@RequiredArgsConstructor
+@ToString
 public class Bet {
+    @NonNull
     private int value;
+    @NonNull
     private double risk;
+    @Setter
+    private String userName;
 }
