@@ -28,7 +28,8 @@ public class ConsoleHandler {
                 String name = userAndBetData[0];
                 int age = Integer.parseInt(userAndBetData[1]);
                 if (age < 18) {
-                    throw new IllegalArgumentException();
+                    System.out.println("We take bets only from adults, sorry");
+                    continue;
                 }
                 int value = Integer.parseInt(userAndBetData[2]);
                 double risk = Double.parseDouble(userAndBetData[3]);
@@ -36,9 +37,6 @@ public class ConsoleHandler {
                 user = new User(name, age);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please, input correct data");
-                continue;
-            } catch (IllegalArgumentException e) {
-                System.out.println("We take bets only from adults, sorry");
                 continue;
             }
             userDao.add(user);
