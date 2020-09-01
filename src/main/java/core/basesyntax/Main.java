@@ -7,8 +7,11 @@ import java.lang.reflect.InvocationTargetException;
 public class Main {
     public static void main(String[] args) throws InvocationTargetException,
             NoSuchMethodException, InstantiationException, IllegalAccessException {
-        ControllerHandler controllerHandler = (ControllerHandler) Injector.getInstance(ControllerHandler.class);
+        ControllerHandler controllerHandler = (ControllerHandler)
+                Injector.getInstance(ControllerHandler.class);
         System.out.println("Please input data");
+        controllerHandler.handleBet();
+        System.out.println("Please input user");
         controllerHandler.handleBet();
     }
 }
