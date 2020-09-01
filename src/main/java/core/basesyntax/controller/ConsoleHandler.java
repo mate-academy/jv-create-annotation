@@ -34,6 +34,7 @@ public class ConsoleHandler {
                 user = new User(name, lastName);
             } catch (NumberFormatException e) {
                 System.out.println("Ви вели некоректні дані.");
+                return;
             }
             betDao.add(bet);
             userDao.add(user);
