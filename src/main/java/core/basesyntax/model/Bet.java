@@ -1,8 +1,8 @@
 package core.basesyntax.model;
 
 public class Bet {
-    int value;
-    double risk;
+    private int value;
+    private double risk;
 
     public Bet(int value, double risk) {
         this.value = value;
@@ -15,6 +15,14 @@ public class Bet {
 
     public double getRisk() {
         return risk;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setRisk(double risk) {
+        this.risk = risk;
     }
 
     @Override
