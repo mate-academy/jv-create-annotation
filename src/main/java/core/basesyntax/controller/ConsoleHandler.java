@@ -9,9 +9,10 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
+    private UserDao userDao = new UserDaoImp();
+    private BetDao betDao = new BetDaoImp();
+
     public void handle() {
-        UserDao userDao = new UserDaoImp();
-        BetDao betDao = new BetDaoImp();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String command = scanner.nextLine();
@@ -23,17 +24,15 @@ public class ConsoleHandler {
             Bet bet;
             try {
                 String[] betData = command.split(" ");
-                if (betData.length == 4) {
-                    String login = betData[0];
-                    String password = betData[1];
-                    int value = Integer.parseInt(betData[2]);
-                    double risk = Double.parseDouble(betData[3]);
-                    user = new User(login, password);
-                    bet = new Bet(value, risk);
-                    userDao.add(user);
-                    betDao.add(bet);
-                    System.out.println(user.toString() + "\n" + bet.toString());
-                }
+                String login = betData[0];
+                String password = betData[1];
+                int value = Integer.parseInt(betData[2]);
+                double risk = Double.parseDouble(betData[3]);
+                user = new User(login, password);
+                bet = new Bet(value, risk);
+                userDao.add(user);
+                betDao.add(bet);
+                System.out.println(user.toString() + "\n" + bet.toString());
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please, enter correct data!");
             }
