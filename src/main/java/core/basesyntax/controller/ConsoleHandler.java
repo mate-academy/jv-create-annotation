@@ -26,16 +26,16 @@ public class ConsoleHandler {
             }
             String[] betData = command.split(" ");
             checkInput(betData);
-            Bet bet = null;
+            Bet bet;
             try {
                 int value = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
-                System.out.println("Input correct information please!");
+               throw new RuntimeException("Bad input information!");
             }
             betDao.add(bet);
-            System.out.println(bet == null ? null : bet.toString());
+            System.out.println(bet.toString());
         }
     }
 
