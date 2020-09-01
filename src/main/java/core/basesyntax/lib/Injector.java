@@ -20,7 +20,8 @@ public class Injector {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
                 if (field.getAnnotation(Dao.class) != null) {
-                    throw new FieldHasNoDaoAnnotationException("Field" + field.toString() + "has no @Dao annotation");
+                    throw new FieldHasNoDaoAnnotationException("Field" + field.toString()
+                            + "has no @Dao annotation");
                 }
                 if (field.getDeclaringClass().equals(UserDaoImpl.class)) {
                     field.set(instance, Factory.getUserDao());
