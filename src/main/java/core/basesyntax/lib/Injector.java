@@ -1,7 +1,6 @@
 package core.basesyntax.lib;
 
-import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.dao.UniversalDao;
 import core.basesyntax.factory.Factory;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
@@ -19,38 +18,21 @@ public class Injector {
         Object instance = constructor.newInstance();
         Field[] declaredField = clazz.getDeclaredFields();
         for (Field field : declaredField) {
-            if (field.getAnnotation(Inject.class) != null) {
+            if (field.getAnnotation(Inject.class) != null
+                    && field.getType().equals(UniversalDao.class)) {
                 field.setAccessible(true);
                 Type type = field.getGenericType();
                 if (type instanceof ParameterizedType) {
                     ParameterizedType parameterizedType = (ParameterizedType) type;
-                    if (checkBet(parameterizedType)) {
+                    if (Bet.class == parameterizedType.getActualTypeArguments()[0]) {
                         field.set(instance, Factory.getBetDao());
                     }
-                    if (checkUser(parameterizedType)) {
+                    if (User.class == parameterizedType.getActualTypeArguments()[0]) {
                         field.set(instance, Factory.getUserDao());
                     }
                 }
             }
         }
         return instance;
-    }
-
-    private static boolean checkBet(ParameterizedType parameterizedType)
-            throws NoDaoAnnotationInTheClass {
-        if (!BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
-            throw new NoDaoAnnotationInTheClass("Class " + BetDaoImpl.class
-                    + " doesn't contains @Dao annotation!!");
-        }
-        return Bet.class == parameterizedType.getActualTypeArguments()[0];
-    }
-
-    private static boolean checkUser(ParameterizedType parameterizedType)
-            throws NoDaoAnnotationInTheClass {
-        if (!UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
-            throw new NoDaoAnnotationInTheClass("Class " + UserDaoImpl.class
-                    + " doesn't contains @Dao annotation!!");
-        }
-        return User.class == parameterizedType.getActualTypeArguments()[0];
     }
 }
