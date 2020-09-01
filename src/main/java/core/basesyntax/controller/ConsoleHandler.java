@@ -41,7 +41,7 @@ public class ConsoleHandler {
             betDao.add(bet);
             userDao.add(user);
             System.out.println(user == null ? "Простите, но людям не достигшим 18 лет запрещено "
-                    + "играть в азартные игры"
+                    + "играть в азартные игры!"
                     : "Игрок " + user.getName() + " сделал ставку: " + "\n"
                     + bet.toString());
         }
