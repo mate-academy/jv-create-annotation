@@ -1,8 +1,8 @@
 package dao;
 
 import db.BetStorage;
-import model.Bet;
 import java.util.List;
+import model.Bet;
 
 public class BetDaoImpl implements BetDao {
 
@@ -15,6 +15,4 @@ public class BetDaoImpl implements BetDao {
     public List<Bet> getAll() {
         return BetStorage.bets;
     }
-
-
 }
