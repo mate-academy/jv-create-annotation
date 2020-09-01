@@ -24,7 +24,7 @@ public class ConsoleHandler {
             try {
                 String[] values = input.split(" ");
                 bet = new Bet(Integer.parseInt(values[0]), Double.parseDouble(values[1]));
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please enter correct money and chance of victory values");
             }
 
