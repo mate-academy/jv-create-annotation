@@ -33,6 +33,8 @@ public class ConsoleHandler {
                 double risk = Double.parseDouble(betData[4]);
                 bet = new Bet(value, risk);
                 user = new User(name, surname, age);
+                betDao.add(bet);
+                userDao.add(user);
             } catch (NumberFormatException e) {
                 System.out.println("You have entered unparsable data. "
                         + "Try again or enter 'q' to quit");
@@ -42,8 +44,6 @@ public class ConsoleHandler {
                         + "Try again or enter 'q' to quit");
                 handle();
             }
-            betDao.add(bet);
-            userDao.add(user);
             System.out.println(bet == null || user == null
                     ? null : bet.toString() + " " + user.toString());
             System.out.println("Keep betting or enter 'q' to quit");
