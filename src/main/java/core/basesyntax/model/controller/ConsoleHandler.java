@@ -1,15 +1,19 @@
 package core.basesyntax.model.controller;
 
-import core.basesyntax.model.dao.BetDaoImpl;
-import core.basesyntax.model.dao.GenericDao;
-import core.basesyntax.model.dao.UserDaoImpl;
+import core.basesyntax.model.dao.BetDao;
+import core.basesyntax.model.dao.UserDao;
+import core.basesyntax.model.lib.Inject;
 import core.basesyntax.model.model.Bet;
 import core.basesyntax.model.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private GenericDao betDao = new BetDaoImpl();
-    private GenericDao userDao = new UserDaoImpl();
+
+    @Inject
+    private BetDao betDao;
+
+    @Inject
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -32,7 +36,7 @@ public class ConsoleHandler {
                 String password = inputData[3];
                 bet = new Bet(value, risk);
                 user = new User(login, password, bet);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please, enter the correct information.");
             }
 
