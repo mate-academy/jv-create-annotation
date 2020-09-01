@@ -8,12 +8,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void saveAsGambler(User user) {
         if (user.isLegalGambling()) {
-            Storage.legit_gamblers.add(user);
+            Storage.legitGamblers.add(user);
         }
     }
 
     @Override
     public List<User> getAllGamblers() {
-        return Storage.legit_gamblers;
+        return Storage.legitGamblers;
     }
 }

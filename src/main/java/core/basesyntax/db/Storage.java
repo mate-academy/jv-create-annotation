@@ -7,5 +7,5 @@ import java.util.List;
 
 public class Storage {
     public static final List<Bet> bets = new ArrayList<>();
-    public static final List<User> legit_gamblers = new ArrayList<>();
+    public static final List<User> legitGamblers = new ArrayList<>();
 }

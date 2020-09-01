@@ -25,13 +25,13 @@ public class ConsoleHandler {
                 System.out.println("Unsupported command!");
             }
             if (command.equalsIgnoreCase(NEW_USER)) {
-                visitor = newVisitor(scanner);
+                visitor = createNewVisitor(scanner);
             }
             if (visitor == null && command.equalsIgnoreCase(NEW_BET)) {
                 System.out.println("Minimum user information in appropriate format "
                         + "must be provided to be sure you are allowed to make debts");
             } else if (command.equalsIgnoreCase(NEW_BET) && visitor.isLegalGambling()) {
-                System.out.println(newBet(scanner));
+                System.out.println(createNewBet(scanner));
             }
             System.out.println("\nEnter 'n' to create a new user, 'b' to make a bet "
                                 + "or 'q' to quit application: ");
@@ -57,7 +57,7 @@ public class ConsoleHandler {
                 || command.equalsIgnoreCase(QUIT_APP));
     }
 
-    private User newVisitor(Scanner scanner) {
+    private User createNewVisitor(Scanner scanner) {
         System.out.println("Please, input some general information about you, "
                             + "so we could accept and save your bets");
         System.out.println("Enter your name and age");
@@ -78,7 +78,7 @@ public class ConsoleHandler {
         return visitor;
     }
 
-    private String newBet(Scanner scanner) {
+    private String createNewBet(Scanner scanner) {
         System.out.println("Please, input value and risk for your bet");
         String command = scanner.nextLine();
         String[] betData = command.split(" ");
