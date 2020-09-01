@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     public void handle() {
         userDao.add(new User("Dasha","12345"));
