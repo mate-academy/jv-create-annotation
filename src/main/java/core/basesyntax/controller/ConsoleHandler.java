@@ -24,12 +24,11 @@ public class ConsoleHandler {
                 int value = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(risk, value);
-            } catch (NumberFormatException e) {
+                betDao.add(bet);
+                System.out.println(bet);
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Wrong parameters");
             }
-            betDao.add(bet);
-            System.out.println(bet == null ? null : bet.toString());
         }
-
     }
 }
