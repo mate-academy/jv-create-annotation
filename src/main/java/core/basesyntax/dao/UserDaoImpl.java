@@ -32,5 +32,4 @@ public class UserDaoImpl implements UserDao {
                 .findFirst()
                 .get();
     }
-
 }
