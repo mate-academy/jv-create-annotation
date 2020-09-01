@@ -2,9 +2,8 @@ package core.basesyntax;
 
 import controller.ConsoleHandler;
 import exceptions.NoDaoAnnotationFound;
-import lib.Injector;
-
 import java.lang.reflect.InvocationTargetException;
+import lib.Injector;
 
 public class Main {
     public static void main(String[] args) throws InvocationTargetException,

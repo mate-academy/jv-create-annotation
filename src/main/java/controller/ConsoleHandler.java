@@ -1,9 +1,7 @@
 package controller;
 
 import dao.BetDao;
-import dao.BetDaoImpl;
 import dao.UserDao;
-import dao.UserDaoImpl;
 import java.util.Scanner;
 import lib.Inject;
 import model.Bet;

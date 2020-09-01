@@ -4,7 +4,6 @@ import dao.BetDaoImpl;
 import dao.UserDaoImpl;
 import exceptions.NoDaoAnnotationFound;
 import factory.Factory;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

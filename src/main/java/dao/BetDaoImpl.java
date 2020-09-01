@@ -2,7 +2,6 @@ package dao;
 
 import database.Storage;
 import java.util.List;
-
 import lib.Dao;
 import model.Bet;
 
