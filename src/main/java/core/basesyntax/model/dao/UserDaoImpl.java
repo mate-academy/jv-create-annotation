@@ -4,7 +4,7 @@ import core.basesyntax.model.db.Storage;
 import core.basesyntax.model.model.User;
 import java.util.List;
 
-public class UserDaoImpl implements Dao<User> {
+public class UserDaoImpl implements UserDao {
 
     @Override
     public void add(User user) {

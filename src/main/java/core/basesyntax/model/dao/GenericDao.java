@@ -2,7 +2,7 @@ package core.basesyntax.model.dao;
 
 import java.util.List;
 
-public interface Dao<T> {
+public interface GenericDao<T> {
 
     void add(T t);
 
