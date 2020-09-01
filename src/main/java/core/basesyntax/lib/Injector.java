@@ -34,12 +34,7 @@ public class Injector {
     }
 
     private static boolean isDao(Class clazz) {
-        Annotation[] annotations = clazz.getAnnotations();
-        boolean checkDao = Arrays.stream(annotations)
-                .anyMatch(annotation -> annotation.annotationType()
-                        .getCanonicalName()
-                        .equals(Dao.class.getName()));
-        if (checkDao) {
+        if (clazz.isAnnotationPresent(Dao.class)) {
             return true;
         }
         throw new DaoIsNotFoundException("In implement class not have annotation @Dao");
