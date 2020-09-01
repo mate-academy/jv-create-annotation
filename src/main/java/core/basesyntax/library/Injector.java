@@ -17,8 +17,8 @@ public class Injector {
         Constructor<ConsoleHandler> constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
-        Class<? extends BetDaoImpl> betDaoClass = BetDaoImpl.class;
-        Class<? extends UserDaoImpl> userDaoClass = UserDaoImpl.class;
+        Class<? extends BetDao> betDaoClass = Factory.getBetDao().getClass();
+        Class<? extends UserDao> userDaoClass = Factory.getUserDao().getClass();
         if (!betDaoClass.isAnnotationPresent(Dao.class)
                 || !userDaoClass.isAnnotationPresent(Dao.class)) {
             throw new NoSuchAnnotationException("DAO");
