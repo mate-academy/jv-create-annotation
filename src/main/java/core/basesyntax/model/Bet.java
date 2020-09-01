@@ -9,6 +9,22 @@ public class Bet {
         this.risk = risk;
     }
 
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public double getRisk() {
+        return risk;
+    }
+
+    public void setRisk(double risk) {
+        this.risk = risk;
+    }
+
     @Override
     public String toString() {
         return "Bet{" + "value=" + value + ", risk=" + risk + '}';
