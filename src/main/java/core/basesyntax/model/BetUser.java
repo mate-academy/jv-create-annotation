@@ -37,12 +37,11 @@ public class BetUser {
 
     @Override
     public String toString() {
-        return "BetUser{" + "name='"
+        return "name='"
                 + name
                 + '\''
                 + ", surname='"
                 + surname
-                + '\''
-                + '}';
+                + '\'';
     }
 }
