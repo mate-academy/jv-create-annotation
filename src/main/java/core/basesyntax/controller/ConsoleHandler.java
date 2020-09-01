@@ -1,23 +1,25 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserdaoImpl;
+import core.basesyntax.lib.Dao;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
-    UserDao userDao = new UserdaoImpl();
-    Scanner scanner = new Scanner(System.in);
+    @Inject
+    private BetDao betDao;
+    @Dao
+    private UserDao userDao;
 
     public void handle() {
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             Bet bet;
-            User user = null;
+            User user;
             System.out.println("Enter your bet bellow: ...");
             String betInfo = scanner.nextLine();
             if (betInfo.equalsIgnoreCase("q")) {
@@ -43,8 +45,9 @@ public class ConsoleHandler {
                     return;
                 }
                 user = new User(name, age, bet);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Age value inappropriate!");
+                continue;
             }
             betDao.addBet(bet);
             userDao.addUser(user);
@@ -52,4 +55,3 @@ public class ConsoleHandler {
         }
     }
 }
-
