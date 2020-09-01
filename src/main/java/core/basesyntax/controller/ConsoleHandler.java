@@ -6,7 +6,7 @@ import core.basesyntax.model.Bet;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
+    BetDao betDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -21,8 +21,9 @@ public class ConsoleHandler {
                 int amount = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(amount, risk);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 System.out.println("Please enter numbers in an appropriate format.");
+                continue;
             }
             betDao.add(bet);
             System.out.println(bet);
