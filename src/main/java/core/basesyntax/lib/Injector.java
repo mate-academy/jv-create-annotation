@@ -17,12 +17,7 @@ public class Injector {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
-        Class<BetDaoImpl> betDaoImplClass = BetDaoImpl.class;
-        Class<UserDaoImpl> userDaoImplClass = UserDaoImpl.class;
-        if (!(betDaoImplClass.isAnnotationPresent(Dao.class)
-                && userDaoImplClass.isAnnotationPresent(Dao.class))) {
-            throw new NoAnnotationException("No dao annotation was found");
-        }
+        checkDaoAnnotation();
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
@@ -35,5 +30,14 @@ public class Injector {
             }
         }
         return instance;
+    }
+
+    private static void checkDaoAnnotation() {
+        Class<BetDaoImpl> betDaoImplClass = BetDaoImpl.class;
+        Class<UserDaoImpl> userDaoImplClass = UserDaoImpl.class;
+        if (!(betDaoImplClass.isAnnotationPresent(Dao.class)
+                && userDaoImplClass.isAnnotationPresent(Dao.class))) {
+            throw new NoAnnotationException("No dao annotation was found");
+        }
     }
 }
