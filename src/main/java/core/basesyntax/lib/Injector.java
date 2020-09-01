@@ -2,6 +2,7 @@ package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.factory.Factory;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.lang.reflect.Constructor;
@@ -24,10 +25,10 @@ public class Injector {
                 if (type instanceof ParameterizedType) {
                     ParameterizedType parameterizedType = (ParameterizedType) type;
                     if (checkBet(parameterizedType)) {
-                        field.set(instance, new BetDaoImpl());
+                        field.set(instance, Factory.getBetDao());
                     }
                     if (checkUser(parameterizedType)) {
-                        field.set(instance, new UserDaoImpl());
+                        field.set(instance, Factory.getUserDao());
                     }
                 }
             }

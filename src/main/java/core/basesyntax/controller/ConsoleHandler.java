@@ -19,8 +19,8 @@ public class ConsoleHandler {
     }
 
     private void handleBet() {
-        System.out.println("Please input your bet value and risk:");
         while (true) {
+            System.out.println("Please input your bet value and risk:");
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("q")) {
                 return;
