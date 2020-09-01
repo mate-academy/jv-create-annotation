@@ -1,9 +1,10 @@
 package core.basesyntax.model;
 
 public class User {
-    String name;
-    String password;
-    int age;
+    private String name;
+    private String password;
+    private int age;
+    private int id;
 
     public User(String name, int age) {
         this.name = name;
@@ -32,6 +33,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

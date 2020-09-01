@@ -33,9 +33,4 @@ public class UserDaoImpl implements UserDao {
                 .get();
     }
 
-    @Override
-    public String getUserPassword(String name) {
-        User user = getUserByName(name);
-        return user.getPassword();
-    }
 }
