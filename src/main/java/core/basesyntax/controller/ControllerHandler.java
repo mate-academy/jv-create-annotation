@@ -9,7 +9,6 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ControllerHandler {
-    private static final Scanner SCANNER = new Scanner(System.in);
     private static final String IGNORE_CASE = "exit";
     private static final String PARSE_REGEX = ", ";
     private static final int NAME_INDEX = 0;
@@ -23,8 +22,9 @@ public class ControllerHandler {
     private final UserDao userDao = new UserDaoImpl();
 
     public void handle() {
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-            String command = SCANNER.nextLine();
+            String command = scanner.nextLine();
             if (command.equalsIgnoreCase(IGNORE_CASE)) {
                 System.out.println(userDao.getAllUsers());
                 System.out.println(betDao.getAllBets());

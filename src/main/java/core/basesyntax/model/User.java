@@ -1,7 +1,7 @@
 package core.basesyntax.model;
 
 public class User {
-    private final String name;
+    private String name;
     private String surname;
     private int age;
 
@@ -9,6 +9,10 @@ public class User {
         this.name = name;
         this.surname = surname;
         this.age = age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {
