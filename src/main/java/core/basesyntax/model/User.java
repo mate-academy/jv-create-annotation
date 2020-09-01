@@ -1,37 +1,27 @@
 package core.basesyntax.model;
 
 public class User {
-    private String login;
-    private String email;
-    private String password;
+    private String name;
+    private int age;
 
-    public User(String login, String email, String password) {
-        this.login = login;
-        this.email = email;
-        this.password = password;
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 
-    public String getLogin() {
-        return login;
+    public String getName() {
+        return name;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public int getAge() {
+        return age;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAge(int age) {
+        this.age = age;
     }
 }
