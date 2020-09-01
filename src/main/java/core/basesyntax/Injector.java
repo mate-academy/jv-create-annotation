@@ -6,7 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+            IllegalAccessException, InvocationTargetException,
+            InstantiationException, NoSuchImplementationException {
         Constructor declaredConstructor = clazz.getDeclaredConstructor();
         Object newInstance = declaredConstructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -19,7 +20,8 @@ public class Injector {
                 if (betDaoClass.isAnnotationPresent(Dao.class)) {
                     field.set(newInstance, Factory.getBetDaoFactory());
                 } else {
-                    throw new RuntimeException("We don't have implementation of BetDao");
+                    throw new NoSuchImplementationException("We don't have"
+                            + " implementation of BetDao");
                 }
             }
             if (field.getAnnotation(Inject.class) != null
@@ -28,7 +30,8 @@ public class Injector {
                 if (userDaoClass.isAnnotationPresent(Dao.class)) {
                     field.set(newInstance, Factory.getUserDaoFactory());
                 } else {
-                    throw new RuntimeException("We don't have implementation of UserDao");
+                    throw new NoSuchImplementationException("We don't have"
+                            + " implementation of UserDao");
                 }
             }
         }
