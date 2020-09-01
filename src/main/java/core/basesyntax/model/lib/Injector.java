@@ -32,14 +32,19 @@ public class Injector {
         return instance;
     }
 
-    public static boolean checkBetDaoType(Field field) {
+    private static boolean checkBetDaoType(Field field) {
         if (!BetDao.class.isAnnotationPresent(Dao.class)) {
             throw new NoDaoAnnotationException(BetDao.class + " does't contain @Dao annotation");
         }
         return field.getType().equals(BetDao.class);
     }
 
-    public static boolean checkUserDaoType(Field field) {
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    private static boolean checkUserDaoType(Field field) {
         if (!UserDao.class.isAnnotationPresent(Dao.class)) {
             throw new NoDaoAnnotationException(UserDao.class + " does't contain @Dao annotation");
         }
