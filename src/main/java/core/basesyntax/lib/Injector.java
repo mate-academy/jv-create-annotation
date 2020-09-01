@@ -8,6 +8,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 public class Injector {
 
@@ -34,8 +35,12 @@ public class Injector {
 
     private static boolean isDao(Class clazz) {
         Annotation[] annotations = clazz.getAnnotations();
-        for (Annotation annotation : annotations) {
-            return annotation.annotationType().getCanonicalName().equals(Dao.class.getName());
+        boolean checkDao = Arrays.stream(annotations)
+                .anyMatch(annotation -> annotation.annotationType()
+                        .getCanonicalName()
+                        .equals(Dao.class.getName()));
+        if (checkDao) {
+            return true;
         }
         throw new DaoIsNotFoundException("In implement class not have annotation @Dao");
     }
