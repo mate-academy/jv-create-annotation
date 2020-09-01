@@ -4,6 +4,7 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.exception.AnnotationNotExist;
 import core.basesyntax.factory.FactoryBetDao;
 import core.basesyntax.factory.FactoryUserDao;
 import java.lang.reflect.Constructor;
@@ -26,6 +27,8 @@ public class Injector {
                 field.setAccessible(true);
                 if (betDaoClass.isAnnotationPresent(Dao.class)) {
                     field.set(instance, FactoryBetDao.getBetDao());
+                } else {
+                    throw new AnnotationNotExist("BetDao annotation doesn't exist");
                 }
             }
             if (field.getAnnotation(Inject.class) != null
@@ -33,6 +36,8 @@ public class Injector {
                 field.setAccessible(true);
                 if (userDaoClass.isAnnotationPresent(Dao.class)) {
                     field.set(instance, FactoryUserDao.getUserDao());
+                } else {
+                    throw new AnnotationNotExist("UserDao annotation doesn't exist");
                 }
             }
         }
