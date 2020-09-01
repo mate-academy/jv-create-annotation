@@ -29,14 +29,18 @@ public class ConsoleHandler {
                 String name = betAndUserData[2];
                 int age = Integer.parseInt(betAndUserData[3]);
                 user = new User(name, age);
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Enter correct numbers, please!");
-                System.out.println("Enter correct information, please!");
+                betDao.add(bet);
+                userDao.add(user);
+            } catch (NumberFormatException e) {
+                System.out.println("Enter correct numbers, please!" + e);
+                continue;
+
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Enter correct information, please!" + e);
+                continue;
             }
-            betDao.add(bet);
-            userDao.add(user);
-            System.out.println(bet == null ? null : bet.toString());
-            System.out.println(user == null ? null : user.toString());
+            System.out.println(bet.toString());
+            System.out.println(user.toString());
         }
     }
 }
