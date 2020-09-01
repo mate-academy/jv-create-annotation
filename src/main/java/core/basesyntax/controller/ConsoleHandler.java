@@ -8,6 +8,11 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
+    private static final int NAME_INDEX = 0;
+    private static final int SURNAME_INDEX = 1;
+    private static final int AGE_INDEX = 2;
+    private static final int VALUE_INDEX = 3;
+    private static final int RISK_INDEX = 4;
 
     @Inject
     private BetDao betDao;
@@ -28,14 +33,14 @@ public class ConsoleHandler {
             User user;
             try {
                 String[] betData = command.split(" ");
-                String name = betData[0];
-                String surname = betData[1];
-                int age = Integer.parseInt(betData[2]);
+                String name = betData[NAME_INDEX];
+                String surname = betData[SURNAME_INDEX];
+                int age = Integer.parseInt(betData[AGE_INDEX]);
                 if (age < 18) {
                     throw new IllegalArgumentException("You are to young to do bets");
                 }
-                int value = Integer.parseInt(betData[3]);
-                double risk = Double.parseDouble(betData[4]);
+                int value = Integer.parseInt(betData[VALUE_INDEX]);
+                double risk = Double.parseDouble(betData[RISK_INDEX]);
                 bet = new Bet(value, risk);
                 user = new User(name, surname, age);
                 betDao.add(bet);

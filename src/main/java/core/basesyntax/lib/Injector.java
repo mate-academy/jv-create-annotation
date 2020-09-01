@@ -33,8 +33,8 @@ public class Injector {
     }
 
     private static void checkDaoAnnotation() {
-        Class<BetDaoImpl> betDaoImplClass = BetDaoImpl.class;
-        Class<UserDaoImpl> userDaoImplClass = UserDaoImpl.class;
+        Class<? extends BetDao> betDaoImplClass = Factory.getBetDao().getClass();
+        Class<? extends UserDao> userDaoImplClass = Factory.getUserDao().getClass();
         if (!(betDaoImplClass.isAnnotationPresent(Dao.class)
                 && userDaoImplClass.isAnnotationPresent(Dao.class))) {
             throw new NoAnnotationException("No dao annotation was found");
