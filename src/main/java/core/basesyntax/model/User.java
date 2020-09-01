@@ -3,14 +3,15 @@ package core.basesyntax.model;
 import java.util.List;
 
 public class User {
-    private static long id = 1;
+    private static long idCount = 1;
+    private long id;
     private String username;
     private String email;
     private String password;
     private List<Bet> userBets;
 
     public User(String username, String email, String password) {
-        id++;
+        this.id = idCount++;
         this.username = username;
         this.email = email;
         this.password = password;
