@@ -11,6 +11,14 @@ public class Bet {
         this.risk = risk;
     }
 
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setRisk(double risk) {
+        this.risk = risk;
+    }
+
     public int getValue() {
         return value;
     }
