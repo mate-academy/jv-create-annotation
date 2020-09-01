@@ -1,16 +1,18 @@
 package dao;
 
 import database.Storage;
-import model.Bet;
+import java.util.Set;
+import model.User;
 
 public class UserDaoImpl implements UserDao {
+
     @Override
-    public void bet(Bet bet) {
-        Storage.bets.add(bet);
+    public void add(User user) {
+        Storage.users.add(user);
     }
 
     @Override
-    public void borrow(int points) {
-
+    public Set<User> getAll() {
+        return Storage.users;
     }
 }

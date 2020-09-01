@@ -1,10 +1,11 @@
 package dao;
 
-import model.Bet;
+import java.util.Set;
+import model.User;
 
 public interface UserDao {
 
-    void bet(Bet bet);
+    void add(User user);
 
-    void borrow(int points);
+    Set<User> getAll();
 }

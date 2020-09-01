@@ -35,7 +35,7 @@ public class ConsoleHandler {
                 System.out.println("Будь ласка, введіть коректну ставку");
             }
             betDao.add(bet);
-            userDao.bet(bet);
+            userDao.add(user);
             System.out.println(bet == null ? null : bet.toString());
             System.out.println(user == null ? null : user.toString());
         }
