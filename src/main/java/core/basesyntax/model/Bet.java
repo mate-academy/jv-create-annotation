@@ -7,9 +7,6 @@ public class Bet {
     private int value;
     private double risk;
 
-    public Bet() {
-    }
-
     public Bet(int userId, int value, double risk) {
         this.userId = userId;
         this.value = value;

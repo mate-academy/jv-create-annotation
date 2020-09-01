@@ -4,24 +4,16 @@ import java.util.Objects;
 
 public class User {
     private static int count = 0;
-    private final int userId;
+    private int userId;
     private String name;
     private String login;
     private String password;
-
-    public User() {
-        userId = count++;
-    }
 
     public User(String name, String login, String password) {
         this.userId = count++;
         this.name = name;
         this.login = login;
         this.password = password;
-    }
-
-    public static int getCount() {
-        return count;
     }
 
     public int getUserId() {
