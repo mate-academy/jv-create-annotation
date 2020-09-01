@@ -1,15 +1,16 @@
 package core.basesyntax.controller;
 
+import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.dao.Dao;
+import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private Dao<Bet> betDao = new BetDaoImpl();
-    private Dao<User> userDao = new UserDaoImpl();
+    private BetDao betDao = new BetDaoImpl();
+    private UserDao userDao = new UserDaoImpl();
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -28,11 +29,14 @@ public class ConsoleHandler {
                 String name = betAndUserData[2];
                 int age = Integer.parseInt(betAndUserData[3]);
                 user = new User(name, age);
-            } catch (NumberFormatException e) {
-                System.out.println("Enter correct information, please!" + e);
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("Enter correct numbers, please!");
+                System.out.println("Enter correct information, please!");
             }
             betDao.add(bet);
             userDao.add(user);
+            System.out.println(bet == null ? null : bet.toString());
+            System.out.println(user == null ? null : user.toString());
         }
     }
 }
