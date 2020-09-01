@@ -1,7 +1,8 @@
 package core.basesyntax.controller;
 
+import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.dao.ServiceDao;
+import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
@@ -13,8 +14,8 @@ public class ConsoleHandler {
     private static final int AGE_INDEX = 1;
     private static final int VALUE_INDEX = 2;
     private static final int RISK_INDEX = 3;
-    private ServiceDao<Bet> betDao = new BetDaoImpl();
-    private ServiceDao<User> userDao = new UserDaoImpl();
+    private BetDao betDao = new BetDaoImpl();
+    private UserDao userDao = new UserDaoImpl();
 
     public void handle() {
 
@@ -35,7 +36,7 @@ public class ConsoleHandler {
                 String fullname = betData[FULLNAME_INDEX];
                 int age = Integer.parseInt(betData[AGE_INDEX]);
                 user = new User(fullname, age, bet);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 System.out.println("Invalid data. Please enter your bet again.");
             }
             betDao.add(bet);
