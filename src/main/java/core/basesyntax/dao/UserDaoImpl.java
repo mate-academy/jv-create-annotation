@@ -9,12 +9,6 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     @Override
     public void add(User addUser) {
-        for (User user : Storage.users) {
-            if (addUser.equals(user)) {
-                System.out.println("Such user already exists");
-                return;
-            }
-        }
         Storage.users.add(addUser);
     }
 

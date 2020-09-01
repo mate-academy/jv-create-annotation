@@ -8,10 +8,6 @@ public class BetsAppMAin {
 
     public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException,
             InstantiationException, IllegalAccessException {
-        ConsoleHandler consoleHandler = (ConsoleHandler) Injector.getInstance(ConsoleHandler.class);
-        System.out.println("For registration press 'r' "
-                + "\nFor quit press 'q' "
-                + "\nFor create bet press 'b'");
-        consoleHandler.handle();
+        ((ConsoleHandler) Injector.getInstance(ConsoleHandler.class)).handle();
     }
 }
