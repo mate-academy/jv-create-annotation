@@ -19,7 +19,7 @@ public class ConsoleHandler {
         String login = scanner.nextLine();
         System.out.println("Enter password:");
         String password = scanner.nextLine();
-        userDao.add(new User(login,password));
+        userDao.add(new User(login, password));
         while (true) {
             int value;
             while (true) {

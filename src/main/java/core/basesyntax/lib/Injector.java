@@ -1,7 +1,9 @@
 package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
+import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.exception.NoRequiredAnnotationException;
 import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.factory.UserDaoFactory;
@@ -17,23 +19,19 @@ public class Injector {
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
-                if (field.getType().equals(BetDao.class)) {
-                    BetDao betDao = BetDaoFactory.getBetDao();
-                    if (betDao.getClass().getAnnotation(Dao.class) == null) {
-                        throw new NoRequiredAnnotationException(
-                                "The BetDao class has no @Dao annotation");
-                    }
+                if (field.getType().equals(BetDao.class)
+                        && BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.setAccessible(true);
-                    field.set(instance, betDao);
-                }
-                if (field.getType().equals(UserDao.class)) {
-                    UserDao userDao = UserDaoFactory.getUserDao();
-                    if (userDao.getClass().getAnnotation(Dao.class) == null) {
-                        throw new NoRequiredAnnotationException(
-                                "The UserDao class has no @Dao annotation");
+                    field.set(instance, BetDaoFactory.getBetDao());
+                } else {
+                    if (field.getType().equals(UserDao.class)
+                            && UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                        field.setAccessible(true);
+                        field.set(instance, UserDaoFactory.getUserDao());
+                    } else {
+                        throw new NoRequiredAnnotationException(String.format(
+                                "The %s class has no @Dao annotation", field.getType().getName()));
                     }
-                    field.setAccessible(true);
-                    field.set(instance, userDao);
                 }
             }
         }
