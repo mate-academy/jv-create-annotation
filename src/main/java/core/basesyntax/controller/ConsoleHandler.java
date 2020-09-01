@@ -13,14 +13,14 @@ public class ConsoleHandler {
     UserDao userDao = new UserDaoImpl();
 
     public void handle() {
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-            Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("q")) {
                 return;
             }
-            Bet bet = null;
-            User user = null;
+            Bet bet;
+            User user;
             try {
                 String[] betData = command.split(" ");
                 String name = betData[0];
@@ -38,14 +38,13 @@ public class ConsoleHandler {
             } catch (NumberFormatException e) {
                 System.out.println("You have entered unparsable data. "
                         + "Try again or enter 'q' to quit");
-                handle();
+                continue;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("You've entered too little information. "
                         + "Try again or enter 'q' to quit");
-                handle();
+                continue;
             }
-            System.out.println(bet == null || user == null
-                    ? null : bet.toString() + " " + user.toString());
+            System.out.println(bet.toString() + " " + user.toString());
             System.out.println("Keep betting or enter 'q' to quit");
         }
     }
