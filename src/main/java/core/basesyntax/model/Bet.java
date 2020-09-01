@@ -11,10 +11,7 @@ public class Bet {
 
     @Override
     public String toString() {
-        return "Bet{" +
-               "value=" + value +
-               ", risk=" + risk +
-               '}';
+        return "Bet{" + "value=" + value + ", risk=" + risk + '}';
     }
 
     public int getValue() {
