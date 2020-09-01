@@ -3,12 +3,12 @@ package core.basesyntax.model;
 public class User {
     private String userName;
     private String password;
-    private int availableAmount;
+    private int age;
 
-    public User(String userName, String password, int availableAmount) {
+    public User(String userName, String password, int age) {
         this.userName = userName;
         this.password = password;
-        this.availableAmount = availableAmount;
+        this.age = age;
     }
 
     public void setUserName(String userName) {
@@ -27,11 +27,11 @@ public class User {
         return password;
     }
 
-    public void setAvailableAmount(int availableAmount) {
-        this.availableAmount = availableAmount;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public int getAvailableAmount() {
-        return availableAmount;
+    public int getAge() {
+        return age;
     }
 }
