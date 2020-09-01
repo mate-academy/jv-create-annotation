@@ -21,8 +21,8 @@ public class ConsoleHandler {
                 System.out.println("break a leg!");
                 return;
             }
-            User user = null;
-            Bet bet = null;
+            User user;
+            Bet bet;
             try {
                 String[] betData = command.split(" ");
                 if (betData.length == 4) {
@@ -32,14 +32,13 @@ public class ConsoleHandler {
                     double risk = Double.parseDouble(betData[3]);
                     user = new User(login, password);
                     bet = new Bet(value, risk);
+                    userDao.add(user);
+                    betDao.add(bet);
+                    System.out.println(user.toString() + "\n" + bet.toString());
                 }
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Please enter correct data!");
-                continue;
+                System.out.println("Please, enter correct data!");
             }
-            userDao.add(user);
-            betDao.add(bet);
-            System.out.println(user.toString() + "\n" + bet.toString());
         }
     }
 }
