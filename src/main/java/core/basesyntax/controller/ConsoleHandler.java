@@ -17,43 +17,40 @@ public class ConsoleHandler {
         this.userDao = new UserDaoImpl();
     }
 
-    public void handle() {
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
+    public void handleBet() {
+        String command;
+        while (!(command = readInput()).equals("quit")) {
             try {
-                String command = scanner.nextLine();
-                if (command.equals("quit")) {
-                    scanner.close();
-                    return;
-                }
-                if (command.equals("bet")) {
-                    System.out.println("Enter 'value' and 'risk'");
-                    command = scanner.nextLine();
-                    String[] str = command.split(" ");
-                    int value = Integer.parseInt(str[0]);
-                    double risk = Double.parseDouble(str[1]);
-                    Bet bet = new Bet(value, risk);
-                    betDao.add(bet);
-                    scanner.close();
-                    System.out.println(betDao.getAll());
-                    return;
-                }
-                if (command.equals("user")) {
-                    System.out.println("Enter 'login' and 'email'");
-                    command = scanner.nextLine();
-                    String[] str = command.split(" ");
-                    String login = str[0];
-                    String email = str[1];
-                    User user = new User(login, email);
-                    userDao.add(user);
-                    scanner.close();
-                    System.out.println(userDao.getAll());
-                    return;
-                }
-            } catch (IllegalArgumentException e) {
-                throw new NumberFormatException(e.getMessage());
+                String[] str = command.split(" ");
+                int value = Integer.parseInt(str[0]);
+                double risk = Double.parseDouble(str[1]);
+                Bet bet = new Bet(value, risk);
+                betDao.add(bet);
+                System.out.println(betDao.getAll());
+            } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("Wrong input!\nTry to enter data in format '[value] [risk]'");
             }
         }
+    }
+
+    public void handleUser() {
+        String command;
+        while (!(command = readInput()).equals("quit")) {
+            try {
+                String[] str = command.split(" ");
+                String login = str[0];
+                String email = str[1];
+                User user = new User(login, email);
+                userDao.add(user);
+                System.out.println(userDao.getAll());
+            } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("Wrong input!\nTry to enter data in format '[login] [email]'");
+            }
+        }
+    }
+
+    public String readInput() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 }

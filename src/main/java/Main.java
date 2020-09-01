@@ -2,9 +2,10 @@ import core.basesyntax.controller.ConsoleHandler;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Enter 'bet' to make a new bet!");
-        System.out.println("Enter 'user' to register!");
         ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.handle();
+        System.out.println("Enter value and risk to make a new bet!");
+        consoleHandler.handleBet();
+        System.out.println("Enter login and email to register!");
+        consoleHandler.handleUser();
     }
 }
