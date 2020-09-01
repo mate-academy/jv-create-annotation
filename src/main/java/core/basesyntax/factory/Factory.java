@@ -16,7 +16,7 @@ public class Factory {
             if (BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
                 return new BetDaoImpl();
             }
-            throw new NonAnnotationException("Відсутня антотація @Dao.");
+            throw new NonAnnotationException("Відсутня антотація @Dao у класі BetDao.");
         }
         return betDao;
     }
@@ -26,7 +26,7 @@ public class Factory {
             if (UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
                 return new UserDaoImpl();
             }
-            throw new NonAnnotationException("Відсутня антотація @Dao.");
+            throw new NonAnnotationException("Відсутня антотація @Dao у класі UserDao.");
         }
         return userDao;
     }
