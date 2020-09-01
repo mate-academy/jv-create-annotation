@@ -7,11 +7,11 @@ import java.util.List;
 public class BedDaoImpl implements BetDao {
     @Override
     public void addBetToStorage(Bet bet) {
-        Storage.BETS.add(bet);
+        Storage.bets.add(bet);
     }
 
     @Override
     public List<Bet> getAllBetsFromStorage() {
-        return Storage.BETS;
+        return Storage.bets;
     }
 }
