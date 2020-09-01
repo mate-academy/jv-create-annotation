@@ -1,11 +1,15 @@
 package core.basesyntax;
 
 import core.basesyntax.controller.ConsoleHandler;
+import core.basesyntax.lib.Injector;
+import java.lang.reflect.InvocationTargetException;
 
 public class AppMain {
-    public static void main(String[] args) {
-        ConsoleHandler handler = new ConsoleHandler();
-        System.out.println("Enter your bet in format \"bet_value risk\"");
+    public static void main(String[] args) throws InvocationTargetException,
+            NoSuchMethodException, InstantiationException, IllegalAccessException {
+
+        ConsoleHandler handler = (ConsoleHandler) Injector
+                .getInstance(ConsoleHandler.class);
         handler.handle();
     }
 }

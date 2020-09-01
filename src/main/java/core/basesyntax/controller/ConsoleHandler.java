@@ -1,39 +1,70 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.bet.BetDao;
-import core.basesyntax.dao.bet.BetDaoImpl;
+import core.basesyntax.dao.user.UserDao;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
+import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private static final int DATA_ELEMENTS_COUNT = 2;
-    private static final String INVALID_DATA_MESSAGE = "Input valid data or letter 'Q' to exit";
+    private static final String INVALID_DATA_MESSAGE = "Invalid data, try one more time";
+    private static final String COMMANDS_MESSAGE
+            = "Enter 'u'-> add user, 'b'-> add bet or 'q' -> exit";
 
-    BetDao betDao = new BetDaoImpl();
+    @Inject
+    BetDao betDao;
+
+    @Inject
+    UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
-
+        System.out.println(COMMANDS_MESSAGE);
+        String line;
         while (true) {
-            String line = scanner.nextLine();
+            line = scanner.nextLine();
             if (line.equalsIgnoreCase("q")) {
                 return;
             }
-            Bet bet;
-            String[] enteredData;
-            try {
-                enteredData = line.split(" ");
-                if (enteredData.length != DATA_ELEMENTS_COUNT) {
-                    System.out.println(INVALID_DATA_MESSAGE);
-                    continue;
-                }
-                bet = new Bet(Integer.parseInt(enteredData[0]),
-                        Double.parseDouble(enteredData[1]));
-                betDao.add(bet);
-                System.out.println(bet.toString() + " has been added to storage!");
-            } catch (NumberFormatException e) {
-                System.out.println(INVALID_DATA_MESSAGE);
+            if (line.equalsIgnoreCase("u")) {
+                System.out.println("Enter user login and pass in format 'login pass'");
+                line = scanner.nextLine();
+                addUser(line);
             }
+            if (line.equalsIgnoreCase("b")) {
+                System.out.println("Enter in format 'value risk'");
+                line = scanner.nextLine();
+                addBet(line);
+            }
+            System.out.println(COMMANDS_MESSAGE);
+        }
+    }
+
+    private void addBet(String line) {
+        String[] enteredData;
+        Bet bet;
+        enteredData = line.split(" ");
+        try {
+            bet = new Bet(Integer.parseInt(enteredData[0]),
+                    Double.parseDouble(enteredData[1]));
+            betDao.add(bet);
+            System.out.println(bet.toString() + " has been added to storage!");
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            System.out.println(INVALID_DATA_MESSAGE);
+        }
+    }
+
+    private void addUser(String line) {
+        String[] enteredData;
+        User user;
+        enteredData = line.split(" ");
+        try {
+            user = new User(enteredData[0], enteredData[1]);
+            userDao.add(user);
+            System.out.println(user.toString() + " has been created!");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(INVALID_DATA_MESSAGE);
         }
     }
 }
