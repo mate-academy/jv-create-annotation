@@ -1,4 +1,11 @@
-package core.basesyntax;
+package core.basesyntax.controller;
+
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.BetDaoImpl;
+import core.basesyntax.dao.UserDao;
+import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.model.Bet;
+import core.basesyntax.model.User;
 
 import java.util.Scanner;
 
@@ -13,8 +20,8 @@ public class ConsoleHandler {
             if (command.equalsIgnoreCase("q")) {
                 return;
             }
-            Bet bet = null;
-            User user = null;
+            Bet bet;
+            User user;
             try {
                 String[] inputData = command.split(" ");
                 String name = inputData[0];
@@ -29,8 +36,7 @@ public class ConsoleHandler {
             }
             betDao.add(bet);
             userDao.add(user);
-            System.out.println((user == null) ? null : ((bet == null)
-                    ? null : (user.toString() + " " + bet.toString())));
+            System.out.println(user == null ? null : ((bet != null) ? (user.toString() + " " + bet.toString()) : null));
         }
     }
 }

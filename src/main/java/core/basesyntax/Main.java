@@ -1,5 +1,7 @@
 package core.basesyntax;
 
+import core.basesyntax.controller.ConsoleHandler;
+
 public class Main {
     public static void main(String[] args) {
         ConsoleHandler consoleHandler = new ConsoleHandler();
@@ -7,7 +9,5 @@ public class Main {
         System.out.println("You can enter a set of bets,"
                 + " but don't forget about user data before each bet");
         consoleHandler.handle();
-        System.out.println(consoleHandler.betDao.getAll());
-        System.out.println(consoleHandler.userDao.getAll());
     }
 }
