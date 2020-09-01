@@ -4,18 +4,17 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.imp.BetDaoImpl;
 import core.basesyntax.dao.imp.UserDaoImpl;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private BetDao betDao;
-    private UserDao userDao;
 
-    public ConsoleHandler() {
-        betDao = new BetDaoImpl();
-        userDao = new UserDaoImpl();
-    }
+    @Inject
+    private BetDao betDao;
+    @Inject
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
