@@ -6,7 +6,6 @@ import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.exception.NoSuchAnnotationException;
 import core.basesyntax.lib.Dao;
-import core.basesyntax.lib.Inject;
 
 public class Factory {
     private static BetDao betDao;
@@ -14,7 +13,7 @@ public class Factory {
 
     public static BetDao getBetDao() {
         if (betDao == null) {
-            if (BetDaoImpl.class.isAnnotationPresent(Inject.class)) {
+            if (BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
                 betDao = new BetDaoImpl();
             } else {
                 throw new NoSuchAnnotationException("Class haven't Dao annotation!");
