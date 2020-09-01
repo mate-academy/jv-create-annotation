@@ -6,9 +6,11 @@ public class User {
     private int age;
     private int id;
 
-    public User(String name, int age) {
+    public User(String name, String password, int age, int id) {
         this.name = name;
         this.age = age;
+        this.password = password;
+        this.id = id;
     }
 
     public String getName() {
