@@ -11,7 +11,6 @@ public class ControllerHandler {
 
     @Inject
     private BetDao betDao;
-
     @Inject
     private UserDao userDao;
     private Scanner scanner;
@@ -33,7 +32,7 @@ public class ControllerHandler {
                 double betRisk = Double.parseDouble(betData[1]);
                 bet = new BetModel(betValue, betRisk);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("The entered data is not correct");
+                System.out.println("The input data is not correct");
             }
             betDao.add(bet);
             System.out.println(bet == null ? null : bet.toString());
@@ -53,7 +52,7 @@ public class ControllerHandler {
                 int userBalance = Integer.parseInt(betData[1]);
                 user = new UserModel(nameUser, userBalance);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("The entered data is not correct");
+                System.out.println("The input data is not correct");
             }
             userDao.addUser(user);
             System.out.println(user == null ? null : user.toString());
