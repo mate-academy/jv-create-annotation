@@ -6,14 +6,14 @@ import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.exceptions.NoAnnotationException;
 import core.basesyntax.factory.Factory;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
-    public static Object getInstance(Class clazz) throws NoSuchMethodException, IllegalAccessException,
-            InvocationTargetException, InstantiationException, NoAnnotationException {
+    public static Object getInstance(Class clazz) throws NoSuchMethodException,
+            IllegalAccessException, InvocationTargetException,
+            InstantiationException, NoAnnotationException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
