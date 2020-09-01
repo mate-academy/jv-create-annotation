@@ -33,6 +33,7 @@ public class ConsoleHandler {
                 user = new User(name, points);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 System.out.println("Будь ласка, введіть коректні дані");
+                continue;
             }
             betDao.add(bet);
             userDao.add(user);
