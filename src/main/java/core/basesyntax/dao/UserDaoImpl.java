@@ -6,10 +6,10 @@ import core.basesyntax.model.User;
 import java.util.List;
 
 @Dao
-public class UserDaoImpl implements GenericDao<User> {
+public class UserDaoImpl implements UserDao {
 
     @Override
-    public void addModelToDb(User user) {
+    public void addUser(User user) {
         Storage.USERS_STORAGE.add(user);
     }
 

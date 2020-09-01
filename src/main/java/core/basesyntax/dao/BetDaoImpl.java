@@ -6,10 +6,10 @@ import core.basesyntax.model.Bet;
 import java.util.List;
 
 @Dao
-public class BetDaoImpl implements GenericDao<Bet> {
+public class BetDaoImpl implements BetDao {
 
     @Override
-    public void addModelToDb(Bet bet) {
+    public void addBet(Bet bet) {
         Storage.BETS_STORAGE.add(bet);
     }
 

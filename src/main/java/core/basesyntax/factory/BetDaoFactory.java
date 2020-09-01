@@ -1,15 +1,20 @@
 package core.basesyntax.factory;
 
+import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.dao.GenericDao;
+import core.basesyntax.exception.NoSuchInjectionObjectException;
+import core.basesyntax.lib.Dao;
 
 public class BetDaoFactory {
-    private static GenericDao genericDao;
+    private static BetDao betDao;
 
-    public static GenericDao getInstance() {
-        if (genericDao == null) {
-            genericDao = new BetDaoImpl();
+    public static BetDao getInstance() {
+        if (BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
+            if (betDao == null) {
+                betDao = new BetDaoImpl();
+            }
+            return betDao;
         }
-        return genericDao;
+        throw new NoSuchInjectionObjectException("The required injection object was not found");
     }
 }
