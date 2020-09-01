@@ -9,77 +9,52 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ControllerHandler {
-    public static final String INVALID_INPUT_ARGS_MESSAGE =
-            "Please, make sure your input data meets requirements";
-    public static String INPUT = new Scanner(System.in).nextLine();
+    private static final Scanner SCANNER = new Scanner(System.in);
     private static final String IGNORE_CASE = "exit";
-    private static final String TOO_YOUNG_MESSAGE =
-            "Looks like you're a bit too young for the service!";
-    private static final String TOO_OLD_MESSAGE =
-            "Looks like you've already token enough risks in your life!";
-    private static final int VALID_AGE_FROM = 18;
-    private static final int VALID_AGE_TO = 70;
-    private static final UserDao USER_DAO = new UserDaoImpl();
-    private int age = 0;
+    private static final String PARSE_REGEX = ", ";
+    private static final int NAME_INDEX = 0;
+    private static final int SURNAME_INDEX = 1;
+    private static final int AGE_INDEX = 2;
+    private static final int VALUE_INDEX = 3;
+    private static final int RISK_INDEX = 4;
+    private static final int AGE_FROM = 18;
+    private static final int AGE_TO = 70;
+    private final BetDao betDao = new BetDaoImpl();
+    private final UserDao userDao = new UserDaoImpl();
 
     public void handle() {
         while (true) {
-            if (commandExit()) {
+            String command = SCANNER.nextLine();
+            if (command.equalsIgnoreCase(IGNORE_CASE)) {
+                System.out.println(userDao.getAllUsers());
+                System.out.println(betDao.getAllBets());
                 return;
             }
-            try {
-                age = Integer.parseInt(INPUT);
-            } catch (NumberFormatException exception) {
-                inputCheckFailed(INVALID_INPUT_ARGS_MESSAGE, exception);
-            }
-            if (age < VALID_AGE_FROM) {
-                checkArgsFailed(TOO_YOUNG_MESSAGE);
-            } else if (age >= VALID_AGE_TO) {
-                checkArgsFailed(TOO_OLD_MESSAGE);
-            } else {
-                System.out.println("Looks like you've passed the age test!");
-            }
-            System.out.println("Please, input your login for authorisation "
-                    + "or register in our system with a new one:");
-            INPUT = new Scanner(System.in).nextLine();
-            if (commandExit()) {
-                return;
-            }
+            Bet bet;
             User user;
-            String login = INPUT;
-            User.loginCheck(login);
-            if (User.exists(login)) {
-                user = USER_DAO.getUser(login);
-            } else {
-                user = new User(login, age);
-                USER_DAO.addUser(user);
+            try {
+                String[] betData = command.split(PARSE_REGEX);
+                int age = Integer.parseInt(betData[AGE_INDEX]);
+                if (age < AGE_FROM) {
+                    throw new IllegalArgumentException("You are too young to do bets");
+                }
+                if (age >= AGE_TO) {
+                    throw new IllegalArgumentException("You are too old to do bets");
+                }
+                String name = betData[NAME_INDEX];
+                String surname = betData[SURNAME_INDEX];
+                user = new User(name, surname, age);
+                int value = Integer.parseInt(betData[VALUE_INDEX]);
+                double risk = Double.parseDouble(betData[RISK_INDEX]);
+                bet = new Bet(value, risk);
+                userDao.add(user);
+                betDao.add(bet);
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                System.out.println("Please, make sure your input data is valid and try again");
+                continue;
             }
-            System.out.println("To create a new bet, please, "
-                    + "type its value and risk coefficient in. "
-                    + "Example: \"100 - 4.5\"\n"
-                    + "Your turn to type it in: ");
-            INPUT = new Scanner(System.in).nextLine();
-            if (commandExit()) {
-                return;
-            }
-            BetDao betDao = new BetDaoImpl(user);
-            Bet bet = Bet.parseBet(INPUT);
-            betDao.addBet(bet);
-            System.out.println("Success! Here is your bet: " + bet.toString());
-            INPUT = new Scanner(System.in).nextLine();
+            System.out.println(user.toString() + " - " + bet.toString());
+            System.out.println("The bet is successfully created. For quiting type \"exit\"");
         }
-
-    }
-
-    public static void checkArgsFailed(String message) {
-        throw new IllegalArgumentException(message);
-    }
-
-    public static void inputCheckFailed(String message, Exception exception) {
-        throw new IllegalArgumentException(message, exception);
-    }
-
-    private boolean commandExit() {
-        return INPUT.equalsIgnoreCase(IGNORE_CASE);
     }
 }

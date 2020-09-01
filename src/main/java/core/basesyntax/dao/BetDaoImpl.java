@@ -1,22 +1,17 @@
 package core.basesyntax.dao;
 
+import core.basesyntax.db.Storage;
 import core.basesyntax.model.Bet;
-import core.basesyntax.model.User;
+import java.util.List;
 
 public class BetDaoImpl implements BetDao {
-    private final User user;
-
-    public BetDaoImpl(User user) {
-        this.user = user;
+    @Override
+    public void add(Bet bet) {
+        Storage.bets.add(bet);
     }
 
     @Override
-    public void addBet(Bet bet) {
-        user.addBet(bet);
-    }
-
-    @Override
-    public Bet getBet(Integer id) {
-        return user.getBet(id);
+    public List<Bet> getAllBets() {
+        return Storage.bets;
     }
 }
