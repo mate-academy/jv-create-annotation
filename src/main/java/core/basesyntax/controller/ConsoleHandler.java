@@ -15,7 +15,8 @@ public class ConsoleHandler {
     UserDao userDao;
 
     public void handleBet() {
-        System.out.println("Enter 'value' and 'risk' for your bet");
+        System.out.println("Enter 'value' and 'risk' for your bet\n"
+                + "'value' and 'risk' should contains numbers only.");
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
