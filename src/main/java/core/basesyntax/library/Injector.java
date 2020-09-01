@@ -1,7 +1,9 @@
 package core.basesyntax.library;
 
 import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.BetDaoImplementation;
 import core.basesyntax.dao.BetUserDao;
+import core.basesyntax.dao.BetUserDaoImplementation;
 import factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -20,11 +22,11 @@ public class Injector {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)
-                        && DaoChecker.checkDaoAnnotationExist(Factory.getBetDao().getClass())) {
+                        && DaoChecker.checkDaoAnnotationExist(BetDaoImplementation.class)) {
                     field.set(instance, Factory.getBetDao());
                 }
                 if (field.getType().equals(BetUserDao.class)
-                        && DaoChecker.checkDaoAnnotationExist(Factory.getBetUserDao().getClass())) {
+                        && DaoChecker.checkDaoAnnotationExist(BetUserDaoImplementation.class)) {
                     field.set(instance, Factory.getBetUserDao());
                 }
             }
