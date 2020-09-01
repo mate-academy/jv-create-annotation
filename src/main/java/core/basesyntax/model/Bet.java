@@ -44,4 +44,12 @@ public class Bet {
     public int hashCode() {
         return Objects.hash(value, risk);
     }
+
+    @Override
+    public String toString() {
+        return "Bet: "
+                + "value=" + value
+                + ", risk=" + risk
+                + '}';
+    }
 }

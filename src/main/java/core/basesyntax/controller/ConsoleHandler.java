@@ -33,6 +33,9 @@ public class ConsoleHandler {
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException exception) {
                 System.out.println("Please, enter valid data");
             }
+
+            System.out.println(betDao.getAll().toString());
+            System.out.println(userDao.getAll().toString());
         }
     }
 }
