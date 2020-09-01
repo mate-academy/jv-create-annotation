@@ -1,9 +1,8 @@
 package services;
 
 import db.UserStorage;
-import model.Bet;
-
 import java.util.List;
+import model.Bet;
 
 public class UserService {
     public List<Bet> printUsersBetList(String userName) {

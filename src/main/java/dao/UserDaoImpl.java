@@ -2,11 +2,11 @@ package dao;
 
 import db.UserStorage;
 import exceptions.WrongPasswordException;
-import model.Bet;
-import model.User;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import model.Bet;
+import model.User;
 
 public class UserDaoImpl implements UserDao {
     private Map<String, User> storage = UserStorage.userStorage;

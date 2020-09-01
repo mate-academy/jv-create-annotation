@@ -3,11 +3,10 @@ package controller;
 import dao.BetDao;
 import dao.BetDaoImpl;
 import dao.UserDaoImpl;
+import java.util.Scanner;
 import model.Bet;
 import model.User;
 import services.UserService;
-
-import java.util.Scanner;
 
 public class ConsoleHandler {
     private static final int DATA_QUANTITY = 2;
@@ -20,7 +19,7 @@ public class ConsoleHandler {
 
         System.out.println("Введите логин и пароль:");
         String creds = scanner.nextLine();
-        String userData[] = creds.split(" ");
+        String[] userData = creds.split(" ");
         if (userData.length != DATA_QUANTITY) {
             handle();
         }

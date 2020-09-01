@@ -1,9 +1,9 @@
 package model;
 
 public class Bet {
-     private int value;
-     private double risk;
-     private User user;
+    private int value;
+    private double risk;
+    private User user;
 
     public Bet(int value, double risk, User user) {
         this.value = value;
@@ -37,9 +37,9 @@ public class Bet {
 
     @Override
     public String toString() {
-        return "Bet{" +
-                "value=" + value +
-                ", risk=" + risk +
-                '}';
+        return "Bet{"
+                + "value=" + value
+                + ", risk=" + risk
+                + '}';
     }
 }
