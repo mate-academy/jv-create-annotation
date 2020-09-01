@@ -36,4 +36,10 @@ public class UserDaoImpl implements UserDao {
     public List<Bet> getAllUserBets(long id) {
         return getUserById(id).getUserBets();
     }
+
+    @Override
+    public boolean addBetToUser(User user, Bet bet) {
+        return user.getUserBets()
+                .add(bet);
+    }
 }

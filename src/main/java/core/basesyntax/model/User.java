@@ -1,5 +1,6 @@
 package core.basesyntax.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -15,6 +16,7 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.userBets = new ArrayList<>();
     }
 
     public long getId() {

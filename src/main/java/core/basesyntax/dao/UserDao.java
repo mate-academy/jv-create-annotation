@@ -14,4 +14,6 @@ public interface UserDao {
     void changeUserPassword(long id, String newPassword);
 
     List<Bet> getAllUserBets(long id);
+
+    boolean addBetToUser(User user, Bet bet);
 }
