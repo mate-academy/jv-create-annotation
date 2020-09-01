@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    private List<Bet> betList = new ArrayList<>();
-    private List<User> userList = new ArrayList<>();
+    private static List<Bet> betList = new ArrayList<>();
+    private static List<User> userList = new ArrayList<>();
 
-    public List<User> getUserList() {
+    public static List<User> getUserList() {
         return userList;
     }
 
-    public List<Bet> getBetList() {
+    public static List<Bet> getBetList() {
         return betList;
     }
 }

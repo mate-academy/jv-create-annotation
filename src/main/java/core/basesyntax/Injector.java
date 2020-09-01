@@ -14,24 +14,18 @@ public class Injector {
         Class<BetDaoImpl> betDaoClass = BetDaoImpl.class;
         Class<UserDaoImpl> userDaoClass = UserDaoImpl.class;
         for (Field field : declaredFields) {
-            if (field.getAnnotation(Inject.class) != null
-                    && field.getType().equals(BetDao.class)) {
-                field.setAccessible(true);
-                if (betDaoClass.isAnnotationPresent(Dao.class)) {
-                    field.set(newInstance, Factory.getBetDaoFactory());
+            if (field.getAnnotation(Inject.class) != null) {
+                if (field.getType().equals(BetDao.class)
+                        && betDaoClass.isAnnotationPresent(Dao.class)) {
+                    field.setAccessible(true);
+                    field.set(newInstance, Factory.getBetDao());
+                } else if (field.getType().equals(UserDao.class)
+                        && userDaoClass.isAnnotationPresent(Dao.class)) {
+                    field.setAccessible(true);
+                    field.set(newInstance, Factory.getUserDao());
                 } else {
                     throw new NoSuchImplementationException("We don't have"
-                            + " implementation of BetDao");
-                }
-            }
-            if (field.getAnnotation(Inject.class) != null
-                    && field.getType().equals(UserDao.class)) {
-                field.setAccessible(true);
-                if (userDaoClass.isAnnotationPresent(Dao.class)) {
-                    field.set(newInstance, Factory.getUserDaoFactory());
-                } else {
-                    throw new NoSuchImplementationException("We don't have"
-                            + " implementation of UserDao");
+                            + " necessary implementation");
                 }
             }
         }
