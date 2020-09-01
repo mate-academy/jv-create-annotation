@@ -26,7 +26,7 @@ public class ConsoleHandler {
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(amount, risk);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                System.out.println("Please enter numbers in an appropriate format.");
+                System.out.println("Please enter the numbers in an appropriate format.");
                 continue;
             }
             betDao.add(bet);
