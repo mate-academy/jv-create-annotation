@@ -1,9 +1,8 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.io.BufferedReader;
@@ -11,8 +10,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
-    UserDao userDao = new UserDaoImpl();
+    @Inject
+    BetDao betDao;
+    @Inject
+    UserDao userDao;
 
     public void handle() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
