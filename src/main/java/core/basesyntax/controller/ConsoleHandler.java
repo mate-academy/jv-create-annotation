@@ -6,7 +6,6 @@ import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -36,7 +35,8 @@ public class ConsoleHandler {
             }
             betDao.add(bet);
             userDao.add(user);
-            System.out.println(user == null ? null : ((bet != null) ? (user.toString() + " " + bet.toString()) : null));
+            System.out.println(user == null ? null : ((bet != null)
+                    ? (user.toString() + " " + bet.toString()) : null));
         }
     }
 }

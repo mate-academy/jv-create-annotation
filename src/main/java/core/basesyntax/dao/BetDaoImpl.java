@@ -1,8 +1,7 @@
 package core.basesyntax.dao;
 
-import core.basesyntax.storage.Storage;
 import core.basesyntax.model.Bet;
-
+import core.basesyntax.storage.Storage;
 import java.util.List;
 
 public class BetDaoImpl implements BetDao {
