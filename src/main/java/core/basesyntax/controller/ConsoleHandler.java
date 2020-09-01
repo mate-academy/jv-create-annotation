@@ -32,7 +32,7 @@ public class ConsoleHandler {
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
-               throw new RuntimeException("Bad input information!");
+                throw new RuntimeException("Bad input information!");
             }
             betDao.add(bet);
             System.out.println(bet.toString());
