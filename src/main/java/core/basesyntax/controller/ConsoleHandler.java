@@ -1,4 +1,3 @@
-
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
@@ -15,24 +14,22 @@ public class ConsoleHandler {
     public void handle() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            boolean isInvalid = true;
             int value = 0;
-            while (isInvalid) {
+            while (true) {
                 System.out.println("Enter value:");
                 try {
                     value = Integer.parseInt(scanner.nextLine());
-                    isInvalid = false;
+                    break;
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid data. Enter number");
                 }
             }
             double risk = 0;
-            isInvalid = true;
-            while (isInvalid) {
+            while (true) {
                 System.out.println("Enter risk:");
                 try {
                     risk = Double.parseDouble(scanner.nextLine());
-                    isInvalid = false;
+                    break;
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid data. Enter number");
                 }
