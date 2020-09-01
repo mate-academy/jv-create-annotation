@@ -7,11 +7,11 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
+    private static final Scanner scanner = new Scanner(System.in);
     @Inject
     private UniversalDao<Bet> betUniversalDao;
     @Inject
     private UniversalDao<User> userUniversalDao;
-    private final static Scanner scanner = new Scanner(System.in);
 
     public void handle() {
         handleUser();
