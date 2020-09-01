@@ -4,9 +4,8 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
-import core.basesyntax.exception.AnnotationNotExist;
-import core.basesyntax.factory.FactoryBetDao;
-import core.basesyntax.factory.FactoryUserDao;
+import core.basesyntax.exception.AnnotationNotExistException;
+import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -22,22 +21,16 @@ public class Injector {
 
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field field : declaredFields) {
-            if (field.getAnnotation(Inject.class) != null
-                    && field.getType().equals(BetDao.class)) {
+            if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                if (betDaoClass.isAnnotationPresent(Dao.class)) {
-                    field.set(instance, FactoryBetDao.getBetDao());
+                if (field.getType().equals(UserDao.class)
+                        && userDaoClass.isAnnotationPresent(Dao.class)) {
+                    field.set(instance, Factory.getUserDao());
+                } else if (field.getType().equals(BetDao.class)
+                        && betDaoClass.isAnnotationPresent(Dao.class)) {
+                    field.set(instance, Factory.getBetDao());
                 } else {
-                    throw new AnnotationNotExist("BetDao annotation doesn't exist");
-                }
-            }
-            if (field.getAnnotation(Inject.class) != null
-                    && field.getType().equals(UserDao.class)) {
-                field.setAccessible(true);
-                if (userDaoClass.isAnnotationPresent(Dao.class)) {
-                    field.set(instance, FactoryUserDao.getUserDao());
-                } else {
-                    throw new AnnotationNotExist("UserDao annotation doesn't exist");
+                    throw new AnnotationNotExistException("BetDao annotation doesn't exist");
                 }
             }
         }
