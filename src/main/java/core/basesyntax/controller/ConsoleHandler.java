@@ -9,11 +9,11 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
-    UserDao userDao = new UserdaoImpl();
-    Scanner scanner = new Scanner(System.in);
+    private BetDao betDao = new BetDaoImpl();
+    private UserDao userDao = new UserdaoImpl();
 
     public void handle() {
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             Bet bet;
