@@ -5,12 +5,15 @@ import dao.BetDaoImpl;
 import dao.UserDao;
 import dao.UserDaoImpl;
 import java.util.Scanner;
+import lib.Inject;
 import model.Bet;
 import model.User;
 
 public class ConsoleHandler {
-    private BetDao betDao = new BetDaoImpl();
-    private UserDao userDao = new UserDaoImpl();
+    @Inject
+    BetDao betDao;
+    @Inject
+    UserDao userDao;
 
     public void handle() {
         String splitter = " ";
@@ -40,6 +43,5 @@ public class ConsoleHandler {
             System.out.println(bet == null ? null : bet.toString());
             System.out.println(user == null ? null : user.toString());
         }
-
     }
 }
