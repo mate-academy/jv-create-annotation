@@ -1,9 +1,7 @@
 package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.exceptions.NoAnnotationException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
