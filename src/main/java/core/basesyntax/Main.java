@@ -12,6 +12,6 @@ public class Main {
         System.out.println("Please input data");
         controllerHandler.handleBet();
         System.out.println("Please input user");
-        controllerHandler.handleBet();
+        controllerHandler.handleUser();
     }
 }
