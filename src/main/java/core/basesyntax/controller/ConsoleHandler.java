@@ -9,7 +9,6 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-
     private static final int FULLNAME_INDEX = 0;
     private static final int AGE_INDEX = 1;
     private static final int VALUE_INDEX = 2;
@@ -36,11 +35,11 @@ public class ConsoleHandler {
                 String fullname = betData[FULLNAME_INDEX];
                 int age = Integer.parseInt(betData[AGE_INDEX]);
                 user = new User(fullname, age, bet);
+                betDao.add(bet);
+                userDao.add(user);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 System.out.println("Invalid data. Please enter your bet again.");
             }
-            betDao.add(bet);
-            userDao.add(user);
         }
     }
 }
