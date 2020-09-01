@@ -16,7 +16,7 @@ public class ConsoleHandler {
     public void handle() {
 
         while (true) {
-            Bet bet = null;
+            Bet bet;
             User user = null;
             System.out.println("Enter your bet bellow: ...");
             String betInfo = scanner.nextLine();
@@ -30,8 +30,9 @@ public class ConsoleHandler {
                 int value = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk);
-            } catch (NumberFormatException e) {
-                System.out.println("Enter correct value please");
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("Wrong input values!");
+                continue;
             }
             try {
                 String[] userData = userInfo.split(" ");
@@ -47,7 +48,7 @@ public class ConsoleHandler {
             }
             betDao.addBet(bet);
             userDao.addUser(user);
-            System.out.println(bet == null ? null : bet.toString());
+            System.out.println(bet.toString());
         }
     }
 }
