@@ -9,8 +9,8 @@ import model.Bet;
 import model.User;
 
 public class ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
-    UserDao userDao = new UserDaoImpl();
+    private BetDao betDao = new BetDaoImpl();
+    private UserDao userDao = new UserDaoImpl();
 
     public void handle() {
         String splitter = " ";
@@ -31,8 +31,8 @@ public class ConsoleHandler {
                 double points = Double.parseDouble(betData[3]);
                 bet = new Bet(value, risk);
                 user = new User(name, points);
-            } catch (NumberFormatException e) {
-                System.out.println("Будь ласка, введіть коректну ставку");
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                System.out.println("Будь ласка, введіть коректні дані");
             }
             betDao.add(bet);
             userDao.add(user);
