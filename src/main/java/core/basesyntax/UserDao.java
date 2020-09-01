@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDao implements Dao<User> {
+public class UserDao implements GenericDao<User> {
     @Override
     public Optional<User> get(int id) {
         return Optional.ofNullable(Storage.getUserStorage().get(id));
@@ -18,12 +18,12 @@ public class UserDao implements Dao<User> {
     @Override
     public boolean save(User user) {
         Storage.getUserStorage().put(user.getId(), user);
-        return false;
+        return true;
     }
 
     @Override
     public boolean delete(Integer id) {
         Storage.getUserStorage().remove(id);
-        return false;
+        return true;
     }
 }

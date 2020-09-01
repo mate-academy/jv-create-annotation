@@ -3,13 +3,15 @@ package core.basesyntax;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private Dao dao;
+    private BetDao betDao;
+    private UserDao userDao;
     private String command;
     private Scanner scanner;
-    private final Splitter splitter;
+    private Splitter splitter;
 
     public ConsoleHandler() {
-        dao = new UserDao();
+        userDao = new UserDao();
+        betDao = new BetDao();
         splitter = new Splitter();
     }
 
@@ -17,9 +19,8 @@ public class ConsoleHandler {
         System.out.println("Enter your password and login for game!");
         scanner = new Scanner(System.in);
         String[] input = splitter.split(scanner.nextLine());
-        dao.save(new User(input[0], input[1]));
+        userDao.save(new User(input[0], input[1]));
         System.out.println("Enter risk and value for your bet");
-        dao = new BetDao();
         appListen();
     }
 
@@ -34,9 +35,12 @@ public class ConsoleHandler {
     }
 
     private void inputManage() {
+        if (command.equals("quit")) {
+            System.exit(0);
+        }
         String[] input = splitter.split(command);
         try {
-            dao.save(new Bet(Integer.parseInt(input[0]), Double.parseDouble(input[1])));
+            betDao.save(new Bet(Integer.parseInt(input[0]), Double.parseDouble(input[1])));
             System.out.println("Bet is saved!");
             appListen();
         } catch (NumberFormatException e) {

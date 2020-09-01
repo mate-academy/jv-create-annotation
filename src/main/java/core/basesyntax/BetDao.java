@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BetDao implements Dao<Bet> {
+public class BetDao implements GenericDao<Bet> {
     @Override
     public Optional<Bet> get(int id) {
         return Optional.ofNullable(Storage.getBetStorage().get(id));
