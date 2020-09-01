@@ -9,6 +9,6 @@ public class Main {
             NoSuchMethodException, InstantiationException, IllegalAccessException {
         ControllerHandler controllerHandler = (ControllerHandler) Injector.getInstance(ControllerHandler.class);
         System.out.println("Please input data");
-        controllerHandler.handle();
+        controllerHandler.handleBet();
     }
 }

@@ -1,6 +1,9 @@
 package core.basesyntax.lib;
 
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.UserDao;
 import core.basesyntax.factory.Factory;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -13,10 +16,14 @@ public class Injector {
         Object instance = declaredConstructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field field : declaredFields) {
-
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                field.set(instance, Factory.getBetDao());
+                if (BetDao.class.equals(field.getType())) {
+                    field.set(instance, Factory.getBetDao());
+                }
+                if (UserDao.class.equals(field.getType())) {
+                    field.set(instance, Factory.getUserDao());
+                }
             }
         }
         return instance;
