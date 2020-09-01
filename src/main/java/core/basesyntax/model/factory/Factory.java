@@ -13,7 +13,6 @@ public class Factory {
         if (betDao == null) {
             betDao = new BetDaoImpl();
         }
-
         return betDao;
     }
 
@@ -21,7 +20,6 @@ public class Factory {
         if (userDao == null) {
             userDao = new UserDaoImpl();
         }
-
         return userDao;
     }
 }

@@ -23,6 +23,8 @@ public class ConsoleHandler {
             String command = scanner.nextLine();
 
             if (command.equalsIgnoreCase("q")) {
+                System.out.println("all bets " + betDao.getAll()
+                        + "\n" + "all users" + userDao.getAll());
                 return;
             }
 

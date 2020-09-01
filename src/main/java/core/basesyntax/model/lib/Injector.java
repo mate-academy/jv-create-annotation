@@ -11,8 +11,7 @@ public class Injector {
 
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
-            InstantiationException, NoDaoAnnotationException {
-
+            InstantiationException, RuntimeException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
 
@@ -21,33 +20,18 @@ public class Injector {
         for (Field field : declaredFields) {
             field.setAccessible(true);
             if (field.getAnnotation(Inject.class) != null) {
-                if (checkBetDaoType(field)) {
+                if (field.getType().equals(BetDao.class)
+                        && BetDao.class.isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
-                }
-                if (checkUserDaoType(field)) {
+                } else if (field.getType().equals(UserDao.class)
+                        && UserDao.class.isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
+                } else {
+                    throw new NoDaoAnnotationException(field.getName()
+                            + " doesn't contain @Dao annotation");
                 }
             }
         }
         return instance;
-    }
-
-    private static boolean checkBetDaoType(Field field) {
-        if (!BetDao.class.isAnnotationPresent(Dao.class)) {
-            throw new NoDaoAnnotationException(BetDao.class + " does't contain @Dao annotation");
-        }
-        return field.getType().equals(BetDao.class);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    private static boolean checkUserDaoType(Field field) {
-        if (!UserDao.class.isAnnotationPresent(Dao.class)) {
-            throw new NoDaoAnnotationException(UserDao.class + " does't contain @Dao annotation");
-        }
-        return field.getType().equals(UserDao.class);
     }
 }
