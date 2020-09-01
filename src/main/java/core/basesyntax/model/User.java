@@ -4,11 +4,11 @@ public class User {
     private String name;
     private String password;
     private int age;
-    private int id;
 
-    public User(String name, int age) {
-        this.name = name;
+    public User(int age, String name, String password) {
         this.age = age;
+        this.name = name;
+        this.password = password;
     }
 
     public String getName() {
@@ -35,19 +35,13 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
         return "User{"
                 + "name='"
                 + name + '\''
+                + ", password='"
+                + password + '\''
                 + ", age="
                 + age
                 + '}';

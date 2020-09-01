@@ -8,8 +8,6 @@ public interface UserDao {
 
     void delete(User user);
 
-    User getUserById(int id);
-
     User getUserByName(String name);
 
     List<User> getAll();
