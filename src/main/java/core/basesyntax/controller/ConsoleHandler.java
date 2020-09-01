@@ -2,15 +2,16 @@ package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.impl.BetDaoImpl;
-import core.basesyntax.dao.impl.UserDaoImpl;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private UserDao userDao = new UserDaoImpl();
-    private BetDao betDao = new BetDaoImpl();
+    @Inject
+    private UserDao userDao;
+    @Inject
+    private BetDao betDao;
 
     public void handle() {
         System.out.println("Register new User(name,email,password)");
