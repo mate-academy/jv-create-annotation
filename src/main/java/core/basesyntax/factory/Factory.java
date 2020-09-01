@@ -9,7 +9,6 @@ public class Factory {
     private static BetDao betDao;
     private static OrderDao orderDao;
 
-
     public static BetDao getBetDao() {
         if (betDao == null) {
             betDao = new BetDaoImpl();

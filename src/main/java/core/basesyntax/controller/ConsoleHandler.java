@@ -5,15 +5,14 @@ import core.basesyntax.dao.OrderDao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.Order;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
 
     @Inject
-    OrderDao orderDao;
+    private OrderDao orderDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);

@@ -1,6 +1,5 @@
 package core.basesyntax.model;
 
-
 public class Order {
     private String nameOfProduct;
     private int quantity;
@@ -28,9 +27,9 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "nameOfProduct='" + nameOfProduct + '\'' +
-                ", quantity=" + quantity +
-                '}';
+        return "Order{"
+                + "nameOfProduct='" + nameOfProduct + '\''
+                + ", quantity=" + quantity
+                + '}';
     }
 }
