@@ -13,7 +13,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> addAll() {
+    public List<Order> getAll() {
         return Storage.orders;
     }
 }

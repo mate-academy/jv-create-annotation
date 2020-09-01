@@ -22,22 +22,20 @@ public class Injector {
         Class<OrderDaoImpl> orderDaoClass = OrderDaoImpl.class;
 
         for (Field field : declaredFields) {
-            if (field.getAnnotation(Inject.class) != null
-                    && field.getType().equals(BetDao.class)) {
-                field.setAccessible(true);
-                if (betDaoClass.isAnnotationPresent(Dao.class)) {
+            if (field.getAnnotation(Inject.class) != null) {
+                if (field.getType().equals(BetDao.class)
+                        && betDaoClass.isAnnotationPresent(Dao.class)) {
+                    field.setAccessible(true);
                     field.set(instance, Factory.getBetDao());
-                } else {
-                    throw new DaoIsNotFindException("Do not found DAO Annotation");
                 }
-            } else if (field.getAnnotation(Inject.class) != null
-                    && field.getType().equals(OrderDao.class)) {
-                field.setAccessible(true);
-                if (orderDaoClass.isAnnotationPresent(Dao.class)) {
+            } else if (field.getAnnotation(Inject.class) != null) {
+                if (field.getType().equals(OrderDao.class)
+                        && orderDaoClass.isAnnotationPresent(Dao.class)) {
+                    field.setAccessible(true);
                     field.set(instance, Factory.getOrderDao());
-                } else {
-                    throw new DaoIsNotFindException("Do not found DAO Annotation");
                 }
+            } else {
+                throw new DaoIsNotFindException("Do not found DAO Annotation");
             }
         }
         return instance;
