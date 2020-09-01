@@ -2,8 +2,10 @@ package controller;
 
 import dao.BetDao;
 import dao.UserDao;
+import dao.UserDaoImpl;
 import java.util.List;
 import java.util.Scanner;
+import lib.Inject;
 import model.Bet;
 import model.User;
 
@@ -11,7 +13,9 @@ public class ConsoleHandler {
     private static final int DATA_QUANTITY = 2;
     private static final int LOGIN_PASSWORD_MIN_LENGTH = 3;
 
-    private UserDao userDao;
+    @Inject
+    private UserDao userDao = new UserDaoImpl();
+    @Inject
     private BetDao betDao;
 
     public void handle() {

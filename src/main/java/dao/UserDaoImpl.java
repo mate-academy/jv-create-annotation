@@ -4,9 +4,11 @@ import db.Storage;
 import exceptions.WrongPasswordException;
 import java.util.List;
 import java.util.NoSuchElementException;
+import lib.Dao;
 import model.Bet;
 import model.User;
 
+@Dao
 public class UserDaoImpl implements UserDao {
     private List<User> storage = Storage.userStorage;
     private User user;
