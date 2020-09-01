@@ -5,7 +5,6 @@ import core.basesyntax.dao.UserDao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
