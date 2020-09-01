@@ -16,7 +16,6 @@ public class Injector {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
-
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
