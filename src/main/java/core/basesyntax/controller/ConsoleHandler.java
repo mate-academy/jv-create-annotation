@@ -21,8 +21,10 @@ public class ConsoleHandler {
                 int value = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk);
-            } catch (NumberFormatException e) {
-                System.out.println("Пожалуйста введите корректные данные");
+                System.out.println(bet.toString());
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                System.out.println("Введены некорректные данные. Пример корректных данных:100 0.1");
+                continue;
             }
             betDao.add(bet);
         }
