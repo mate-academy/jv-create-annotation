@@ -14,8 +14,12 @@ public class ConsoleHandler {
     private UserDao userDao;
 
     public void handle() {
-        userDao.add(new User("Dasha","12345"));
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter login:");
+        String login = scanner.nextLine();
+        System.out.println("Enter password:");
+        String password = scanner.nextLine();
+        userDao.add(new User(login,password));
         while (true) {
             int value;
             while (true) {
