@@ -8,3 +8,4 @@ public interface BetDao {
 
     List<Bet> getAll();
 }
+kkkklk
