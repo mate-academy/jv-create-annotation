@@ -1,9 +1,6 @@
 package core.basesyntax;
 
 import core.basesyntax.controller.ConsoleHandler;
-import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.UserDao;
-import core.basesyntax.factory.Factory;
 import core.basesyntax.library.Injector;
 import java.lang.reflect.InvocationTargetException;
 
@@ -15,14 +12,9 @@ public class MainApp {
                 + "To start with, type in your name, surname, age, "
                 + "value of the bet and its risk. Example: \n"
                 + "Dariia, Pikul, 24, 100, 4.5\n"
-                + "For quitting type in \"exit\"");
+                + "Keep betting or type in \"exit\" for quitting the service");
         ConsoleHandler handler = (ConsoleHandler) Injector
                 .getInstance(ConsoleHandler.class);
         handler.handle();
-        UserDao userDao = Factory.getUserDao();
-        System.out.println("All users: " + userDao);
-        BetDao betDao = Factory.getBetDao();
-        System.out.println("All bets: " + betDao);
-
     }
 }

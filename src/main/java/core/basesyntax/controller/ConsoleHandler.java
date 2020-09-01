@@ -8,7 +8,7 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private static final String IGNORE_CASE = "exit";
+    private static final String EXIT_CASE = "exit";
     private static final String PARSE_REGEX = ", ";
     private static final int NAME_INDEX = 0;
     private static final int SURNAME_INDEX = 1;
@@ -17,8 +17,10 @@ public class ConsoleHandler {
     private static final int RISK_INDEX = 4;
     private static final int AGE_FROM = 18;
     private static final int AGE_TO = 70;
+
     @Inject
     private BetDao betDao;
+
     @Inject
     private UserDao userDao;
 
@@ -26,7 +28,7 @@ public class ConsoleHandler {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String command = scanner.nextLine();
-            if (command.equalsIgnoreCase(IGNORE_CASE)) {
+            if (command.equalsIgnoreCase(EXIT_CASE)) {
                 System.out.println(userDao.getAllUsers());
                 System.out.println(betDao.getAllBets());
                 return;
