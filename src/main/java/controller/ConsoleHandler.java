@@ -1,17 +1,18 @@
 package controller;
 
+import dao.BetDao;
+import dao.UserDao;
+import java.util.List;
 import java.util.Scanner;
 import model.Bet;
 import model.User;
-import services.BetService;
-import services.UserService;
 
 public class ConsoleHandler {
     private static final int DATA_QUANTITY = 2;
     private static final int LOGIN_PASSWORD_MIN_LENGTH = 3;
 
-    private UserService userService = new UserService();
-    private BetService betService = new BetService();
+    private UserDao userDao;
+    private BetDao betDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -31,7 +32,7 @@ public class ConsoleHandler {
         if (!checkCreds(login, password)) {
             handle();
         }
-        return userService.getUserDao().login(login, password);
+        return userDao.login(login, password);
     }
 
     private void enterValueAndRisk(Scanner scanner, User user) {
@@ -51,7 +52,7 @@ public class ConsoleHandler {
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please, enter correct data");
             }
-            betService.getBetDao().add(bet);
+            betDao.add(bet);
         }
     }
 
@@ -70,9 +71,15 @@ public class ConsoleHandler {
             return true;
         }
         if (command.equalsIgnoreCase("print")) {
-            userService.printUsersBetList(user);
+            printUsersBetList(user);
             return true;
         }
         return false;
+    }
+
+    private List<Bet> printUsersBetList(User user) {
+        List<Bet> result = user.getBetsList();
+        System.out.println(result);
+        return result;
     }
 }
