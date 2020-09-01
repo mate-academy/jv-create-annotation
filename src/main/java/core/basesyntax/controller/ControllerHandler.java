@@ -2,11 +2,14 @@ package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.models.BetModel;
 import java.util.Scanner;
 
 public class ControllerHandler {
-    private BetDao betDao = new BetDaoImpl();
+
+    @Inject
+    private BetDao betDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
