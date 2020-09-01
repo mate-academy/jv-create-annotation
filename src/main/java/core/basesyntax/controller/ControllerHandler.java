@@ -3,6 +3,7 @@ package core.basesyntax.controller;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.models.BetModel;
+
 import java.util.Scanner;
 
 public class ControllerHandler {
@@ -21,11 +22,9 @@ public class ControllerHandler {
                 int betValue = Integer.parseInt(betData[0]);
                 double betRisk = Double.parseDouble(betData[1]);
                 bet = new BetModel(betValue, betRisk);
-
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("The entered data is not correct");
             }
-
             betDao.add(bet);
             System.out.println(bet == null ? null : bet.toString());
         }
