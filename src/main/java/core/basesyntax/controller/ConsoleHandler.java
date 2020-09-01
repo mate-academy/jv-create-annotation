@@ -13,9 +13,6 @@ public class ConsoleHandler {
     @Inject
     private UserDao userDao;
 
-    public ConsoleHandler() {
-    }
-
     public void handle() {
         Scanner scanner = new Scanner(System.in);
 
