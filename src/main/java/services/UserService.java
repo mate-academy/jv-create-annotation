@@ -1,12 +1,25 @@
 package services;
 
-import db.UserStorage;
+import dao.UserDao;
+import dao.UserDaoImpl;
+import db.Storage;
 import java.util.List;
 import model.Bet;
+import model.User;
 
 public class UserService {
-    public List<Bet> printUsersBetList(String userName) {
-        List<Bet> result = UserStorage.userStorage.get(userName).getBetsList();
+    private UserDao userDao;
+
+    public UserDao getUserDao() {
+        return new UserDaoImpl();
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public List<Bet> printUsersBetList(User user) {
+        List<Bet> result = user.getBetsList();
         System.out.println(result);
         return result;
     }

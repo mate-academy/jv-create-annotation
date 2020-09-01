@@ -1,6 +1,6 @@
 package dao;
 
-import db.BetStorage;
+import db.Storage;
 import java.util.List;
 import model.Bet;
 
@@ -8,11 +8,11 @@ public class BetDaoImpl implements BetDao {
 
     @Override
     public void add(Bet bet) {
-        BetStorage.bets.add(bet);
+        Storage.bets.add(bet);
     }
 
     @Override
     public List<Bet> getAll() {
-        return BetStorage.bets;
+        return Storage.bets;
     }
 }
