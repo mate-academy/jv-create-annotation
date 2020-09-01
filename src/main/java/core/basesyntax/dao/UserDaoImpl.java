@@ -7,16 +7,16 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     @Override
     public void addUserToStorage(User user) {
-        Storage.USERS.add(user);
+        Storage.users.add(user);
     }
 
     @Override
     public List<User> gerAllUser() {
-        return Storage.USERS;
+        return Storage.users;
     }
 
     @Override
     public void removeUserFromStorage(User user) {
-        Storage.USERS.remove(user);
+        Storage.users.remove(user);
     }
 }

@@ -23,6 +23,7 @@ public class ConsoleHandler {
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
                 System.out.println("Ви ввели неправильні дані, спробуйте ще раз!");
+                continue;
             }
             betDao.addBetToStorage(bet);
             System.out.println(bet == null ? null : bet.toString());
