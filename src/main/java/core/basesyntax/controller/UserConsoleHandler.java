@@ -1,13 +1,13 @@
 package core.basesyntax.controller;
 
-import core.basesyntax.dao.ModelDao;
+import core.basesyntax.dao.GenericDao;
 import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class UserConsoleHandler implements ConsoleHandler {
-    private ModelDao<User> userDao;
+    private GenericDao<User> userDao;
 
-    public UserConsoleHandler(ModelDao<User> userDao) {
+    public UserConsoleHandler(GenericDao<User> userDao) {
         this.userDao = userDao;
     }
 

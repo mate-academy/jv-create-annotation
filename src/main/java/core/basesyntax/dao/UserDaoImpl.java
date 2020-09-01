@@ -4,7 +4,7 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.model.User;
 import java.util.List;
 
-public class UserDaoImpl implements ModelDao<User> {
+public class UserDaoImpl implements GenericDao<User> {
     private Storage<User> storage;
 
     public UserDaoImpl(Storage<User> storage) {

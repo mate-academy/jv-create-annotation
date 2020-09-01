@@ -1,13 +1,13 @@
 package core.basesyntax.controller;
 
-import core.basesyntax.dao.ModelDao;
+import core.basesyntax.dao.GenericDao;
 import core.basesyntax.model.Bet;
 import java.util.Scanner;
 
 public class BetConsoleHandler implements ConsoleHandler {
-    ModelDao<Bet> betDao;
+    GenericDao<Bet> betDao;
 
-    public BetConsoleHandler(ModelDao<Bet> betDao) {
+    public BetConsoleHandler(GenericDao<Bet> betDao) {
         this.betDao = betDao;
     }
 

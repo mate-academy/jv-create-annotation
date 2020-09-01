@@ -4,7 +4,7 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.model.Bet;
 import java.util.List;
 
-public class BetDaoImpl implements ModelDao<Bet> {
+public class BetDaoImpl implements GenericDao<Bet> {
     private Storage<Bet> betStorage;
 
     public BetDaoImpl(Storage<Bet> betStorage) {
