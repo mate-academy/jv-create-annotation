@@ -18,12 +18,9 @@ public class ConsoleHandler {
                 System.out.println("Goodbye!");
                 return;
             }
-
-            Bet bet = null;
-
             try {
                 String[] values = input.split(" ");
-                bet = new Bet(Integer.parseInt(values[0]), Double.parseDouble(values[1]));
+                Bet bet = new Bet(Integer.parseInt(values[0]), Double.parseDouble(values[1]));
                 betDao.add(bet);
                 System.out.println("Bet " + bet.toString() + " accepted");
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
