@@ -14,6 +14,6 @@ public class BetDaoImpl implements UniversalDao<Bet> {
 
     @Override
     public List<Bet> getAll() {
-        return null;
+        return Storage.bets;
     }
 }

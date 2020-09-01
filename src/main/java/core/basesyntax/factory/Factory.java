@@ -10,21 +10,23 @@ public class Factory {
     private static UniversalDao universalDao;
 
     public static UniversalDao getBetDao() throws NoDaoAnnotationInTheClass {
-        if (!BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
-            throw new NoDaoAnnotationInTheClass(message(BetDaoImpl.class));
-        }
         if (universalDao == null) {
-            return new BetDaoImpl();
+            if (BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                return new BetDaoImpl();
+            } else {
+                throw new NoDaoAnnotationInTheClass(message(BetDaoImpl.class));
+            }
         }
         return universalDao;
     }
 
     public static UniversalDao getUserDao() throws NoDaoAnnotationInTheClass {
-        if (!UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
-            throw new NoDaoAnnotationInTheClass(message(UserDaoImpl.class));
-        }
         if (universalDao == null) {
-            return new UserDaoImpl();
+            if (UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                return new UserDaoImpl();
+            } else {
+                throw new NoDaoAnnotationInTheClass(message(UserDaoImpl.class));
+            }
         }
         return universalDao;
     }

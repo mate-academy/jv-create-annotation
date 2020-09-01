@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
-    UniversalDao<Bet> betUniversalDao;
+    private UniversalDao<Bet> betUniversalDao;
     @Inject
-    UniversalDao<User> userUniversalDao;
-    private final Scanner scanner = new Scanner(System.in);
+    private UniversalDao<User> userUniversalDao;
+    private final static Scanner scanner = new Scanner(System.in);
 
     public void handle() {
         handleUser();
