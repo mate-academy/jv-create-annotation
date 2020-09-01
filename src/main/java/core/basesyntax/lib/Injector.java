@@ -1,7 +1,10 @@
 package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
+import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.exceptions.NoAnnotationException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -14,6 +17,12 @@ public class Injector {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
+        Class<BetDaoImpl> betDaoImplClass = BetDaoImpl.class;
+        Class<UserDaoImpl> userDaoImplClass = UserDaoImpl.class;
+        if (!(betDaoImplClass.isAnnotationPresent(Dao.class)
+                && userDaoImplClass.isAnnotationPresent(Dao.class))) {
+            throw new NoAnnotationException("No dao annotation was found");
+        }
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
