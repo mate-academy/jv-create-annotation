@@ -17,7 +17,7 @@ public class ConsoleHandler {
 
         while (true) {
             Bet bet;
-            User user = null;
+            User user;
             System.out.println("Enter your bet bellow: ...");
             String betInfo = scanner.nextLine();
             if (betInfo.equalsIgnoreCase("q")) {
@@ -43,8 +43,9 @@ public class ConsoleHandler {
                     return;
                 }
                 user = new User(name, age, bet);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Age value inappropriate!");
+                continue;
             }
             betDao.addBet(bet);
             userDao.addUser(user);
