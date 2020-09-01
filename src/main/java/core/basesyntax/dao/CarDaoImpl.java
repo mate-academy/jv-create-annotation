@@ -2,7 +2,6 @@ package core.basesyntax.dao;
 
 import core.basesyntax.db.Storage;
 import core.basesyntax.model.Car;
-
 import java.util.NoSuchElementException;
 
 public class CarDaoImpl implements CarDao {
@@ -29,7 +28,7 @@ public class CarDaoImpl implements CarDao {
     @Override
     public void updateMaxSpeed(Car car, int maxSpeed) {
         int index = Storage.cars_storage.indexOf(car);
-        if (index != -1 ) {
+        if (index != -1) {
             Storage.cars_storage.get(index).setMaxSpeed(maxSpeed);
             return;
         }

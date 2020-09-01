@@ -24,7 +24,7 @@ public class BetDaoImpl implements BetDao {
     @Override
     public void updateMoney(Bet bet, int money) {
         int index = Storage.bets_storage.indexOf(bet);
-        if (index != -1 ) {
+        if (index != -1) {
             Storage.bets_storage.get(index).setMoney(money);
             return;
         }
