@@ -2,7 +2,6 @@ package services;
 
 import dao.UserDao;
 import dao.UserDaoImpl;
-import db.Storage;
 import java.util.List;
 import model.Bet;
 import model.User;

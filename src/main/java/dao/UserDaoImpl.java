@@ -2,10 +2,10 @@ package dao;
 
 import db.Storage;
 import exceptions.WrongPasswordException;
-import model.Bet;
-import model.User;
 import java.util.List;
 import java.util.NoSuchElementException;
+import model.Bet;
+import model.User;
 
 public class UserDaoImpl implements UserDao {
     private List<User> storage = Storage.userStorage;
