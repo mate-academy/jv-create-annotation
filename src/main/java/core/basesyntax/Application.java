@@ -3,31 +3,29 @@ package core.basesyntax;
 import core.basesyntax.controller.BetConsoleHandler;
 import core.basesyntax.controller.ConsoleHandler;
 import core.basesyntax.controller.UserConsoleHandler;
-import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.dao.ModelDao;
-import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.db.Storage;
+import core.basesyntax.lib.Injector;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Feel free to remove this class and create your own.
  */
 public class Application {
-    public static void main(String[] args) {
-        Storage<User> userStorage = new Storage<>();
-        ModelDao<User> userDao = new UserDaoImpl(userStorage);
-        ConsoleHandler userConsoleHandler = new UserConsoleHandler(userDao);
+    public static void main(String[] args) throws InvocationTargetException,
+            NoSuchMethodException, InstantiationException, IllegalAccessException {
+
+        ConsoleHandler userConsoleHandler = (ConsoleHandler) Injector
+                .getInstance(UserConsoleHandler.class);
         userConsoleHandler.handle();
-        for (User user: userDao.getAll()) {
+        for (User user : Storage.USERS_STORAGE) {
             System.out.println(user.toString());
         }
-        System.out.println("---><---");
-        Storage<Bet> betStorage = new Storage<>();
-        ModelDao<Bet> betDao = new BetDaoImpl(betStorage);
-        ConsoleHandler betConsoleHandler = new BetConsoleHandler(betDao);
+        ConsoleHandler betConsoleHandler = (ConsoleHandler) Injector
+                .getInstance(BetConsoleHandler.class);
         betConsoleHandler.handle();
-        for (Bet bet: betDao.getAll()) {
+        for (Bet bet : Storage.BETS_STORAGE) {
             System.out.println(bet.toString());
         }
     }

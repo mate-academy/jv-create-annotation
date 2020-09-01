@@ -49,4 +49,8 @@ public class User {
                 + "id=" + id + ", login='"
                 + login + '\'' + ", password='" + password + '\'' + '}';
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

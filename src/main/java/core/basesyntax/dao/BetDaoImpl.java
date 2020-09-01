@@ -1,23 +1,20 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.db.Storage;
+import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Bet;
 import java.util.List;
 
-public class BetDaoImpl implements ModelDao<Bet> {
-    private Storage<Bet> betStorage;
-
-    public BetDaoImpl(Storage<Bet> betStorage) {
-        this.betStorage = betStorage;
-    }
+@Dao
+public class BetDaoImpl implements GenericDao<Bet> {
 
     @Override
     public void addModelToDb(Bet bet) {
-        betStorage.getModelsStorage().add(bet);
+        Storage.BETS_STORAGE.add(bet);
     }
 
     @Override
     public List<Bet> getAll() {
-        return betStorage.getModelsStorage();
+        return Storage.BETS_STORAGE;
     }
 }

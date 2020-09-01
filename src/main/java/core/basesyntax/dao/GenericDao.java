@@ -2,7 +2,8 @@ package core.basesyntax.dao;
 
 import java.util.List;
 
-public interface ModelDao<T> {
+public interface GenericDao<T> {
+
     void addModelToDb(T model);
 
     List<T> getAll();
