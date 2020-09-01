@@ -1,12 +1,11 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.models.Bet;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private BetDao betDao = new BetDaoImpl();
+    private BetDao betDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -19,7 +18,7 @@ public class ConsoleHandler {
             try {
                 String[] betData = command.split(" ");
                 bet = new Bet(Integer.parseInt(betData[0]), Double.parseDouble(betData[1]));
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please enter correct data");
             }
             betDao.add(bet);
