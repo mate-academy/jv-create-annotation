@@ -6,7 +6,5 @@ import java.util.List;
 public interface UserDao {
     void add(User user);
 
-    void checkAge(User user);
-
     List<User> getAllUsers();
 }

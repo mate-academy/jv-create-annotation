@@ -31,11 +31,9 @@ public class ConsoleHandler {
                 bet = new Bet(value, risk);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 System.out.println("Please, input correct data");
-                handle();
             }
             betDao.add(bet);
             userDao.add(user);
-            userDao.checkAge(user);
             System.out.println(bet == null ? null : user.toString() + " " + bet.toString());
             System.out.println("Keep betting or enter 'q' to quit");
         }

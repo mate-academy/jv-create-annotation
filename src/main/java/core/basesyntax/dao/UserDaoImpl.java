@@ -12,13 +12,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void checkAge(User user) {
-        if (user.getAge() < 18) {
-            throw new IllegalArgumentException("Grow up!");
-        }
-    }
-
-    @Override
     public List<User> getAllUsers() {
         return Storage.users;
     }
