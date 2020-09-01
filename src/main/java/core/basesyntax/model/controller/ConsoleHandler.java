@@ -25,15 +25,19 @@ public class ConsoleHandler {
             User user = null;
 
             try {
-                String[] inputData = command.split(" ");
-                int value = Integer.parseInt(inputData[0]);
-                double risk = Double.parseDouble(inputData[1]);
-                String login = inputData[2];
-                String password = inputData[3];
+                String[] betData = command.split(" ");
+                int value = Integer.parseInt(betData[0]);
+                double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk);
+                System.out.println("Please, enter your login and password");
+                command = scanner.nextLine();
+                String[] usersData = command.split(" ");
+                String login = usersData[0];
+                String password = usersData[1];
                 user = new User(login, password, bet);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please, enter the correct information.");
+                continue;
             }
 
             betDao.add(bet);
