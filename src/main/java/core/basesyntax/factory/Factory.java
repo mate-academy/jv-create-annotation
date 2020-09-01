@@ -1,38 +1,25 @@
 package core.basesyntax.factory;
 
+import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.dao.UniversalDao;
+import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
-import core.basesyntax.lib.Dao;
-import core.basesyntax.lib.NoDaoAnnotationInTheClass;
 
 public class Factory {
-    private static UniversalDao universalDao;
+    private static BetDao betDao;
+    private static UserDao userDao;
 
-    public static UniversalDao getBetDao() throws NoDaoAnnotationInTheClass {
-        if (universalDao == null) {
-            if (BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
-                return new BetDaoImpl();
-            } else {
-                throw new NoDaoAnnotationInTheClass(message(BetDaoImpl.class));
-            }
+    public static BetDao getBetDao() {
+        if (betDao == null) {
+            return new BetDaoImpl();
         }
-        return universalDao;
+        return betDao;
     }
 
-    public static UniversalDao getUserDao() throws NoDaoAnnotationInTheClass {
-        if (universalDao == null) {
-            if (UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
-                return new UserDaoImpl();
-            } else {
-                throw new NoDaoAnnotationInTheClass(message(UserDaoImpl.class));
-            }
+    public static UserDao getUserDao() {
+        if (userDao == null) {
+            return new UserDaoImpl();
         }
-        return universalDao;
-    }
-
-    private static String message(Class clazz) {
-        return "Class " + clazz
-                + " doesn't contains @Dao annotation!!";
+        return userDao;
     }
 }

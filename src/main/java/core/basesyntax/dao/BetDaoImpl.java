@@ -6,7 +6,7 @@ import db.Storage;
 import java.util.List;
 
 @Dao
-public class BetDaoImpl implements UniversalDao<Bet> {
+public class BetDaoImpl implements BetDao {
     @Override
     public void add(Bet value) {
         Storage.bets.add(value);
