@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.Scanner;
-
 import model.Bet;
 import model.User;
 import services.BetService;
