@@ -1,10 +1,12 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.db.Storage;
+import core.basesyntax.lib.Doa;
 import core.basesyntax.model.Bet;
 import java.util.List;
 
-public class BedDaoImpl implements BetDao {
+@Doa
+public class BetDaoImpl implements BetDao {
     @Override
     public void addBetToStorage(Bet bet) {
         Storage.bets.add(bet);
