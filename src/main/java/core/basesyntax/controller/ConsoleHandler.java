@@ -24,13 +24,10 @@ public class ConsoleHandler {
             try {
                 String[] values = input.split(" ");
                 bet = new Bet(Integer.parseInt(values[0]), Double.parseDouble(values[1]));
+                betDao.add(bet);
+                System.out.println("Bet " + bet.toString() + " accepted");
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please enter correct money and chance of victory values");
-            }
-
-            betDao.add(bet);
-            if (bet != null) {
-                System.out.println("Bet " + bet.toString() + " accepted");
             }
         }
     }
