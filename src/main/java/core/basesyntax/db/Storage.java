@@ -1,5 +1,7 @@
-package core.basesyntax;
+package core.basesyntax.db;
 
+import core.basesyntax.models.Bet;
+import core.basesyntax.models.User;
 import java.util.Map;
 import java.util.TreeMap;
 

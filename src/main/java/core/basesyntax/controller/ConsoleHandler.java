@@ -1,15 +1,19 @@
-package core.basesyntax;
+package core.basesyntax.controller;
 
+import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.UserDao;
+import core.basesyntax.lib.Inject;
+import core.basesyntax.models.Bet;
+import core.basesyntax.models.User;
+import core.basesyntax.service.Splitter;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private BetDao betDao;
-    private UserDao userDao;
 
-    public ConsoleHandler(BetDao betDao, UserDao userDao) {
-        this.betDao = betDao;
-        this.userDao = userDao;
-    }
+    @Inject
+    private BetDao betDao;
+    @Inject
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -33,5 +37,6 @@ public class ConsoleHandler {
             System.out.println(betDao.getAll().toString());
             System.out.println(userDao.getAll().toString());
         }
+
     }
 }

@@ -1,9 +1,13 @@
-package core.basesyntax;
+package core.basesyntax.dao;
 
+import core.basesyntax.db.Storage;
+import core.basesyntax.lib.Dao;
+import core.basesyntax.models.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Dao
 public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> get(int id) {

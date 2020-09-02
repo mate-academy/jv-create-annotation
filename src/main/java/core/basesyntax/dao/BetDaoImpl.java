@@ -1,9 +1,13 @@
-package core.basesyntax;
+package core.basesyntax.dao;
 
+import core.basesyntax.db.Storage;
+import core.basesyntax.lib.Dao;
+import core.basesyntax.models.Bet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Dao
 public class BetDaoImpl implements BetDao {
     @Override
     public Optional<Bet> get(int id) {

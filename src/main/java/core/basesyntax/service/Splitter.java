@@ -1,4 +1,4 @@
-package core.basesyntax;
+package core.basesyntax.service;
 
 public class Splitter {
     public String[] split(String str) {
