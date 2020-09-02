@@ -1,12 +1,8 @@
 import core.basesyntax.controller.ConsoleHandler;
-import core.basesyntax.exception.DaoAnnotationNotFound;
-import core.basesyntax.lib.Injector;
-import java.lang.reflect.InvocationTargetException;
 
 public class Main {
-    public static void main(String[] args) throws NoSuchMethodException, InstantiationException,
-            IllegalAccessException, InvocationTargetException, DaoAnnotationNotFound {
-        ConsoleHandler handler = (ConsoleHandler) Injector.getInstance(ConsoleHandler.class);
+    public static void main(String[] args) {
+        ConsoleHandler handler = new ConsoleHandler();
         System.out.println("Enter yours login, password, value, risk. Push ENTER! "
                 + "After should write GO");
         handler.handle();
