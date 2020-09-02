@@ -13,10 +13,10 @@ public class ConsoleHandler {
             = "Enter 'u'-> add user, 'b'-> add bet or 'q' -> exit";
 
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
 
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
