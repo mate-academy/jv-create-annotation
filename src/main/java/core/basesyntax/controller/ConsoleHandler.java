@@ -25,14 +25,13 @@ public class ConsoleHandler {
             User user = null;
             try {
                 String[] betData = command.split(" ");
-                checkInput(betData);
                 String name = betData[0];
                 String lastName = betData[1];
                 int value = Integer.parseInt(betData[2]);
                 double risk = Double.parseDouble(betData[3]);
                 bet = new Bet(value, risk);
                 user = new User(name, lastName);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Ви вели некоректні дані.");
                 return;
             }
@@ -40,12 +39,6 @@ public class ConsoleHandler {
             userDao.add(user);
             System.out.println(user == null ? null : user.toString());
             System.out.println(bet == null ? null : bet.toString());
-        }
-    }
-
-    private void checkInput(String[] input) {
-        if (input.length != 4) {
-            throw new IllegalArgumentException("Поля не можуть бути пустими.");
         }
     }
 }

@@ -19,6 +19,5 @@ public class Main {
         handler.handle();
 
         BetDao betDao = Factory.getBetDao();
-        System.out.println(betDao.getAll());
     }
 }
