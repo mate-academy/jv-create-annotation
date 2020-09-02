@@ -17,7 +17,7 @@ public class Injector {
         Object instance = constructor.newInstance();
         Field[] declaredField = clazz.getDeclaredFields();
         for (Field field : declaredField) {
-            annotationChecker(field);
+            checkAnnotation(field);
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)) {
@@ -31,7 +31,7 @@ public class Injector {
         return instance;
     }
 
-    public static void annotationChecker(Field field) {
+    public static void checkAnnotation(Field field) {
         if (field.getType().equals(BetDao.class)
                 && !BetDaoImpl.class.isAnnotationPresent(Dao.class)
                 || field.getType().equals(UserDao.class)
