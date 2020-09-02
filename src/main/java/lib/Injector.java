@@ -26,7 +26,8 @@ public class Injector {
                         && Factory.getUserDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
                 } else {
-                    throw new NoDaoAnnotationFound("No implementation found for type " + field.getType());
+                    throw new NoDaoAnnotationFound("No implementation found for type "
+                            + field.getType());
                 }
             }
         }
