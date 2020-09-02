@@ -6,6 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    public static final List<Bet> bets_storage = new ArrayList<>();
-    public static final List<Car> cars_storage = new ArrayList<>();
+    public static final List<Bet> BETS_STORAGE = new ArrayList<>();
+    public static final List<Car> CARS_STORAGE = new ArrayList<>();
 }

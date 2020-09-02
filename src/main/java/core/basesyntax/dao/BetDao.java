@@ -9,6 +9,4 @@ public interface BetDao {
     List<Bet> getAll();
 
     boolean remove(Bet bet);
-
-    void updateMoney(Bet bet, int money);
 }

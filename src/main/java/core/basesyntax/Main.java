@@ -12,10 +12,5 @@ public class Main {
             NoSuchMethodException, InstantiationException, IllegalAccessException {
         ConsoleHandler consoleHandler = (ConsoleHandler) Injector.getInstance(ConsoleHandler.class);
         consoleHandler.handle();
-
-        BetDao betDao = Factory.getBetDao();
-        CarDao carDao = Factory.getCarDao();
-        System.out.println("Bets: " + betDao.getAll());
-        System.out.println("Cars: " + carDao.getAll());
     }
 }

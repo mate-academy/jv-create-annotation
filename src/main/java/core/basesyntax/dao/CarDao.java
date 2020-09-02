@@ -10,7 +10,5 @@ public interface CarDao {
 
     boolean remove(Car car);
 
-    void updateMaxSpeed(Car car, int maxSpeed);
-
     List<Car> getAll();
 }
