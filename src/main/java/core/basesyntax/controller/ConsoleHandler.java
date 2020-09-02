@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
 
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     public void handleBet() {
         System.out.println("Enter 'value' and 'risk' for your bet\n"
