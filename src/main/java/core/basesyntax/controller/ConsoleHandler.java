@@ -23,7 +23,7 @@ public class ConsoleHandler {
                 Bet bet = new Bet(value, risk);
                 betDao.add(bet);
                 System.out.println(betDao.getAll());
-            } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Wrong input!\nTry to enter data in format '[value] [risk]'");
             }
         }
@@ -39,7 +39,7 @@ public class ConsoleHandler {
                 User user = new User(login, email);
                 userDao.add(user);
                 System.out.println(userDao.getAll());
-            } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Wrong input!\nTry to enter data in format '[login] [email]'");
             }
         }

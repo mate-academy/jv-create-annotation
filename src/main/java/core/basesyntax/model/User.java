@@ -24,4 +24,16 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "User{"
+                + "login='"
+                + login
+                + '\''
+                + ", email='"
+                + email
+                + '\''
+                + '}';
+    }
 }
