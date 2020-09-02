@@ -1,9 +1,6 @@
 package model;
 
-import java.util.List;
-
 public class User {
-    public List<Bet> bets;
     private String name;
     private Double points;
 
@@ -26,14 +23,6 @@ public class User {
 
     public void setPoints(Double points) {
         this.points = points;
-    }
-
-    public List<Bet> getBets() {
-        return bets;
-    }
-
-    public void setBets(List<Bet> bets) {
-        this.bets = bets;
     }
 
     @Override

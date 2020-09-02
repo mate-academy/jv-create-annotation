@@ -1,7 +1,7 @@
 package lib;
 
-import dao.BetDaoImpl;
-import dao.UserDaoImpl;
+import dao.BetDao;
+import dao.UserDao;
 import exceptions.NoDaoAnnotationFound;
 import factory.Factory;
 import java.lang.reflect.Constructor;
@@ -19,12 +19,11 @@ public class Injector {
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                String fieldName = field.getName().toLowerCase();
-                if (fieldName.contains("bet")
-                        && BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                if (field.getType().equals(BetDao.class)
+                        && Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
-                } else if (fieldName.contains("user")
-                        && UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                } else if (field.getType().equals(UserDao.class)
+                        && Factory.getUserDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
                 } else {
                     throw new NoDaoAnnotationFound("No Dao Annotation Found");

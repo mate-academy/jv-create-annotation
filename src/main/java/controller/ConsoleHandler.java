@@ -14,7 +14,6 @@ public class ConsoleHandler {
     UserDao userDao;
 
     public void handle() {
-        String splitter = " ";
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String command = scanner.nextLine();
@@ -25,6 +24,7 @@ public class ConsoleHandler {
             Bet bet = null;
             User user = null;
             try {
+                String splitter = " ";
                 String[] betData = command.split(splitter);
                 int value = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
