@@ -9,12 +9,12 @@ import java.util.List;
 public class CarDaoImpl implements CarDao {
     @Override
     public void add(Car car) {
-        Storage.CARS_STORAGE.add(car);
+        Storage.carsStorage.add(car);
     }
 
     @Override
     public Car getByModel(String model) {
-        return Storage.CARS_STORAGE.stream()
+        return Storage.carsStorage.stream()
                 .filter(car -> car.equals(model))
                 .findFirst()
                 .orElse(null);
@@ -22,11 +22,11 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public boolean remove(Car car) {
-        return Storage.CARS_STORAGE.remove(car);
+        return Storage.carsStorage.remove(car);
     }
 
     @Override
     public List<Car> getAll() {
-        return Storage.CARS_STORAGE;
+        return Storage.carsStorage;
     }
 }

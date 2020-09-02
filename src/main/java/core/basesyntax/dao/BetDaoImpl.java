@@ -10,16 +10,16 @@ public class BetDaoImpl implements BetDao {
 
     @Override
     public void add(Bet bet) {
-        Storage.BETS_STORAGE.add(bet);
+        Storage.betsStorage.add(bet);
     }
 
     @Override
     public List<Bet> getAll() {
-        return Storage.BETS_STORAGE;
+        return Storage.betsStorage;
     }
 
     @Override
     public boolean remove(Bet bet) {
-        return Storage.BETS_STORAGE.remove(bet);
+        return Storage.betsStorage.remove(bet);
     }
 }
