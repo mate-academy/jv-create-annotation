@@ -5,6 +5,8 @@ import core.basesyntax.dao.UserDao;
 import core.basesyntax.library.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
+
+import java.util.InvalidPropertiesFormatException;
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -34,23 +36,27 @@ public class ConsoleHandler {
                 return;
             }
             String[] parsedData;
+            int age;
+            int value;
+            double risk;
+            User user;
             try {
                 parsedData = command.split(PARSE_REGEX);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                age = Integer.parseInt(parsedData[AGE_INDEX]);
+                ageCheck(age);
+                value = Integer.parseInt(parsedData[VALUE_INDEX]);
+                risk = Double.parseDouble(parsedData[RISK_INDEX]);
+                String name = parsedData[NAME_INDEX];
+                String surname = parsedData[SURNAME_INDEX];
+                user = new User(name, surname, age);
+            } catch (NumberFormatException
+                    | IndexOutOfBoundsException
+                    | InvalidPropertiesFormatException exception) {
                 System.out.println("Please, make sure your input data is valid and try again");
                 continue;
             }
-            int age = Integer.parseInt(parsedData[AGE_INDEX]);
-            ageCheck(age);
-            Bet bet;
-            int value = Integer.parseInt(parsedData[VALUE_INDEX]);
-            double risk = Double.parseDouble(parsedData[RISK_INDEX]);
-            bet = new Bet(value, risk);
+            Bet bet = new Bet(value, risk);
             betDao.add(bet);
-            User user;
-            String name = parsedData[NAME_INDEX];
-            String surname = parsedData[SURNAME_INDEX];
-            user = new User(name, surname, age);
             userDao.add(user);
             System.out.println(user.toString() + " - " + bet.toString());
             System.out.println("The bet is successfully created. For quiting type \"exit\"");
