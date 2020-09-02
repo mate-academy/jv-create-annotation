@@ -11,7 +11,7 @@ public class Injector {
 
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
-            InstantiationException, RuntimeException {
+            InstantiationException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
 
@@ -21,14 +21,14 @@ public class Injector {
             field.setAccessible(true);
             if (field.getAnnotation(Inject.class) != null) {
                 if (field.getType().equals(BetDao.class)
-                        && BetDao.class.isAnnotationPresent(Dao.class)) {
+                        && !Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
                 } else if (field.getType().equals(UserDao.class)
-                        && UserDao.class.isAnnotationPresent(Dao.class)) {
+                        && !Factory.getUserDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
                 } else {
-                    throw new NoDaoAnnotationException(field.getName()
-                            + " doesn't contain @Dao annotation");
+                    throw new NoImplementationException(field.getName()
+                            + " doesn't have an implementation that can be injected");
                 }
             }
         }

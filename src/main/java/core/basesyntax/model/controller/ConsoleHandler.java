@@ -21,16 +21,13 @@ public class ConsoleHandler {
         while (true) {
             System.out.println("Enter value and risk for your bet.");
             String command = scanner.nextLine();
-
             if (command.equalsIgnoreCase("q")) {
                 System.out.println("all bets " + betDao.getAll()
                         + "\n" + "all users" + userDao.getAll());
                 return;
             }
-
             Bet bet = null;
             User user = null;
-
             try {
                 String[] betData = command.split(" ");
                 int value = Integer.parseInt(betData[0]);
@@ -46,7 +43,6 @@ public class ConsoleHandler {
                 System.out.println("Please, enter the correct information.");
                 continue;
             }
-
             betDao.add(bet);
             userDao.add(user);
             System.out.println(user == null ? null : user.toString());
