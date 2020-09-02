@@ -18,9 +18,7 @@ public class ConsoleHandler {
     private UserDao userDao;
 
     public void handle() {
-
         Scanner scanner = new Scanner(System.in);
-
         while (true) {
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("q")) {
