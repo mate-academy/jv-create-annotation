@@ -32,7 +32,7 @@ public class ConsoleHandler {
                 System.out.println("Minimum user information in appropriate format "
                         + "must be provided to be sure you are allowed to make debts");
             } else if (command.equalsIgnoreCase(NEW_BET) && visitor.isLegalGambling()) {
-                System.out.println(createNewBet(visitor, scanner));
+                System.out.println(createNewBet(scanner));
             }
             System.out.println("\nEnter 'n' to create a new user, 'b' to make a bet "
                                 + "or 'q' to quit application: ");
@@ -79,7 +79,7 @@ public class ConsoleHandler {
         return visitor;
     }
 
-    private String createNewBet(User visitor, Scanner scanner) {
+    private String createNewBet(Scanner scanner) {
         System.out.println("Please, input value and risk for your bet");
         String command = scanner.nextLine();
         String[] betData = command.split(" ");
