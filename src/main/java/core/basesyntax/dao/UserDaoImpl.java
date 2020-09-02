@@ -8,6 +8,7 @@ import java.util.List;
 
 @Dao
 public class UserDaoImpl implements UserDao {
+
     @Override
     public void add(User user) {
         Storage.getUsers().add(user);

@@ -20,9 +20,12 @@ public class ConsoleHandler {
         while (true) {
             System.out.println("Please, enter login and password for your user!");
             String inputUser = scanner.nextLine();
+            if (inputUser.equalsIgnoreCase("q")) {
+                break;
+            }
             System.out.println("Please, enter value and risk for your bet!");
             String inputBet = scanner.nextLine();
-            if (inputUser.equalsIgnoreCase("q") || inputBet.equalsIgnoreCase("q")) {
+            if (inputBet.equalsIgnoreCase("q")) {
                 break;
             }
             try {
@@ -36,8 +39,8 @@ public class ConsoleHandler {
                 System.out.println("Please, enter valid data");
             }
 
-            System.out.println(betDao.getAll().toString());
-            System.out.println(userDao.getAll().toString());
+            System.out.println(betDao.getAll());
+            System.out.println(userDao.getAll());
         }
     }
 }
