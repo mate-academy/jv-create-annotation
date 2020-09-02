@@ -13,7 +13,9 @@ public class ConsoleHandler {
     @Inject
     UserDao userDao;
 
-    public void handler() {
+    public void handle() {
+        System.out.println("Enter your name, surname and age, "
+                + "your bet value and risk for it");
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String command = scanner.nextLine();

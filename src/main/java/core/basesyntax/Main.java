@@ -10,9 +10,7 @@ public class Main {
             InstantiationException, IllegalAccessException {
         ConsoleHandler handler = (ConsoleHandler) Injector
                 .getInstance(ConsoleHandler.class);
-        System.out.println("Enter your name, surname and age, "
-                + "your bet value and risk for it");
-        handler.handler();
+        handler.handle();
     }
 
 }
