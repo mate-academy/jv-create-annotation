@@ -1,9 +1,7 @@
 package core.basesyntax.library;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.exeption.AnnotationAbsentException;
 import core.basesyntax.exeption.UnsupportedTypeException;
 import core.basesyntax.factory.Factory;
@@ -25,13 +23,13 @@ public class Injector {
                 field.setAccessible(true);
 
                 if (field.getType() == BetDao.class) {
-                    if (!BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                    if (!Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                         throw new AnnotationAbsentException(
                                 "Annotation @Dao is absent for BetDaoImpl");
                     }
                     field.set(instance, Factory.getBetDao());
                 } else if (field.getType() == UserDao.class) {
-                    if (!UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                    if (!Factory.getUserDao().getClass().isAnnotationPresent(Dao.class)) {
                         throw new AnnotationAbsentException(
                                 "Annotation @Dao is absent for UserDaoImpl");
                     }
