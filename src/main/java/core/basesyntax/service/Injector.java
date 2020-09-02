@@ -18,23 +18,24 @@ public class Injector {
             IllegalAccessException, InvocationTargetException, InstantiationException {
         Field[] declaredFields = clazz.getDeclaredFields();
         Object instance = clazz.getDeclaredConstructor().newInstance();
-        isDaoAnnotationExist();
+        doesDaoAnnotationExist();
 
         for (Field field : declaredFields) {
-            if (field.getAnnotation(Inject.class) != null) {
-                field.setAccessible(true);
-                if (field.getType().equals(BetDao.class)) {
-                    field.set(instance, Factory.getBetDao());
-                }
-                if (field.getType().equals(UserDao.class)) {
-                    field.set(instance, Factory.getUserDao());
-                }
+            if (field.getAnnotation(Inject.class) == null) {
+                continue;
+            }
+            field.setAccessible(true);
+            if (field.getType().equals(BetDao.class)) {
+                field.set(instance, Factory.getBetDao());
+            }
+            if (field.getType().equals(UserDao.class)) {
+                field.set(instance, Factory.getUserDao());
             }
         }
         return instance;
     }
 
-    private static void isDaoAnnotationExist() {
+    private static void doesDaoAnnotationExist() {
         if (!UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
             throw new NoAnnotationPresentException(EXC_MESSAGE, UserDaoImpl.class);
         }
