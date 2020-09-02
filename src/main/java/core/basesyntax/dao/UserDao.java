@@ -6,7 +6,7 @@ import java.util.List;
 public interface UserDao {
     void addUserToStorage(User user);
 
-    List<User> gerAllUsers();
+    List<User> getAllUsers();
 
     void removeUserFromStorage(User user);
 }
