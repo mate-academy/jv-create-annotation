@@ -1,15 +1,14 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.library.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
 
-public class ControllerHandler {
-    private static final String IGNORE_CASE = "exit";
+public class ConsoleHandler {
+    private static final String EXIT_CASE = "exit";
     private static final String PARSE_REGEX = ", ";
     private static final int NAME_INDEX = 0;
     private static final int SURNAME_INDEX = 1;
@@ -18,14 +17,18 @@ public class ControllerHandler {
     private static final int RISK_INDEX = 4;
     private static final int AGE_FROM = 18;
     private static final int AGE_TO = 70;
-    private final BetDao betDao = new BetDaoImpl();
-    private final UserDao userDao = new UserDaoImpl();
+
+    @Inject
+    private BetDao betDao;
+
+    @Inject
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String command = scanner.nextLine();
-            if (command.equalsIgnoreCase(IGNORE_CASE)) {
+            if (command.equalsIgnoreCase(EXIT_CASE)) {
                 System.out.println(userDao.getAllUsers());
                 System.out.println(betDao.getAllBets());
                 return;
