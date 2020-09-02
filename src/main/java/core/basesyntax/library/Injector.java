@@ -24,8 +24,7 @@ public class Injector {
                 if (field.getType().equals(BetDao.class)
                         && BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
-                }
-                if (field.getType().equals(UserDao.class)
+                } else if (field.getType().equals(UserDao.class)
                         && UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
                 } else {
