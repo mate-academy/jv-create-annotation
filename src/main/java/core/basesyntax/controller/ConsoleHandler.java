@@ -11,9 +11,9 @@ import java.io.InputStreamReader;
 
 public class ConsoleHandler {
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     public void handle() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
