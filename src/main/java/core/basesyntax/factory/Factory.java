@@ -18,7 +18,7 @@ public class Factory {
     }
 
     public static BetDao getBetDaoImpl() {
-            return new BetDaoImpl();
+        return new BetDaoImpl();
     }
 
     public static UserDao getUserDaoImpl() {
@@ -27,9 +27,9 @@ public class Factory {
 
     public static Object getDaoImpl(Class<?> type) {
         if (type.equals(UserDao.class)) {
-           return Factory.getUserDaoImpl();
+            return Factory.getUserDaoImpl();
         } else if (type.equals(BetDao.class)) {
-           return Factory.getBetDaoImpl();
+            return Factory.getBetDaoImpl();
         }
         throw new UnknownDaoImplException("Unknown dao implementation");
     }
