@@ -1,17 +1,19 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.UserDao;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
+import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
+    @Inject
     private BetDao betDao;
+    @Inject
+    private UserDao userDao;
 
-    public ConsoleHandler(BetDao betDao) {
-        this.betDao = betDao;
-    }
-
-    public void handler() {
+    public void handleBet() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -32,6 +34,28 @@ public class ConsoleHandler {
             betDao.add(bet);
 
             System.out.println(bet == null ? null : bet.toString());
+        }
+    }
+
+    public void handleUser() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String command = scanner.nextLine();
+            if (command.equalsIgnoreCase("q")) {
+                return;
+            }
+            User user = null;
+            try {
+                String[] userData = command.split(" ");
+                String username = userData[0];
+                String password = userData[1];
+                user = new User(username, password);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Enter right information, please!");
+                continue;
+            }
+            userDao.add(user);
+            System.out.println(user == null ? null : user.toString());
         }
     }
 }

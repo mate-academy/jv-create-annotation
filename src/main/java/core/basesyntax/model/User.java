@@ -3,14 +3,10 @@ package core.basesyntax.model;
 public class User {
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
 
-    public User(String username, String password, String firstName, String lastName) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public String getUsername() {
@@ -29,19 +25,11 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    @Override
+    public String toString() {
+        return "User{"
+                + "username='" + username + '\''
+                + ", password='" + password + '\''
+                + '}';
     }
 }
