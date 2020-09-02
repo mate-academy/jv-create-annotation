@@ -23,14 +23,12 @@ public class Injector {
                 if (field.getType().equals(BetDao.class)
                         && betDao.getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, betDao);
+                } else if (field.getType().equals(UserDao.class)
+                        && userDao.getClass().isAnnotationPresent(Dao.class)) {
+                    field.set(instance, userDao);
                 } else {
-                    if (field.getType().equals(UserDao.class)
-                            && userDao.getClass().isAnnotationPresent(Dao.class)) {
-                        field.set(instance, userDao);
-                    } else {
-                        throw new NoImplementationException(field.getName()
-                                + " doesn't have an implementation that can be injected");
-                    }
+                    throw new NoImplementationException(field.getName()
+                            + " doesn't have an implementation that can be injected");
                 }
             }
         }
