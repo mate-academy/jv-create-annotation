@@ -3,17 +3,20 @@ package core.basesyntax.model;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@RequiredArgsConstructor
 @Getter
+@Setter
 public class User {
-    @NonNull
     private String login;
-    @NonNull
     private String password;
-    @NonNull
     private int age;
-    private List<Bet> bets = new ArrayList<>();
+    private List<Bet> bets;
+
+    public User(String login, String password, int age) {
+        this.login = login;
+        this.password = password;
+        this.age = age;
+        bets = new ArrayList<>();
+    }
 }

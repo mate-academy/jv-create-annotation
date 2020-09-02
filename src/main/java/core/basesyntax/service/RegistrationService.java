@@ -5,5 +5,5 @@ import core.basesyntax.exception.InvalidAgeException;
 import core.basesyntax.model.User;
 
 public interface RegistrationService {
-    void registration(User newUser) throws DuplicateUserException, InvalidAgeException;
+    void register(User newUser) throws DuplicateUserException, InvalidAgeException;
 }

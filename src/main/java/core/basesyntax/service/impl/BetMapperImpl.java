@@ -14,7 +14,7 @@ public class BetMapperImpl implements Mapper<Bet> {
             double risk = Double.parseDouble(data[1]);
             return new Bet(value, risk);
         } catch (NumberFormatException e) {
-            throw new RuntimeException("Incorrect data");
+            throw new NumberFormatException("Incorrect data");
         }
     }
 }

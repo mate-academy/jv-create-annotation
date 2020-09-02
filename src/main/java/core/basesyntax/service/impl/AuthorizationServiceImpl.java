@@ -10,7 +10,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     @Inject
     private UserDao userDao;
 
-    public User authorization(String login, String password) throws WrongLoginOrPasswordException {
+    public User authorize(String login, String password) throws WrongLoginOrPasswordException {
         if (login == null || password == null) {
             throw new RuntimeException("Expected to receive data, but got null");
         }

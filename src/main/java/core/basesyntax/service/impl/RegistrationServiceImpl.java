@@ -11,7 +11,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Inject
     private UserDao userDao;
 
-    public void registration(User newUser) throws DuplicateUserException, InvalidAgeException {
+    public void register(User newUser) throws DuplicateUserException, InvalidAgeException {
         if (newUser == null) {
             throw new RuntimeException("Expected to receive user, but got null");
         }

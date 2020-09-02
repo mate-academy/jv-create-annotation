@@ -8,11 +8,4 @@ import java.util.List;
 public class Storage {
     public static final List<Bet> bets = new ArrayList<>();
     public static final List<User> users = new ArrayList<>();
-
-    public static User getUserByLogin(String login) {
-        return users.stream()
-                .filter(x -> x.getLogin().equals(login))
-                .findFirst()
-                .orElse(null);
-    }
 }

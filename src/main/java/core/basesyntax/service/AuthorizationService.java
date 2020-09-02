@@ -4,5 +4,5 @@ import core.basesyntax.exception.WrongLoginOrPasswordException;
 import core.basesyntax.model.User;
 
 public interface AuthorizationService {
-    User authorization(String login, String password) throws WrongLoginOrPasswordException;
+    User authorize(String login, String password) throws WrongLoginOrPasswordException;
 }
