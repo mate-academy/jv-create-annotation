@@ -17,6 +17,11 @@ public class Injector {
 
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field field : declaredFields) {
+            if (Factory.getUserDao().getClass().getAnnotation(Dao.class) == null
+                    || Factory.getBetDao().getClass().getAnnotation(Dao.class) == null) {
+                throw new DaoAnnotationException("There is no proper annotation "
+                        + "in Dao implementation class");
+            }
             if (field.getAnnotation(Inject.class) != null && field.getType().equals(BetDao.class)) {
                 field.setAccessible(true);
                 field.set(instance, Factory.getBetDao());
@@ -25,11 +30,6 @@ public class Injector {
                     && field.getType().equals(UserDao.class)) {
                 field.setAccessible(true);
                 field.set(instance, Factory.getUserDao());
-            }
-            if (Factory.getUserDao().getClass().getAnnotation(Dao.class) == null
-                    || Factory.getBetDao().getClass().getAnnotation(Dao.class) == null) {
-                throw new DaoAnnotationException("There is no proper annotation "
-                        + "in Dao implementation class");
             }
         }
         return instance;
