@@ -13,7 +13,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     public void register(User newUser) throws DuplicateUserException, InvalidAgeException {
         if (newUser == null) {
-            throw new RuntimeException("Expected to receive user, but got null");
+            throw new IllegalArgumentException("Expected to receive user, but got null");
         }
         User user = userDao.getByLogin(newUser.getLogin());
         if (user != null) {

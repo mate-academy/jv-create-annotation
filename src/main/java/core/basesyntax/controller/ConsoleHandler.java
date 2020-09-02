@@ -3,10 +3,6 @@ package core.basesyntax.controller;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.exception.DuplicateUserException;
 import core.basesyntax.exception.InvalidAgeException;
-import core.basesyntax.exception.InvalidLoginStringException;
-import core.basesyntax.exception.InvalidStringBetException;
-import core.basesyntax.exception.InvalidStringRegisterException;
-import core.basesyntax.exception.UserNotAuthorizedException;
 import core.basesyntax.exception.WrongLoginOrPasswordException;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
@@ -44,21 +40,23 @@ public class ConsoleHandler {
                         return;
                     case "/l":
                         user = authorize(data);
-                        cursor = "\n[" + user.getLogin() + "] enter bet->";
-                        continue;
+                        if (user != null) {
+                            cursor = "\n[" + user.getLogin() + "] enter bet->";
+                        }
+                        break;
                     case "/r":
                         register(data);
-                        continue;
+                        break;
                     case "/h":
                         outputCommands();
-                        continue;
+                        break;
                     case "/mb":
                         outputUserBets(user);
-                        continue;
+                        break;
                     case "/signout":
                         user = signOut(user);
                         cursor = CURSOR_TEXT;
-                        continue;
+                        break;
                     default:
                         if (user != null) {
                             placeBet(data, user);
@@ -72,23 +70,15 @@ public class ConsoleHandler {
                 System.out.println("This login is busy");
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Invalid data");
-            } catch (InvalidLoginStringException e) {
-                System.out.println("Invalid string. Example: [/l login password]");
-            } catch (InvalidStringRegisterException e) {
-                System.out.println("Invalid string. Example: [/r login password age]");
-            } catch (UserNotAuthorizedException e) {
-                System.out.println("You are not logged in");
-            } catch (InvalidStringBetException e) {
-                System.out.println("Invalid string. Enter value and risk, "
-                        + "example: 100 0.1");
             }
         }
     }
 
-    private void placeBet(String[] data, User user) throws InvalidStringBetException {
+    private void placeBet(String[] data, User user) {
         if (data.length != 2) {
-            throw new InvalidStringBetException("Invalid string. Enter value and risk, "
+            System.out.println("Invalid string. Enter value and risk, "
                     + "example: 100 0.1");
+            return;
         }
         Bet bet = betMapper.parse(data);
         bet.setUserName(user.getLogin());
@@ -97,27 +87,29 @@ public class ConsoleHandler {
         System.out.println("Bet saved");
     }
 
-    private User signOut(User user) throws UserNotAuthorizedException {
+    private User signOut(User user) {
         if (user == null) {
-            throw new UserNotAuthorizedException("You are not logged in");
+            System.out.println("You are not logged in");
+        } else {
+            System.out.println("Good bye");
         }
-        System.out.println("Good bye");
         return null;
     }
 
-    private void outputUserBets(User user) throws UserNotAuthorizedException {
+    private void outputUserBets(User user) {
         if (user == null) {
-            throw new UserNotAuthorizedException("You need to log in");
+            System.out.println("You need to log in");
+            return;
         }
         user.getBets().forEach(System.out::print);
         System.out.println("");
     }
 
-    private User authorize(String[] data) throws WrongLoginOrPasswordException,
-            InvalidLoginStringException {
+    private User authorize(String[] data) throws WrongLoginOrPasswordException {
         if (data.length != 3) {
-            throw new InvalidLoginStringException("Invalid string. "
+            System.out.println("Invalid string. "
                     + "Example: [/l login password]");
+            return null;
         }
         String login = data[1];
         String password = data[2];
@@ -127,10 +119,11 @@ public class ConsoleHandler {
     }
 
     private void register(String[] data) throws InvalidAgeException,
-            DuplicateUserException, InvalidStringRegisterException {
+            DuplicateUserException {
         if (data.length != 4) {
-            throw new InvalidStringRegisterException("Invalid string. "
+            System.out.println("Invalid string. "
                     + "Example: [/r login password age]");
+            return;
         }
         User newUser = userMapper.parse(data);
         regService.register(newUser);

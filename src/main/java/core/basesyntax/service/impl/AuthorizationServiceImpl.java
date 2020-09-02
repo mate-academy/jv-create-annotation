@@ -12,7 +12,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 
     public User authorize(String login, String password) throws WrongLoginOrPasswordException {
         if (login == null || password == null) {
-            throw new RuntimeException("Expected to receive data, but got null");
+            throw new IllegalArgumentException("Expected to receive data, but got null");
         }
         User user = userDao.getByLogin(login);
         if (user == null || !user.getPassword().equals(password)) {
