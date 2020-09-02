@@ -17,8 +17,8 @@ public class Injector {
         Object instance = constructor.newInstance();
         Field[] declaredField = clazz.getDeclaredFields();
         for (Field field : declaredField) {
-            checkAnnotation(field);
             if (field.getAnnotation(Inject.class) != null) {
+                checkAnnotation(field);
                 field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)) {
                     field.set(instance, Factory.getBetDao());
