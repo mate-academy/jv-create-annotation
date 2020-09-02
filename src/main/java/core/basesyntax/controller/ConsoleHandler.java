@@ -12,9 +12,9 @@ public class ConsoleHandler {
     private static final String NEW_BET = "b";
     private static final String QUIT_APP = "q";
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
