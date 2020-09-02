@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
 
     public void handleUsers() {
         try (Scanner scanner = new Scanner(System.in)) {

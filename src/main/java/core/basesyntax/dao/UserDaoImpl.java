@@ -10,7 +10,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void addNewUser(User user) {
         ListStorage.userStorage.add(user);
-        System.out.println(user + "\n User added.");
     }
 
     @Override
