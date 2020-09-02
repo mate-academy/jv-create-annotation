@@ -4,7 +4,7 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.CarDao;
 import core.basesyntax.dao.CarDaoImpl;
-import core.basesyntax.exception.NoDaoAnnotationException;
+import core.basesyntax.exception.NoAnnotationException;
 import core.basesyntax.lib.Dao;
 
 public class Factory {
@@ -14,7 +14,7 @@ public class Factory {
     public static BetDao getBetDao() {
         if (betDao == null) {
             if (BetDaoImpl.class.getAnnotation(Dao.class) == null) {
-                throw new NoDaoAnnotationException("BetDaoImpl class has no @Dao annotation");
+                throw new NoAnnotationException("BetDaoImpl class has no @Dao annotation");
             }
             betDao = new BetDaoImpl();
         }
@@ -24,7 +24,7 @@ public class Factory {
     public static CarDao getCarDao() {
         if (carDao == null) {
             if (CarDaoImpl.class.getAnnotation(Dao.class) == null) {
-                throw new NoDaoAnnotationException("CarDaoImpl class has no @Dao annotation");
+                throw new NoAnnotationException("CarDaoImpl class has no @Dao annotation");
             }
             carDao = new CarDaoImpl();
         }
