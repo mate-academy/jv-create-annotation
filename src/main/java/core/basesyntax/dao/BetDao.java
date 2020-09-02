@@ -6,7 +6,7 @@ import java.util.List;
 public interface BetDao {
     boolean addBet(Bet bet);
 
-    List<Bet> getAllBet();
+    List<Bet> getAllBets();
 
     boolean removeBet(Bet bet);
 }

@@ -19,13 +19,14 @@ public class ConsoleHandler {
         String command = scanner.nextLine();
         User user = null;
         Bet bet;
-        try {
-            String[] userData = command.split(" ");
-            user = new User(userData[0], userData[1], userData[2]);
-            userDao.addUser(user);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Please input the correct values");
-            handle();
+        while (user == null) {
+            try {
+                String[] userData = command.split(" ");
+                user = new User(userData[0], userData[1], userData[2]);
+                userDao.addUser(user);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Please input the correct values");
+            }
         }
         while (true) {
             if (command.equalsIgnoreCase("q")) {
