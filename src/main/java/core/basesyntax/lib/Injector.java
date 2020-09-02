@@ -2,7 +2,7 @@ package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.exeptions.NonAnnotationException;
+import core.basesyntax.exeptions.NoImplementationException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
-            InstantiationException, NonAnnotationException {
+            InstantiationException, NoImplementationException {
         Constructor declaredConstructor = clazz.getDeclaredConstructor();
         Object newInstance = declaredConstructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -26,7 +26,8 @@ public class Injector {
                     field.setAccessible(true);
                     field.set(newInstance, Factory.getUserDao());
                 } else {
-                    throw new NonAnnotationException("Відсутня антотація @Dao у класі.");
+                    throw new NoImplementationException(field.getName()
+                                    + "Відсутня антотація @Dao у класі.");
                 }
             }
         }

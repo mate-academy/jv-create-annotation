@@ -1,15 +1,13 @@
 package core.basesyntax;
 
 import core.basesyntax.controller.ConsoleHandler;
-import core.basesyntax.dao.BetDao;
-import core.basesyntax.exeptions.NonAnnotationException;
-import core.basesyntax.factory.Factory;
+import core.basesyntax.exeptions.NoImplementationException;
 import core.basesyntax.lib.Injector;
 import java.lang.reflect.InvocationTargetException;
 
 public class Main {
     public static void main(String[] args) throws InvocationTargetException,
-            NoSuchMethodException, NonAnnotationException,
+            NoSuchMethodException, NoImplementationException,
             InstantiationException, IllegalAccessException {
         ConsoleHandler handler = (ConsoleHandler) Injector
                 .getInstance(ConsoleHandler.class);
@@ -17,7 +15,5 @@ public class Main {
                 + "сумму та ризик для вашої ставки через пробіл.\n"
                 + "Щоб завершити роботу програми натисніть 'q'.");
         handler.handle();
-
-        BetDao betDao = Factory.getBetDao();
     }
 }
