@@ -20,17 +20,15 @@ public class Injector {
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                if (field.getType().equals(BetDao.class)) {
-                    if (Factory.getBetDao().getClass().getAnnotation(Dao.class) == null) {
-                        throw new AnnotationNotFoundException();
-                    }
+                if (field.getType() == BetDao.class
+                        && Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
-                }
-                if (field.getType().equals(UserDao.class)) {
-                    if (Factory.getUserDao().getClass().getAnnotation(Dao.class) == null) {
-                        throw new AnnotationNotFoundException();
-                    }
+                } else if (field.getType() == UserDao.class
+                        && Factory.getUserDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
+                } else {
+                    throw new AnnotationNotFoundException(field.getName()
+                            + " doesn't have an implementation that can be injected");
                 }
             }
         }
