@@ -1,16 +1,22 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
+import core.basesyntax.dao.UserDao;
+import core.basesyntax.library.Inject;
 import core.basesyntax.model.Bet;
+import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private BetDao betDao = new BetDaoImpl();
+    @Inject
+    private BetDao betDao;
+    @Inject
+    private UserDao userDao;
 
-    public void handle() {
+    public void handleBets() {
         Scanner scanner = new Scanner(System.in);
-
+        System.out.println("q - for quit");
+        System.out.println("Input value and risk for your bet:");
         while (true) {
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("q")) {
@@ -34,5 +40,16 @@ public class ConsoleHandler {
                 System.out.println(bet.toString());
             }
         }
+    }
+
+    public void handleUser() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Login:");
+        String login = scanner.nextLine();
+        System.out.println("Password:");
+        String password = scanner.nextLine();
+
+        User user = new User(login, password);
+        userDao.add(user);
     }
 }
