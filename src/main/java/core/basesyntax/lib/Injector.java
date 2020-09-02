@@ -22,21 +22,17 @@ public class Injector {
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                if (field.getType().equals(BetDao.class)) {
-                    if (betDaoImplClass.isAnnotationPresent(Dao.class)) {
-                        field.set(instance, Factory.getBetDao());
-                    } else {
-                        throw new NoAnnotationFoundException("Такої анотації не знайдено");
-                    }
+                if (field.getType().equals(BetDao.class)
+                        && betDaoImplClass.isAnnotationPresent(Dao.class)) {
+                    field.set(instance, Factory.getBetDao());
+                } else {
+                    throw new NoAnnotationFoundException("Такої анотації не знайдено");
                 }
-
-                if (field.getType().equals(UserDao.class)) {
+                if (field.getType().equals(UserDao.class)
+                        && userDaoImplClass.isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
-                    if (userDaoImplClass.isAnnotationPresent(Dao.class)) {
-                        field.set(instance, Factory.getUserDao());
-                    } else {
-                        throw new NoAnnotationFoundException("Такої анотації не знайдено");
-                    }
+                } else {
+                    throw new NoAnnotationFoundException("Такої анотації не знайдено");
                 }
             }
         }
