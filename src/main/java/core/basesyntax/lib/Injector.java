@@ -28,12 +28,10 @@ public class Injector {
                     field.setAccessible(true);
                     field.set(instance, Factory.getBetDao());
                 }
-            } else if (field.getAnnotation(Inject.class) != null) {
-                if (field.getType().equals(OrderDao.class)
-                        && orderDaoClass.isAnnotationPresent(Dao.class)) {
-                    field.setAccessible(true);
-                    field.set(instance, Factory.getOrderDao());
-                }
+            } else if (field.getType().equals(OrderDao.class)
+                    && orderDaoClass.isAnnotationPresent(Dao.class)) {
+                field.setAccessible(true);
+                field.set(instance, Factory.getOrderDao());
             } else {
                 throw new DaoIsNotFindException("Do not found DAO Annotation");
             }
