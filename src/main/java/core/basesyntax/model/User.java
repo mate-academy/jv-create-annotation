@@ -13,12 +13,12 @@ public class User {
         return name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public void setAge(int age) {
@@ -26,7 +26,7 @@ public class User {
     }
 
     public boolean isLegalGambling() {
-        if (this.age < 21) {
+        if (age < 21) {
             System.out.println("It's not legal to make debts under age of 21! "
                     + "But feel free to explore the app as a guest user");
             return false;

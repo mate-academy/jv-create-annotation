@@ -1,9 +1,8 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
@@ -12,8 +11,10 @@ public class ConsoleHandler {
     private static final String NEW_USER = "n";
     private static final String NEW_BET = "b";
     private static final String QUIT_APP = "q";
-    private BetDao betDao = new BetDaoImpl();
-    private UserDao userDao = new UserDaoImpl();
+    @Inject
+    BetDao betDao;
+    @Inject
+    UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -31,7 +32,7 @@ public class ConsoleHandler {
                 System.out.println("Minimum user information in appropriate format "
                         + "must be provided to be sure you are allowed to make debts");
             } else if (command.equalsIgnoreCase(NEW_BET) && visitor.isLegalGambling()) {
-                System.out.println(createNewBet(scanner));
+                System.out.println(createNewBet(visitor, scanner));
             }
             System.out.println("\nEnter 'n' to create a new user, 'b' to make a bet "
                                 + "or 'q' to quit application: ");
@@ -78,7 +79,7 @@ public class ConsoleHandler {
         return visitor;
     }
 
-    private String createNewBet(Scanner scanner) {
+    private String createNewBet(User visitor, Scanner scanner) {
         System.out.println("Please, input value and risk for your bet");
         String command = scanner.nextLine();
         String[] betData = command.split(" ");
