@@ -33,31 +33,36 @@ public class ConsoleHandler {
                 System.out.println(betDao.getAllBets());
                 return;
             }
-            Bet bet;
-            User user;
+            String[] parsedData;
             try {
-                String[] betData = command.split(PARSE_REGEX);
-                int age = Integer.parseInt(betData[AGE_INDEX]);
-                if (age < AGE_FROM) {
-                    throw new IllegalArgumentException("You are too young to do bets");
-                }
-                if (age >= AGE_TO) {
-                    throw new IllegalArgumentException("You are too old to do bets");
-                }
-                String name = betData[NAME_INDEX];
-                String surname = betData[SURNAME_INDEX];
-                user = new User(name, surname, age);
-                int value = Integer.parseInt(betData[VALUE_INDEX]);
-                double risk = Double.parseDouble(betData[RISK_INDEX]);
-                bet = new Bet(value, risk);
-                userDao.add(user);
-                betDao.add(bet);
+                parsedData = command.split(PARSE_REGEX);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 System.out.println("Please, make sure your input data is valid and try again");
                 continue;
             }
+            int age = Integer.parseInt(parsedData[AGE_INDEX]);
+            ageCheck(age);
+            Bet bet;
+            int value = Integer.parseInt(parsedData[VALUE_INDEX]);
+            double risk = Double.parseDouble(parsedData[RISK_INDEX]);
+            bet = new Bet(value, risk);
+            betDao.add(bet);
+            User user;
+            String name = parsedData[NAME_INDEX];
+            String surname = parsedData[SURNAME_INDEX];
+            user = new User(name, surname, age);
+            userDao.add(user);
             System.out.println(user.toString() + " - " + bet.toString());
             System.out.println("The bet is successfully created. For quiting type \"exit\"");
+        }
+    }
+
+    private void ageCheck(int age) {
+        if (age < AGE_FROM) {
+            throw new IllegalArgumentException("You are too young to do bets");
+        }
+        if (age >= AGE_TO) {
+            throw new IllegalArgumentException("You are too old to do bets");
         }
     }
 }
