@@ -13,9 +13,6 @@ public class ConsoleHandler {
     @Inject
     private UserDao userDao;
 
-    public ConsoleHandler() {
-    }
-
     public void handle() {
         Scanner scanner = new Scanner(System.in);
 
@@ -48,7 +45,7 @@ public class ConsoleHandler {
                 }
                 user = new User(name, age, bet);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Age value inappropriate!");
+                System.out.println("Wrong age value!");
                 continue;
             }
             betDao.addBet(bet);
