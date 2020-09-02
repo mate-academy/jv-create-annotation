@@ -1,8 +1,6 @@
 package core.basesyntax.exception;
 
-import java.io.IOException;
-
-public class DaoAnnotationNotFound extends IOException {
+public class DaoAnnotationNotFound extends Exception {
     public DaoAnnotationNotFound(String message) {
         super(message);
     }

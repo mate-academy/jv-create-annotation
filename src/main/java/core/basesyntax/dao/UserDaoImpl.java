@@ -6,7 +6,7 @@ import core.basesyntax.model.User;
 import java.util.List;
 
 @Dao
-public class UserDaoImp implements UserDao {
+public class UserDaoImpl implements UserDao {
     @Override
     public void add(User user) {
         Storage.users.add(user);

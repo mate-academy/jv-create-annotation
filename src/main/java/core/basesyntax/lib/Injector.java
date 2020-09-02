@@ -1,9 +1,9 @@
 package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImp;
+import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImp;
+import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.exception.DaoAnnotationNotFound;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
@@ -12,7 +12,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+            IllegalAccessException, InvocationTargetException,
+            InstantiationException, DaoAnnotationNotFound {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -20,24 +21,21 @@ public class Injector {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)) {
-                    field.set(instance, Factory.getBetDao());
+                    if (BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                        field.set(instance, Factory.getBetDao());
+                    } else {
+                        throw new DaoAnnotationNotFound("BetDaoImpl haven't annotation!");
+                    }
                 }
                 if (field.getType().equals(UserDao.class)) {
-                    field.set(instance, Factory.getUserDao());
+                    if (UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                        field.set(instance, Factory.getUserDao());
+                    } else {
+                        throw new DaoAnnotationNotFound("UserDaoImpl haven't annotation!");
+                    }
                 }
             }
         }
         return instance;
-    }
-
-    public static void checkDaoAnnotation() throws DaoAnnotationNotFound {
-        Class<BetDaoImp> betDaoImp = BetDaoImp.class;
-        if (!betDaoImp.isAnnotationPresent(Dao.class)) {
-            throw new DaoAnnotationNotFound("BetDaoImp haven't @Dao annotation!");
-        }
-        Class<UserDaoImp> userDaoImpClass = UserDaoImp.class;
-        if (!userDaoImpClass.isAnnotationPresent(Dao.class)) {
-            throw new DaoAnnotationNotFound("UserDaoImp haven't @Dao annotation!");
-        }
     }
 }
