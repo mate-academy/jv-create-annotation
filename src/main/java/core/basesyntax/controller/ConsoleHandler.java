@@ -1,15 +1,17 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.library.Inject;
 import core.basesyntax.model.Bet;
+import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
-    UserDao userDao = new UserDaoImpl();
+    @Inject
+    BetDao betDao;
+    @Inject
+    UserDao userDao;
 
     public void handler() {
         Scanner scanner = new Scanner(System.in);
@@ -19,12 +21,19 @@ public class ConsoleHandler {
                 return;
             }
             Bet bet = null;
+            User user = null;
             try {
-                String[] betData = command.split(" ");
-                int value = Integer.parseInt(betData[0]);
-                double risk = Double.parseDouble(betData[1]);
+                String[] inputData = command.split(" ");
+                String name = inputData[0];
+                String surname = inputData[1];
+                int age = Integer.parseInt(inputData[2]);
+                int value = Integer.parseInt(inputData[3]);
+                double risk = Double.parseDouble(inputData[4]);
+                user = new User(name, surname, age);
                 bet = new Bet(risk, value);
+                userDao.add(user);
                 betDao.add(bet);
+                System.out.println(user);
                 System.out.println(bet);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Wrong parameters");
