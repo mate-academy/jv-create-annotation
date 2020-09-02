@@ -17,28 +17,29 @@ public class Injector {
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, InstantiationException {
         Field[] declaredFields = clazz.getDeclaredFields();
-        Object instance = null;
-        instance = clazz.getDeclaredConstructor().newInstance();
+        Object instance = clazz.getDeclaredConstructor().newInstance();
+        isDaoAnnotationExist();
 
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)) {
-                    if (BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
-                        field.set(instance, Factory.getBetDao());
-                    } else {
-                        throw new NoAnnotationPresentException(EXC_MESSAGE, BetDaoImpl.class);
-                    }
+                    field.set(instance, Factory.getBetDao());
                 }
                 if (field.getType().equals(UserDao.class)) {
-                    if (UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
-                        field.set(instance, Factory.getUserDao());
-                    } else {
-                        throw new NoAnnotationPresentException(EXC_MESSAGE, UserDaoImpl.class);
-                    }
+                    field.set(instance, Factory.getUserDao());
                 }
             }
         }
         return instance;
+    }
+
+    private static void isDaoAnnotationExist() {
+        if (!UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
+            throw new NoAnnotationPresentException(EXC_MESSAGE, UserDaoImpl.class);
+        }
+        if (!BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
+            throw new NoAnnotationPresentException(EXC_MESSAGE, BetDaoImpl.class);
+        }
     }
 }
