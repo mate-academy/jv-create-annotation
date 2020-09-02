@@ -20,17 +20,15 @@ public class Injector {
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Inject.class)) {
                 field.setAccessible(true);
-                if (field.getType().equals(BetDao.class)) {
-                    if (BetDaoImpl.class.getAnnotation(Dao.class) == null) {
-                        throw new NoAnnotationException("BetDaoImpl class has no @Dao annotation");
-                    }
+                if (field.getType().equals(BetDao.class)
+                        && BetDaoImpl.class.getAnnotation(Dao.class) != null) {
                     field.set(instance, Factory.getBetDao());
-                }
-                if (field.getType().equals(CarDao.class)) {
-                    if (CarDaoImpl.class.getAnnotation(Dao.class) == null) {
-                        throw new NoAnnotationException("CarDaoImpl class has no @Dao annotation");
-                    }
+                } else if (field.getType().equals(CarDao.class)
+                        && CarDaoImpl.class.getAnnotation(Dao.class) != null) {
                     field.set(instance, Factory.getCarDao());
+                } else {
+                    throw new NoAnnotationException(field.getType()
+                            + "Impl class has no @Dao annotation");
                 }
             }
         }
