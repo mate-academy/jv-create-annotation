@@ -8,7 +8,6 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private static final Scanner SCANNER = new Scanner(System.in);
 
     @Inject
     private UserDao userDao;
@@ -16,9 +15,10 @@ public class ConsoleHandler {
     private BetDao betDao;
 
     public void userHandle() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter login and password for User, please!!!");
         while (true) {
-            String consoleData = SCANNER.nextLine();
+            String consoleData = scanner.nextLine();
             if (consoleData.equals("q")) {
                 return;
             }
@@ -36,9 +36,10 @@ public class ConsoleHandler {
     }
 
     public void betHandle() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter value and risk for Bet, please!!!");
         while (true) {
-            String consoleData = SCANNER.nextLine();
+            String consoleData = scanner.nextLine();
             if (consoleData.equals("q")) {
                 return;
             }

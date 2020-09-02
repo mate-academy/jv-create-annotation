@@ -1,7 +1,10 @@
 package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
+import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.exception.NoSuchInjectionObjectException;
 import core.basesyntax.factory.BetDaoFactory;
 import core.basesyntax.factory.UserDaoFactory;
 import java.lang.reflect.Constructor;
@@ -18,11 +21,15 @@ public class Injector {
         for (Field field : fields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                if (field.getType().equals(UserDao.class)) {
+                if (field.getType().equals(UserDao.class)
+                        && UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.set(instance, UserDaoFactory.getInstance());
-                }
-                if (field.getType().equals(BetDao.class)) {
+                } else if (field.getType().equals(BetDao.class)
+                        && BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.set(instance, BetDaoFactory.getInstance());
+                } else {
+                    throw new NoSuchInjectionObjectException("The required injection "
+                            + "object was not found");
                 }
             }
         }
