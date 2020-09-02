@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class ConsoleHandler {
                 double risk = Double.parseDouble(betData[4]);
                 bet = new Bet(value, risk);
                 user = new User(name, lastName, age);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Enter valid data");
             }
             betDao.add(bet);
