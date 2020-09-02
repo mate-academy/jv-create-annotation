@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class ConsoleHandler {
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -35,8 +35,9 @@ public class ConsoleHandler {
             }
             betDao.add(bet);
             userDao.add(user);
-            System.out.println(bet == null ? null : user.toString() + " " + bet.toString());
-            System.out.println("Keep betting or enter 'q' to quit");
+            System.out.println(bet == null ? "Keep betting or enter 'q' to quit"
+                    : user.toString() + " " + bet.toString()
+                    + "\n" + "Keep betting or enter 'q' to quit");
         }
     }
 }
