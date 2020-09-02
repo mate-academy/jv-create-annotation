@@ -18,7 +18,7 @@ public class Injector {
         Field[] declaredField = clazz.getDeclaredFields();
         for (Field field : declaredField) {
             if (field.getAnnotation(Inject.class) != null) {
-                checkAnnotation(field);
+                checkAnnotation();
                 field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)) {
                     field.set(instance, Factory.getBetDao());
@@ -31,11 +31,9 @@ public class Injector {
         return instance;
     }
 
-    public static void checkAnnotation(Field field) {
-        if (field.getType().equals(BetDao.class)
-                && !BetDaoImpl.class.isAnnotationPresent(Dao.class)
-                || field.getType().equals(UserDao.class)
-                && !UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
+    public static void checkAnnotation() {
+        if (!BetDaoImpl.class.isAnnotationPresent(Dao.class)
+                || !UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
             throw new NoAnnotationException("Annotation was not found.");
         }
     }
