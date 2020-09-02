@@ -34,9 +34,9 @@ public class ConsoleHandler {
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("You entered data in wrong format!");
             }
-            betDao.add(bet);
-            playerDao.add(player);
             if (bet != null && player != null) {
+                betDao.add(bet);
+                playerDao.add(player);
                 System.out.println(player);
                 System.out.println(bet);
             }

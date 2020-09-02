@@ -9,8 +9,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
-    public static Object getInstance(Class clazz) throws NoSuchMethodException, IllegalAccessException,
-            InvocationTargetException, InstantiationException, NoSuchDaoException {
+    public static Object getInstance(Class clazz) throws NoSuchMethodException,
+            IllegalAccessException, InvocationTargetException,
+            InstantiationException, NoSuchDaoException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
 
