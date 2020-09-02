@@ -29,9 +29,9 @@ public class ConsoleHandler {
                 bet = new Bet(value, risk);
                 System.out.println("Введите имя и Ваш возраст: ");
                 command = scanner.nextLine();
-                betData = command.split(" ");
-                String name = betData[0];
-                int age = Integer.parseInt(betData[1]);
+                String[] userData = command.split(" ");
+                String name = userData[0];
+                int age = Integer.parseInt(userData[1]);
                 if (age >= 18) {
                     user = new User(name, age);
                 }

@@ -1,8 +1,10 @@
 package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
+import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.exception.NonAnnotationException;
+import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.exception.NoAnnotationException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -12,18 +14,21 @@ public class Injector {
 
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
-            InstantiationException, NonAnnotationException {
+            InstantiationException, NoAnnotationException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
-                if (field.getType().equals(BetDao.class)) {
+                if (field.getType().equals(BetDao.class)
+                        && BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
-                }
-                if (field.getType().equals(UserDao.class)) {
+                } else if (field.getType().equals(UserDao.class)
+                        && UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
+                } else {
+                    throw new NoAnnotationException("@Dao annotation is not present");
                 }
             }
         }
