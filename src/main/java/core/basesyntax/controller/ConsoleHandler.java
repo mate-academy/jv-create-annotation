@@ -14,7 +14,7 @@ import java.util.Scanner;
 import lombok.Setter;
 
 public class ConsoleHandler {
-    private static final String CURSOR_TEXT = "Need to log in [/l] or register [/r]. Help [/h]->";
+    private static final String CURSOR_TEXT = "\nNeed to log in [/l] or register [/r]. Help [/h]->";
     @Inject
     private BetDao betDao;
     @Setter
@@ -31,7 +31,6 @@ public class ConsoleHandler {
         User user = null;
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("");
             System.out.print(cursor);
             String line = scanner.nextLine();
             String[] data = line.split(" ");
@@ -47,7 +46,7 @@ public class ConsoleHandler {
                     String login = data[1];
                     String password = data[2];
                     user = authService.authorization(login, password);
-                    cursor = "[" + login + "] enter bet->";
+                    cursor = "\n[" + login + "] enter bet->";
                     System.out.println("Successful authorization");
                     continue;
                 }
