@@ -4,7 +4,7 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
-import core.basesyntax.exeption.NonAnnotationFoundException;
+import core.basesyntax.exeption.NoAnnotationFoundException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -20,22 +20,22 @@ public class Injector {
         Class<UserDaoImpl> userDaoImplClass = UserDaoImpl.class;
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field field : declaredFields) {
-            if (field.getAnnotation(Ingect.class) != null) {
+            if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)) {
-                    if (betDaoImplClass.isAnnotationPresent(Doa.class)) {
+                    if (betDaoImplClass.isAnnotationPresent(Dao.class)) {
                         field.set(instance, Factory.getBetDao());
                     } else {
-                        throw new NonAnnotationFoundException("Такої анотації не знайдено");
+                        throw new NoAnnotationFoundException("Такої анотації не знайдено");
                     }
                 }
 
                 if (field.getType().equals(UserDao.class)) {
                     field.set(instance, Factory.getUserDao());
-                    if (userDaoImplClass.isAnnotationPresent(Doa.class)) {
+                    if (userDaoImplClass.isAnnotationPresent(Dao.class)) {
                         field.set(instance, Factory.getUserDao());
                     } else {
-                        throw new NonAnnotationFoundException("Такої анотації не знайдено");
+                        throw new NoAnnotationFoundException("Такої анотації не знайдено");
                     }
                 }
             }
