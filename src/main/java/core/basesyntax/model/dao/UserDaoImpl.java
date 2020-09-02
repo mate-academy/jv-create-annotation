@@ -1,9 +1,11 @@
 package core.basesyntax.model.dao;
 
 import core.basesyntax.model.db.Storage;
+import core.basesyntax.model.lib.Dao;
 import core.basesyntax.model.model.User;
 import java.util.List;
 
+@Dao
 public class UserDaoImpl implements UserDao {
 
     @Override

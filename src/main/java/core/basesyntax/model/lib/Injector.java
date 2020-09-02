@@ -21,10 +21,10 @@ public class Injector {
             field.setAccessible(true);
             if (field.getAnnotation(Inject.class) != null) {
                 if (field.getType().equals(BetDao.class)
-                        && !Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
+                        && Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
                 } else if (field.getType().equals(UserDao.class)
-                        && !Factory.getUserDao().getClass().isAnnotationPresent(Dao.class)) {
+                        && Factory.getUserDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
                 } else {
                     throw new NoImplementationException(field.getName()
