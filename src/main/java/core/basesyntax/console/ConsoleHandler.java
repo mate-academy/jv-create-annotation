@@ -12,9 +12,9 @@ public class ConsoleHandler {
 
     public static final String LETTER_Q = "q";
     @Inject
-    BetDao betDao;
+    private BetDao betDao;
     @Inject
-    BetUserDao betUserDao;
+    private BetUserDao betUserDao;
 
     public void readConsole() {
         Scanner scanner = new Scanner(System.in);
