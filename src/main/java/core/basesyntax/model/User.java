@@ -1,22 +1,20 @@
 package core.basesyntax.model;
 
 public class User {
-    private String userName;
+    private String login;
     private String password;
-    private int age;
 
-    public User(String userName, String password, int age) {
-        this.userName = userName;
+    public User(String login, String password) {
+        this.login = login;
         this.password = password;
-        this.age = age;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getLogin() {
+        return login;
     }
 
     public void setPassword(String password) {
@@ -27,11 +25,9 @@ public class User {
         return password;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getAge() {
-        return age;
+    @Override
+    public String toString() {
+        return "User{"
+                + "userName='" + login + '}';
     }
 }

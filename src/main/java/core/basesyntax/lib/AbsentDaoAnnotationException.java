@@ -1,6 +1,6 @@
 package core.basesyntax.lib;
 
-public class AbsentDaoAnnotationException extends Throwable {
+public class AbsentDaoAnnotationException extends Exception {
     public AbsentDaoAnnotationException(String message) {
         super(message);
     }

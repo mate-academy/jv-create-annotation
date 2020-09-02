@@ -10,8 +10,8 @@ public class Main {
             NoSuchMethodException, InstantiationException,
             IllegalAccessException, AbsentDaoAnnotationException {
         ConsoleHandler handler = (ConsoleHandler) Injector.getInstance(ConsoleHandler.class);
-        System.out.println("Enter your bet amount and its risk. "
-                + "To exit, press \'Q\'.");
+        System.out.println("Please, enter your login, password, bet amount and its risk."
+                + " To exit, press \'Q\'.");
         handler.handle();
     }
 }
