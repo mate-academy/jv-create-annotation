@@ -10,26 +10,24 @@ import java.lang.reflect.InvocationTargetException;
 public class Injector {
     public static Object getInstance(Class clas) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
-            InstantiationException, NoClassAnnotation {
+            InstantiationException, NoImplementationException {
         Constructor constructor = clas.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clas.getDeclaredFields();
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
                 BetDao betDao = Factory.getBetDao();
+                UserDao userDao = Factory.getUserDao();
+                field.setAccessible(true);
                 if (field.getType().equals(BetDao.class)
                         && betDao.getClass().getAnnotation(Dao.class) != null) {
-                    field.setAccessible(true);
                     field.set(instance, betDao);
+                } else if (field.getType().equals(UserDao.class)
+                        && userDao.getClass().getAnnotation(Dao.class) != null) {
+                    field.set(instance, userDao);
                 } else {
-                    UserDao userDao = Factory.getUserDao();
-                    if (field.getType().equals(UserDao.class)
-                            && userDao.getClass().getAnnotation(Dao.class) != null) {
-                        field.setAccessible(true);
-                        field.set(instance, userDao);
-                    } else {
-                        throw new NoClassAnnotation("DaoImpl class has no @Dao annotation");
-                    }
+                    throw new NoImplementationException(field.getName()
+                            + " doesn't have an implementation that can be injected");
                 }
             }
         }
