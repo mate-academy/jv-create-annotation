@@ -2,7 +2,7 @@ package core.basesyntax.lib;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.exceptions.NoAnnotationException;
+import core.basesyntax.exceptions.NoImplementationException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -12,7 +12,7 @@ public class Injector {
 
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
-            InstantiationException, RuntimeException {
+            InstantiationException {
         Constructor constructor = clazz.getDeclaredConstructor();
         Object instance = constructor.newInstance();
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -27,8 +27,8 @@ public class Injector {
                         && Factory.getUserDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getUserDao());
                 } else {
-                    throw new NoAnnotationException("Please annotate your class "
-                            + fieldType.getName());
+                    throw new NoImplementationException(field.getName()
+                            + "Doesn't have an implementation that can be injected");
                 }
             }
         }
