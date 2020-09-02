@@ -2,7 +2,6 @@ package controller;
 
 import dao.BetDao;
 import dao.UserDao;
-import dao.UserDaoImpl;
 import java.util.List;
 import java.util.Scanner;
 import lib.Inject;
@@ -14,7 +13,7 @@ public class ConsoleHandler {
     private static final int LOGIN_PASSWORD_MIN_LENGTH = 3;
 
     @Inject
-    private UserDao userDao = new UserDaoImpl();
+    private UserDao userDao;
     @Inject
     private BetDao betDao;
 
@@ -25,18 +24,24 @@ public class ConsoleHandler {
     }
 
     private User enterLoginPassword(Scanner scanner) {
-        System.out.println("Введите логин и пароль:");
-        String creds = scanner.nextLine();
-        String[] userData = creds.split(" ");
-        if (userData.length != DATA_QUANTITY) {
-            handle();
+        String login;
+        String password;
+        String[] userData;
+        User user = null;
+        while (true) {
+            System.out.println("Введите логин и пароль:");
+            String creds = scanner.nextLine();
+            userData = creds.split(" ");
+            login = userData[0];
+            password = userData[1];
+            if (isCredsValid(login, password)
+                    && userData.length == DATA_QUANTITY) {
+                user = new User(login, password);
+                break;
+            }
         }
-        String login = userData[0];
-        String password = userData[1];
-        if (!checkCreds(login, password)) {
-            handle();
-        }
-        return userDao.login(login, password);
+        userDao.addUser(user);
+        return user;
     }
 
     private void enterValueAndRisk(Scanner scanner, User user) {
@@ -55,12 +60,14 @@ public class ConsoleHandler {
                 user.getBetsList().add(bet);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Please, enter correct data");
+                continue;
             }
+
             betDao.add(bet);
         }
     }
 
-    private boolean checkCreds(String login, String password) {
+    private boolean isCredsValid(String login, String password) {
         if (login != null && password != null
                 && login.length() > LOGIN_PASSWORD_MIN_LENGTH
                 && password.length() > LOGIN_PASSWORD_MIN_LENGTH) {

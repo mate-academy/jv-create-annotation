@@ -6,6 +6,6 @@ import model.Bet;
 import model.User;
 
 public class Storage {
-    public static final List<User> userStorage = new ArrayList<>();
+    public static final List<User> users = new ArrayList<>();
     public static final List<Bet> bets = new ArrayList<>();
 }

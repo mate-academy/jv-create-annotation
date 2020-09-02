@@ -2,6 +2,7 @@ package lib;
 
 import dao.BetDao;
 import dao.UserDao;
+import exceptions.AnnotationIsFailureException;
 import factory.DaoFactory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -15,12 +16,16 @@ public class Injector {
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field field : declaredFields) {
             if (field.getAnnotation(Inject.class) != null) {
-                field.setAccessible(true);
-                if (field.getType().equals(BetDao.class)) {
+                if (field.getType().equals(BetDao.class)
+                        && DaoFactory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
+                    field.setAccessible(true);
                     field.set(instance, DaoFactory.getBetDao());
-                }
-                if (field.getType().equals(UserDao.class)) {
+                } else if (field.getType().equals(UserDao.class)
+                        && DaoFactory.getUserDao().getClass().isAnnotationPresent(Dao.class)) {
+                    field.setAccessible(true);
                     field.set(instance, DaoFactory.getUserDao());
+                } else {
+                    throw new AnnotationIsFailureException("The required annotation is missing");
                 }
             }
         }

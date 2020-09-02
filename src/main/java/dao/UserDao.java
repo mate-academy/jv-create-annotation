@@ -1,13 +1,10 @@
 package dao;
 
 import java.util.List;
-import model.Bet;
 import model.User;
 
 public interface UserDao {
-    User login(String userName, String password);
+    void addUser(User user);
 
-    User register(String userName, String password);
-
-    List<Bet> getBetsByUserName(String userName);
+    List<User> getAllUsers();
 }
