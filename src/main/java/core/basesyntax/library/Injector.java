@@ -4,6 +4,8 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.exeption.AnnotationAbsentException;
+import core.basesyntax.exeption.UnsupportedTypeException;
 import core.basesyntax.factory.Factory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -18,22 +20,24 @@ public class Injector {
 
         Field[] declaredFields = clazs.getDeclaredFields();
         for (Field field : declaredFields) {
-            if (field.getAnnotation(Inject.class) != null) {
+            if (field.isAnnotationPresent(Inject.class)) {
 
                 field.setAccessible(true);
 
                 if (field.getType() == BetDao.class) {
                     if (!BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
-                        throw new RuntimeException("Annotation @Dao is absent for BetDaoImpl");
+                        throw new AnnotationAbsentException(
+                                "Annotation @Dao is absent for BetDaoImpl");
                     }
                     field.set(instance, Factory.getBetDao());
                 } else if (field.getType() == UserDao.class) {
                     if (!UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
-                        throw new RuntimeException("Annotation @Dao is absent for UserDaoImpl");
+                        throw new AnnotationAbsentException(
+                                "Annotation @Dao is absent for UserDaoImpl");
                     }
                     field.set(instance, Factory.getUserDao());
                 } else {
-                    throw new RuntimeException("Unsupported type ["
+                    throw new UnsupportedTypeException("Unsupported type ["
                             + field.getType().getName() + "]");
                 }
             }
