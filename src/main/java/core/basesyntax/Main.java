@@ -4,7 +4,6 @@ import core.basesyntax.controller.ConsoleHandler;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.factory.FactoryBetDao;
 import core.basesyntax.lib.Injector;
-
 import java.lang.reflect.InvocationTargetException;
 
 public class Main {
