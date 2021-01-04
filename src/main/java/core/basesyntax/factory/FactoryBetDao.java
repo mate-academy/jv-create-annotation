@@ -3,7 +3,7 @@ package core.basesyntax.factory;
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 
-public class Factory {
+public class FactoryBetDao {
     private static BetDao betDao;
 
     public static BetDao getBetDao() {
