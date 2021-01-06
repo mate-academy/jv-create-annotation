@@ -25,7 +25,7 @@ public class FruitConsoleHandler implements Handler {
                 fruit = new Fruit(name, quantity);
                 System.out.println(fruit.toString());
             } catch (Exception e) {
-                throw new RuntimeException("Enter only digital number.");
+                throw new RuntimeException("Wrong input, try again");
             }
             if (fruit != null) {
                 fruitDao.add(fruit);
