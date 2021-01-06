@@ -2,7 +2,6 @@ package core.basesyntax.controller.dao;
 
 import core.basesyntax.controller.db.StorageBets;
 import core.basesyntax.controller.model.Bet;
-
 import java.util.List;
 
 public class BetDaoImpl implements BetDao {

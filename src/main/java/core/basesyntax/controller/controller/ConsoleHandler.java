@@ -3,7 +3,6 @@ package core.basesyntax.controller.controller;
 import core.basesyntax.controller.dao.BetDao;
 import core.basesyntax.controller.dao.BetDaoImpl;
 import core.basesyntax.controller.model.Bet;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
