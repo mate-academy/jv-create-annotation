@@ -15,8 +15,8 @@
 В конце первой части создать Pull request, и закинуть на проверку.
 
 ### Second HW
-Приступать к виполнению второй части домашки желатильно только после принятия первой, чтоби избежать конфликтов и проблем з git.
-После принятия первой части домашки - нужно виполнить следующие действия - [video](https://www.youtube.com/watch?v=8MXeePzuE68&list=PL7FuXFaDeEX2JdShqx3URwdvqf6ow8G7H&index=9).
+Приступать к выполнению второй части домашки желательно только после принятия первой, чтобы избежать конфликтов и проблем з git.
+После принятия первой части домашки — нужно выполнить следующие действия - [video](https://www.youtube.com/watch?v=8MXeePzuE68&list=PL7FuXFaDeEX2JdShqx3URwdvqf6ow8G7H&index=9).
 
 Посмотреть видео ([часть 2](https://mate-academy.github.io/jv-program-fulltime/02_jdbc/homework/02_injector.html)).
 Затем: 
