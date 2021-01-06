@@ -2,9 +2,8 @@ package contoller;
 
 import dao.BetDao;
 import dao.implementation.BetDaoImpl;
-import model.Bet;
-
 import java.util.Scanner;
+import model.Bet;
 
 public class BetConsoleHandler {
     public static final int BET_RISK = 1;

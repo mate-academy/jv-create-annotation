@@ -2,9 +2,8 @@ package contoller;
 
 import dao.PersonDao;
 import dao.implementation.PersonDaoImpl;
-import model.Person;
-
 import java.util.Scanner;
+import model.Person;
 
 public class PersonConsoleHandler {
     public static final int PERSON_NAME = 0;
