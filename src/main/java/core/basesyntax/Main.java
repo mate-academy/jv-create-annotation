@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         ConsoleHandler handler = new ConsoleHandler();
-        System.out.println("Enter value and risk fpr your bet");
+        System.out.println("Enter value and risk for your bet");
         handler.handle();
     }
 }
