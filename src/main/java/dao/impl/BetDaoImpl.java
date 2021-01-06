@@ -1,9 +1,10 @@
 package dao.impl;
 
-import dao.BetDao;
-import model.Bet;
-import java.util.List;
 import static db.Storage.bets;
+
+import dao.BetDao;
+import java.util.List;
+import model.Bet;
 
 public class BetDaoImpl implements BetDao {
     @Override

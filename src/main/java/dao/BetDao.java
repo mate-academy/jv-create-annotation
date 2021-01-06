@@ -1,10 +1,11 @@
 package dao;
 
+import java.util.List;
 import model.Bet;
 
-import java.util.List;
-
 public interface BetDao {
-    void add (Bet bet);
+
+    void add(Bet bet);
+
     List<Bet> getAll();
 }

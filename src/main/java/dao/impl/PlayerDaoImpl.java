@@ -1,8 +1,9 @@
 package dao.impl;
 
+import static db.Storage.players;
+
 import dao.PlayerDao;
 import model.Player;
-import static db.Storage.players;
 
 public class PlayerDaoImpl implements PlayerDao {
 

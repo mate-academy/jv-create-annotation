@@ -2,9 +2,8 @@ package controller;
 
 import dao.BetDao;
 import dao.impl.BetDaoImpl;
-import model.Bet;
-
 import java.util.Scanner;
+import model.Bet;
 
 public class BetHandler implements ConsoleHandler {
     BetDao betDao = new BetDaoImpl();
@@ -15,7 +14,7 @@ public class BetHandler implements ConsoleHandler {
 
         while (true) {
             String command = scanner.nextLine();
-            if(command.equalsIgnoreCase("q")) {
+            if (command.equalsIgnoreCase("q")) {
                 return;
             }
             Bet bet = null;
