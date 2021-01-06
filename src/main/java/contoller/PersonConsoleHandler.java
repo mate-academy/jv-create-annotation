@@ -27,7 +27,7 @@ public class PersonConsoleHandler {
                     int personAge = Integer.parseInt(personData[PERSON_AGE]);
                     newPerson = new Person(personName, personAge);
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("Please enter name and age");
+                    System.out.println("Please enter both name and age");
                 }
             } catch (NumberFormatException nfe) {
                 System.out.println("Please enter valid name and age");

@@ -27,7 +27,7 @@ public class BetConsoleHandler {
                     int betRisk = Integer.parseInt(betData[BET_RISK]);
                     newBet = new Bet(betValue, betRisk);
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("Please bet and risk");
+                    System.out.println("Please enter both bet and risk");
                 }
             } catch (NumberFormatException nfe) {
                 System.out.println("Please enter valid value and risk");
