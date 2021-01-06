@@ -13,16 +13,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Please, enter 'value' and 'risk' for you bet.");
+        System.out.println("Please, enter 'value' and 'risk' for your bets.");
         Handler consoleHandlerBet = new BetConsoleHandler();
         consoleHandlerBet.handler();
-        BetDao betDao = new BetDaoImpl();
-        List<Bet> listBet = betDao.getAll();
 
-        System.out.println("Please, enter 'value' and 'risk' for you bet.");
+        System.out.println("Please, enter 'value' and 'risk' for your fruits.");
         Handler consoleHandlerFruits = new FruitConsoleHandler();
         consoleHandlerFruits.handler();
-        FruitDao fruitDao = new FruitDaoImpl();
-        List<Fruit> listFruit = fruitDao.getAll();
     }
 }
