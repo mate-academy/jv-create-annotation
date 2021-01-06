@@ -2,9 +2,7 @@ package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.db.Storage;
 import core.basesyntax.model.Bet;
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -24,8 +22,8 @@ public class ConsoleHandler {
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
-                System.out.println("Wrong number format." +
-                        "Please put correct values.");
+                System.out.println("Wrong number format."
+                        + "Please put correct values.");
             }
             betDao.add(bet);
             System.out.println(bet == null ? null

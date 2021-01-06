@@ -2,7 +2,6 @@ package core.basesyntax.dao;
 
 import core.basesyntax.db.Storage;
 import core.basesyntax.model.Gambler;
-
 import java.util.List;
 
 public class GamblerDaoImpl implements GamblerDao {
