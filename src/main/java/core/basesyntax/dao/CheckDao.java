@@ -1,7 +1,6 @@
 package core.basesyntax.dao;
 
 import core.basesyntax.model.Check;
-
 import java.util.List;
 
 public interface CheckDao {
