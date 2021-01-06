@@ -3,6 +3,7 @@ package core.basesyntax.model;
 import java.util.List;
 
 public class User {
+
     private String name;
     private List<Bet> bets;
 

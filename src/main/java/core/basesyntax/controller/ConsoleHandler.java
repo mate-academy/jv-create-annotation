@@ -10,6 +10,7 @@ public class ConsoleHandler {
     private BetDao betDao = new BetDaoImpl();
 
     public void handle() {
+
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
