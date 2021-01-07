@@ -1,5 +1,5 @@
 package core.basesyntax.dao;
 
-public class BetDaoImpl {
+public class BetDaoImpl implements BetDao {
 
 }
