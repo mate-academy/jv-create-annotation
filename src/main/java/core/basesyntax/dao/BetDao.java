@@ -1,5 +1,7 @@
 package core.basesyntax.dao;
 
-public interface BetDao {
+import core.basesyntax.model.Bet;
 
+public interface BetDao {
+    void add(Bet bet);
 }
