@@ -23,29 +23,17 @@ public class ConsoleHandler implements Handler {
                 int value = Integer.parseInt(parseString[0]);
                 double risk = Integer.parseInt(parseString[1]);
 
-                checkNegativeValue(value);
-                checkNegativeRisk(risk);
-
+                if (risk < 0 || value < 0) {
+                    System.out.println("Value is negative");
+                }
                 bet = new Bet(value, risk);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Your data is - " + bet.toString());
-                throw new RuntimeException("Enter only positive digital number.");
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("Your data is - " + (bet != null ? bet.toString() : ""));
+                throw new RuntimeException("Input isn't correct.");
             }
             if (bet != null) {
                 betDao.add(bet);
             }
-        }
-    }
-
-    private void checkNegativeRisk(double risk) {
-        if (risk < 0) {
-            throw new IllegalArgumentException("Value is negative");
-        }
-    }
-
-    private void checkNegativeValue(int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException("Value is negative");
         }
     }
 }
