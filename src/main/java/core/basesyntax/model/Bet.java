@@ -5,8 +5,6 @@ public class Bet {
     private double risk;
 
     public Bet(int value, double risk) {
-        checkNegativeValue(value);
-        checkNegativeRisk(risk);
         this.value = value;
         this.risk = risk;
     }
@@ -16,7 +14,6 @@ public class Bet {
     }
 
     public void setValue(int value) {
-        checkNegativeValue(value);
         this.value = value;
     }
 
@@ -25,20 +22,7 @@ public class Bet {
     }
 
     public void setRisk(double risk) {
-        checkNegativeRisk(risk);
         this.risk = risk;
-    }
-
-    private void checkNegativeValue(int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException("Value is negative");
-        }
-    }
-
-    private void checkNegativeRisk(double risk) {
-        if (risk < 0) {
-            throw new IllegalArgumentException("Value is negative");
-        }
     }
 
     @Override

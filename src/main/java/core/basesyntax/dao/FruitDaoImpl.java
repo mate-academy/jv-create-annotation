@@ -6,8 +6,8 @@ import java.util.List;
 
 public class FruitDaoImpl implements FruitDao {
     @Override
-    public void add(Fruit bet) {
-        Storage.dbFruits.add(bet);
+    public void add(Fruit fruit) {
+        Storage.dbFruits.add(fruit);
     }
 
     @Override

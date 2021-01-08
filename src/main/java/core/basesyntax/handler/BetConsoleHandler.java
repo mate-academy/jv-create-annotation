@@ -6,14 +6,14 @@ import core.basesyntax.model.Bet;
 import java.util.Scanner;
 
 public class BetConsoleHandler implements Handler {
-    BetDao betDao = new BetDaoImpl();
+    private BetDao betDao = new BetDaoImpl();
 
     @Override
-    public void handler() {
+    public void handle() {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            Bet bet;
+            Bet bet = null;
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("q")) {
                 return;
@@ -22,14 +22,30 @@ public class BetConsoleHandler implements Handler {
                 String[] parseString = input.split(" ");
                 int value = Integer.parseInt(parseString[0]);
                 double risk = Integer.parseInt(parseString[1]);
+
+                checkNegativeValue(value);
+                checkNegativeRisk(risk);
+
                 bet = new Bet(value, risk);
-                System.out.println(bet.toString());
-            } catch (Exception e) {
-                throw new RuntimeException("Enter only digital number.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Your data is - " + bet.toString());
+                throw new RuntimeException("Enter only positive digital number.");
             }
             if (bet != null) {
                 betDao.add(bet);
             }
+        }
+    }
+
+    private void checkNegativeRisk(double risk) {
+        if (risk < 0) {
+            throw new IllegalArgumentException("Value is negative");
+        }
+    }
+
+    private void checkNegativeValue(int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException("Value is negative");
         }
     }
 }

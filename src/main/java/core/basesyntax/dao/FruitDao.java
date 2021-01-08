@@ -4,7 +4,7 @@ import core.basesyntax.model.Fruit;
 import java.util.List;
 
 public interface FruitDao {
-    void add(Fruit bet);
+    void add(Fruit fruit);
 
     List<Fruit> getAll();
 }
