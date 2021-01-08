@@ -24,7 +24,8 @@ public class ConsoleHandler implements Handler {
                 double risk = Integer.parseInt(parseString[1]);
 
                 if (risk < 0 || value < 0) {
-                    throw new RuntimeException("Value is negative");
+                    System.out.println("Value is negative");
+                    continue;
                 }
                 bet = new Bet(value, risk);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
