@@ -27,8 +27,8 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "userName= " + userName
+        return "Player{"
+                + "userName= " + userName
                 + ", password= " + password
                 + '}';
     }
