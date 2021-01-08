@@ -24,12 +24,12 @@ public class ConsoleHandler implements Handler {
                 double risk = Integer.parseInt(parseString[1]);
 
                 if (risk < 0 || value < 0) {
-                    System.out.println("Value is negative");
+                    throw new RuntimeException("Value is negative");
                 }
                 bet = new Bet(value, risk);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Your data is - " + (bet != null ? bet.toString() : ""));
-                throw new RuntimeException("Input isn't correct.");
+                System.out.println("Enter correct values. Your data is - "
+                        + (bet != null ? bet.toString() : ""));
             }
             if (bet != null) {
                 betDao.add(bet);

@@ -27,6 +27,6 @@ public class Fruit {
 
     @Override
     public String toString() {
-        return "Bet = [" + name + " " + quantity + "]";
+        return "Fruit = [" + name + " " + quantity + "]";
     }
 }
