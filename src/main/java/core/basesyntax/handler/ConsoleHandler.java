@@ -5,7 +5,7 @@ import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.model.Bet;
 import java.util.Scanner;
 
-public class BetConsoleHandler implements Handler {
+public class ConsoleHandler implements Handler {
     private BetDao betDao = new BetDaoImpl();
 
     @Override
