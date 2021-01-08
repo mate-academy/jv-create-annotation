@@ -13,9 +13,6 @@ public class ConsoleHandler implements Handler {
     @Dao
     private FruitDao fruitDao;
 
-    private static final String EXIT = "q";
-    private static final String SPACE_SEPARATOR = " ";
-
     @Override
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -23,11 +20,11 @@ public class ConsoleHandler implements Handler {
         while (true) {
             Bet bet = null;
             String input = scanner.nextLine();
-            if (input.equalsIgnoreCase(EXIT)) {
+            if (input.equalsIgnoreCase("q")) {
                 return;
             }
             try {
-                String[] parseString = input.split(SPACE_SEPARATOR);
+                String[] parseString = input.split(" ");
                 int value = Integer.parseInt(parseString[0]);
                 double risk = Integer.parseInt(parseString[1]);
 

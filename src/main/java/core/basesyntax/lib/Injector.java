@@ -19,10 +19,11 @@ public class Injector {
             if (field.getAnnotation(Inject.class) != null) {
                 field.setAccessible(true);
                 field.set(instance, FactoryBet.getBetDao());
-            }
-            if (field.getAnnotation(Dao.class) != null) {
+            } else if (field.getAnnotation(Dao.class) != null) {
                 field.setAccessible(true);
                 field.set(instance, FactoryFruit.getFruitDao());
+            } else {
+                throw new NoAnnotationsExceptions("Didn't found annotations");
             }
         }
         return instance;
