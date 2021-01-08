@@ -2,11 +2,15 @@ package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
+import core.basesyntax.dao.PlayerDao;
+import core.basesyntax.dao.PlayerDaoImpl;
 import core.basesyntax.model.Bet;
+import core.basesyntax.model.Player;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
+    private final BetDao betDao = new BetDaoImpl();
+    private final PlayerDao playerDao = new PlayerDaoImpl();
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -16,16 +20,26 @@ public class ConsoleHandler {
                 return;
             }
             Bet bet = null;
+            Player player = null;
             try {
-                String[] betData = command.split(" ");
-                int value = Integer.parseInt(betData[0]);
-                double risk = Double.parseDouble(betData[1]);
+                String[] data = command.split(" ");
+                String username = data[0];
+                String password = data[1];
+                int value = Integer.parseInt(data[2]);
+                double risk = Double.parseDouble(data[3]);
+                player = new Player(username, password);
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
                 System.out.println("Please input correct data");
             }
-            betDao.add(bet);
+            if (player != null) {
+                playerDao.add(player);
+            }
+            if (bet != null) {
+                betDao.add(bet);
+            }
             System.out.println(bet == null ? null : bet.toString());
+            System.out.println(playerDao.getAll());
         }
     }
 }

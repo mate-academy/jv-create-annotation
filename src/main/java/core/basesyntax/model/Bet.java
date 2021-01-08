@@ -28,8 +28,8 @@ public class Bet {
     @Override
     public String toString() {
         return "Bet{"
-                + "value=" + value
-                + ", risk=" + risk
+                + "value= " + value
+                + ", risk= " + risk
                 + '}';
     }
 }
