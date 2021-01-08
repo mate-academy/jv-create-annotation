@@ -31,7 +31,7 @@ public class ConsoleHandler {
             if (bet != null) {
                 betDao.add(bet);
             }
-            System.out.println(bet == null ? null : bet.toString());
+            System.out.println(bet);
             System.out.println(playerDao.getAll());
         }
     }
