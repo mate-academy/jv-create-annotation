@@ -8,12 +8,13 @@ import core.basesyntax.model.Bet;
 import java.util.Scanner;
 
 public class ConsoleHandler implements Handler {
-    private static final String EXIT = "q";
-    private static final String SPACE_SEPARATOR = " ";
     @Inject
     private BetDao betDao;
     @Dao
     private FruitDao fruitDao;
+
+    private static final String EXIT = "q";
+    private static final String SPACE_SEPARATOR = " ";
 
     @Override
     public void handle() {
