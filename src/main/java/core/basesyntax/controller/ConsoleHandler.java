@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ConsoleHandler {
     private static final String PRES_FOR_EXIT = "q";
     private static final String SEPARATOR = " ";
-    BetDao betDao = new BetDaoImpl();
+    private BetDao betDao = new BetDaoImpl();
 
     public void handle() {
         Scanner scan = new Scanner(System.in);
