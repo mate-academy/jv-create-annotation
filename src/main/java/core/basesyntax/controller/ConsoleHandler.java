@@ -20,26 +20,37 @@ public class ConsoleHandler {
                 return;
             }
             Bet bet = null;
-            Player player = null;
             try {
-                String[] data = command.split(" ");
-                String username = data[0];
-                String password = data[1];
-                int value = Integer.parseInt(data[2]);
-                double risk = Double.parseDouble(data[3]);
-                player = new Player(username, password);
+                String[] betData = command.split(" ");
+                int value = Integer.parseInt(betData[0]);
+                double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk);
             } catch (NumberFormatException e) {
                 System.out.println("Please input correct data");
-            }
-            if (player != null) {
-                playerDao.add(player);
             }
             if (bet != null) {
                 betDao.add(bet);
             }
             System.out.println(bet == null ? null : bet.toString());
             System.out.println(playerDao.getAll());
+        }
+    }
+
+    public void handlePlayer() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String command = scanner.nextLine();
+            if (command.equalsIgnoreCase("Start play")) {
+                return;
+            }
+            String[] data = command.split(" ");
+            String username = data[0];
+            String password = data[1];
+            if (username.length() == 0 || password.length() == 0) {
+                System.out.println("Please input correct data");
+            }
+            Player player = new Player(username, password);
+            playerDao.add(player);
         }
     }
 }
