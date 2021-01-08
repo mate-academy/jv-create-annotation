@@ -5,11 +5,11 @@ import controller.UserHandler;
 public class Main {
 
     public static void main(String[] args) {
-        ConsoleHandler userHandler = new UserHandler();
+        ConsoleHandler userConsoleHandler = new UserHandler();
         System.out.println("Enter nickname and password");
-        userHandler.handle();
-        ConsoleHandler betHandler = new BetHandler();
+        userConsoleHandler.handle();
+        ConsoleHandler betConsoleHandler = new BetHandler();
         System.out.println("Enter value and risk for your bet!");
-        betHandler.handle();
+        betConsoleHandler.handle();
     }
 }

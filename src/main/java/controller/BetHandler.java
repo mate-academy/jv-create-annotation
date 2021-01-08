@@ -6,7 +6,7 @@ import java.util.Scanner;
 import model.Bet;
 
 public class BetHandler implements ConsoleHandler {
-    BetDao betDao = new BetDaoImpl();
+    private BetDao betDao = new BetDaoImpl();
 
     @Override
     public void handle() {
@@ -23,10 +23,11 @@ public class BetHandler implements ConsoleHandler {
                 int value = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk);
+                betDao.add(bet);
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("Please,enter correct data");
+                System.out.println(betDao.getAll().toString());
             }
-            betDao.add(bet);
             System.out.println(bet == null ? null : bet.toString());
         }
     }
