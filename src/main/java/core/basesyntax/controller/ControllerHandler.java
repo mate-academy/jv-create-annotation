@@ -19,10 +19,14 @@ public class ControllerHandler {
         Scanner scanner = new Scanner(System.in);
         BetDao betDao = new BetDaoImpl();
         UserDao userDao = new UserDaoImpl();
-        String userComand = scanner.nextLine();
-        String[] splitData = userComand.split(" ");
-        User user = new User(splitData[NAME], splitData[NICK_NAME]);
-        userDao.add(user);
+        try {
+            String userComand = scanner.nextLine();
+            String[] splitData = userComand.split(" ");
+            User user = new User(splitData[NAME], splitData[NICK_NAME]);
+            userDao.add(user);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new RuntimeException("Please enter a correct data");
+        }
 
         System.out.println("Your name was added to Data Base");
         System.out.println("Enter your bet and risk or enter 'q' to exit");
