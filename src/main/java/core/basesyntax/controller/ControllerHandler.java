@@ -4,11 +4,8 @@ import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
 import core.basesyntax.dao.UserDaoImpl;
-import core.basesyntax.db.Storage;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class ControllerHandler {
@@ -18,12 +15,10 @@ public class ControllerHandler {
     private static final int NAME = 0;
     private static final int NICK_NAME = 1;
 
-
     public void handle() {
         Scanner scanner = new Scanner(System.in);
         BetDao betDao = new BetDaoImpl();
         UserDao userDao = new UserDaoImpl();
-
         String userComand = scanner.nextLine();
         String[] splitData = userComand.split(" ");
         User user = new User(splitData[NAME], splitData[NICK_NAME]);
