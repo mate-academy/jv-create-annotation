@@ -8,6 +8,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class Injector {
+    private static final String BET_DAO = "BetDao";
+    private static final String FRUIT_DAO = "FruitDao";
+    private static final String DOT = ".";
+
     public static Object getInstance(Class clazz) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException,
             InstantiationException, NoAnnotationsExceptions {
@@ -16,10 +20,14 @@ public class Injector {
 
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
-            if (field.getAnnotation(Inject.class) != null) {
+            String type = field.getType().toString().substring(field.getType()
+                    .toString().lastIndexOf(DOT) + 1);
+            if (field.getAnnotation(Inject.class) != null && type.equals(BET_DAO)) {
+                System.out.println(type);
                 field.setAccessible(true);
                 field.set(instance, FactoryBet.getBetDao());
-            } else if (field.getAnnotation(Dao.class) != null) {
+            } else if (field.getAnnotation(Inject.class) != null && type.equals(FRUIT_DAO)) {
+                System.out.println(type);
                 field.setAccessible(true);
                 field.set(instance, FactoryFruit.getFruitDao());
             } else {

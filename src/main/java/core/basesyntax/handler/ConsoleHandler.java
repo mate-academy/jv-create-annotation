@@ -2,7 +2,6 @@ package core.basesyntax.handler;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.FruitDao;
-import core.basesyntax.lib.Dao;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import java.util.Scanner;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class ConsoleHandler implements Handler {
     @Inject
     private BetDao betDao;
-    @Dao
+    @Inject
     private FruitDao fruitDao;
 
     @Override
@@ -33,7 +32,7 @@ public class ConsoleHandler implements Handler {
                     continue;
                 }
                 bet = new Bet(value, risk);
-                System.out.println(bet != null ? bet.toString() : "");
+                System.out.println(bet);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Enter correct values. Your data is - "
                         + (bet != null ? bet.toString() : ""));
