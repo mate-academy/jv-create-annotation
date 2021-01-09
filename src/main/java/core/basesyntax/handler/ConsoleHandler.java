@@ -34,8 +34,7 @@ public class ConsoleHandler implements Handler {
                 bet = new Bet(value, risk);
                 System.out.println(bet);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Enter correct values. Your data is - "
-                        + (bet != null ? bet.toString() : ""));
+                System.out.println("Enter correct values.");
             }
             if (bet != null) {
                 betDao.add(bet);

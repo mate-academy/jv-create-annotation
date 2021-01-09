@@ -17,6 +17,8 @@ public class Main {
         } catch (NoAnnotationsExceptions e) {
             System.out.println(e.getMessage());
         }
-        consoleHandler.handle();
+        if (consoleHandler != null) {
+            consoleHandler.handle();
+        }
     }
 }
