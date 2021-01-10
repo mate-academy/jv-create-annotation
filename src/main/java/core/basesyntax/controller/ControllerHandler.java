@@ -1,9 +1,8 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
@@ -14,11 +13,14 @@ public class ControllerHandler {
     private static final int RISK = 1;
     private static final int NAME = 0;
     private static final int NICK_NAME = 1;
+    @Inject
+    private BetDao betDao;
+    @Inject
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
-        BetDao betDao = new BetDaoImpl();
-        UserDao userDao = new UserDaoImpl();
+
         try {
             String userComand = scanner.nextLine();
             String[] splitData = userComand.split(" ");
