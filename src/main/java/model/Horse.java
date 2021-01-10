@@ -14,4 +14,8 @@ public class Horse {
     public String getName() {
         return name;
     }
+
+    public void changeName(String newName) {
+        this.name = newName;
+    }
 }
