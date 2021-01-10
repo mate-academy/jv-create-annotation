@@ -8,7 +8,10 @@ import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-
+    private static final String SPLITERATOR = " ";
+    private static final String FINISH_BETS = "q";
+    private static final String AT = "@";
+    private static final String INCORRECT_DATA = "Incorrect data. Please, try again";
     @Inject
     private BetDao betDao;
 
@@ -29,18 +32,18 @@ public class ConsoleHandler {
             System.out.println("Enter value and risk for bet(enter 'q' for exit)."
                     + " For example: '10 1.5'");
             String commandBet = scanner.nextLine();
-            if (commandBet.equalsIgnoreCase("q")) {
+            if (commandBet.equalsIgnoreCase(FINISH_BETS)) {
                 System.out.println("Bets is over");
                 return;
             }
             Bet bet = null;
             try {
-                String[] betData = commandBet.split(" ");
+                String[] betData = commandBet.split(SPLITERATOR);
                 int value = Integer.parseInt(betData[0]);
                 double risk = Double.parseDouble(betData[1]);
                 bet = new Bet(value, risk, user);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Incorrect data. Please, try again");
+                System.out.println(INCORRECT_DATA);
             }
             if (bet != null) {
                 betDao.add(bet);
@@ -58,26 +61,26 @@ public class ConsoleHandler {
             String commandUser = scanner.nextLine();
             User user = null;
             try {
-                String[] userData = commandUser.split(" ");
+                String[] userData = commandUser.split(SPLITERATOR);
                 String userName = userData[0];
                 String userEmail = userData[1];
                 if (!userEmail.contains("@gmail.com") || userName.isEmpty()
-                        || userEmail.charAt(0) == '@'
+                        || userEmail.startsWith(AT)
                         || userName.chars()
                         .filter(Character::isLetter)
                         .count() != userName.length()) {
-                    System.out.println("Incorrect user data");
+                    System.out.println(INCORRECT_DATA);
                     continue;
                 }
                 user = new User(userName, userEmail);
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Enter two value");
+                System.out.println(INCORRECT_DATA);
             }
             if (user != null) {
                 userDao.add(user);
                 return userDao.getUser(user);
             }
-            System.out.println("Incorrect user data");
+            System.out.println(INCORRECT_DATA);
         }
     }
 }

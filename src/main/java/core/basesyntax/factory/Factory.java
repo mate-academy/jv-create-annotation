@@ -16,7 +16,7 @@ public class Factory {
         if (getClass == UserDao.class) {
             return getUserDao();
         }
-        throw new RuntimeException(getClass + " does not exist");
+        throw new RuntimeException(getClass.getSimpleName() + " does not exist");
     }
 
     public static BetDao getBetDao() {

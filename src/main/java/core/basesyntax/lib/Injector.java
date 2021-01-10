@@ -20,7 +20,7 @@ public class Injector {
                 if (dao.getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, dao);
                 } else {
-                    throw new AnnotationException(Dao.class + " does not exist");
+                    throw new AnnotationException("Annotation @Dao doesn't exist");
                 }
             }
         }
