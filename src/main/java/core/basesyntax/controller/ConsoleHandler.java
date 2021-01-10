@@ -1,16 +1,17 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.PlayerDao;
-import core.basesyntax.dao.PlayerDaoImpl;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.Player;
 import java.util.Scanner;
 
 public class ConsoleHandler {
-    private final BetDao betDao = new BetDaoImpl();
-    private final PlayerDao playerDao = new PlayerDaoImpl();
+    @Inject
+    private BetDao betDao;
+    @Inject
+    private PlayerDao playerDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
