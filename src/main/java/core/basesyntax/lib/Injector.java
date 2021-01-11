@@ -14,13 +14,14 @@ public class Injector {
         Object instance = constructor.newInstance();
         Field[] fields = getClass.getDeclaredFields();
         for (Field field : fields) {
-            if (field.getAnnotation(Inject.class) != null) {
+            if (field.isAnnotationPresent(Inject.class)) {
                 field.setAccessible(true);
                 Object dao = Factory.getDao(field.getType());
                 if (dao.getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, dao);
                 } else {
-                    throw new AnnotationException("Annotation @Dao doesn't exist");
+                    throw new AnnotationException("Annotation @Dao doesn't exist in the "
+                            + field.getAnnotatedType().getType());
                 }
             }
         }
