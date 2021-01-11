@@ -10,8 +10,8 @@ import model.Horse;
 
 public class ConsoleHandler {
     private static final String exit = "q";
-    private BetDao betDao = new BetDaoImpl();
-    private HorseDao horseDao = new HorseDaoImpl();
+    private final BetDao betDao = new BetDaoImpl();
+    private final HorseDao horseDao = new HorseDaoImpl();
 
     public void handler() {
 
