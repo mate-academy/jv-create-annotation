@@ -29,7 +29,7 @@ public class Injector {
                     field.set(instance, Factory.getUserDao());
                 } else {
                     throw new DaoAnnotaionNotFoundExeption(
-                            "Class don't annotate with @Dao annotation");
+                            field.getClass() + "Class don't annotate with @Dao annotation");
                 }
             }
         }
