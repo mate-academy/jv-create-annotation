@@ -21,12 +21,12 @@ public class Injector {
         for (Field field : fields) {
             if (field.isAnnotationPresent(Inject.class)) {
                 if (field.getType() == BetDao.class
-                    && BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                        && BetDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.setAccessible(true);
                     field.set(instance, Factory.getBetDao());
                 }
                 if (field.getType() == FruitDao.class
-                    && FruitDaoImpl.class.isAnnotationPresent(Dao.class)) {
+                        && FruitDaoImpl.class.isAnnotationPresent(Dao.class)) {
                     field.setAccessible(true);
                     field.set(instance, Factory.getFruitDao());
                 }
