@@ -2,6 +2,7 @@ package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
@@ -13,13 +14,11 @@ public class ConsoleHandler {
     private static final int BET_RISK_INDEX = 1;
     private static final int USER_NAME_INDEX = 2;
     private static final int USER_AGE_INDEX = 3;
-    private BetDao betDao;
-    private UserDao userDao;
 
-    public ConsoleHandler(BetDao betDao, UserDao userDao) {
-        this.betDao = betDao;
-        this.userDao = userDao;
-    }
+    @Inject
+    private BetDao betDao;
+    @Inject
+    private UserDao userDao;
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);

@@ -1,12 +1,21 @@
 package core.basesyntax;
 
 import core.basesyntax.controller.ConsoleHandler;
-import core.basesyntax.dao.BetDaoImpl;
-import core.basesyntax.dao.UserDaoImpl;
+import core.basesyntax.lib.Injector;
+import java.lang.reflect.InvocationTargetException;
 
 public class Application {
     public static void main(String[] args) {
-        ConsoleHandler consoleHandler = new ConsoleHandler(new BetDaoImpl(), new UserDaoImpl());
-        consoleHandler.handle();
+        try {
+            ConsoleHandler consoleHandler = (ConsoleHandler)
+                    Injector.getInstance(ConsoleHandler.class);
+            consoleHandler.handle();
+        } catch (NoSuchMethodException
+                | IllegalAccessException
+                | InvocationTargetException
+                | InstantiationException e) {
+            System.out.println("Failed to inject DaoImpl");
+        }
+
     }
 }
