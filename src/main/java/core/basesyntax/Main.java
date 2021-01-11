@@ -8,15 +8,10 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Main {
     public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+            InstantiationException, IllegalAccessException, NoAnnotationsExceptions {
         System.out.println("Please, enter 'value' and 'risk' for your bets.");
-        Handler consoleHandler = null;
-        try {
-            consoleHandler = (ConsoleHandler) Injector
-                    .getInstance(ConsoleHandler.class);
-        } catch (NoAnnotationsExceptions e) {
-            System.out.println(e.getMessage());
-        }
+        Handler consoleHandler = (ConsoleHandler) Injector
+                .getInstance(ConsoleHandler.class);
         if (consoleHandler != null) {
             consoleHandler.handle();
         }
