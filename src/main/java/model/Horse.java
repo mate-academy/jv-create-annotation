@@ -1,7 +1,7 @@
 package model;
 
 public class Horse {
-    String name;
+    private String name;
 
     public Horse(String name) {
         this.name = name;
