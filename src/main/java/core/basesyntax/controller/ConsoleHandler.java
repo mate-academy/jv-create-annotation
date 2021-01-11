@@ -1,14 +1,19 @@
 package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
-import core.basesyntax.dao.BetDaoImpl;
 import core.basesyntax.dao.UserDao;
-import core.basesyntax.dao.UserDaoImpl;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
+    private BetDao betDao;
+    private UserDao userDao;
+
+    public ConsoleHandler(BetDao betDao, UserDao userDao) {
+        this.betDao = betDao;
+        this.userDao = userDao;
+    }
 
     public void handle() {
         Scanner scanner = new Scanner(System.in);
@@ -32,12 +37,8 @@ public class ConsoleHandler {
                 System.out.println("Input correct data");
             }
             if (bet != null && user != null) {
-                BetDao betDao = new BetDaoImpl();
-                UserDao userDao = new UserDaoImpl();
                 betDao.add(bet);
                 userDao.add(user);
-                System.out.println(user);
-                System.out.println(bet);
             }
         }
     }
