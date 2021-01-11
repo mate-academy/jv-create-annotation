@@ -1,17 +1,20 @@
 package controller;
 
 import dao.BetDao;
-import dao.BetDaoImpl;
 import dao.HorseDao;
-import dao.HorseDaoImpl;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import lib.Inject;
 import model.Bet;
 import model.Horse;
 
 public class ConsoleHandler {
     private static final String exit = "q";
-    private final BetDao betDao = new BetDaoImpl();
-    private final HorseDao horseDao = new HorseDaoImpl();
+    @Inject
+    BetDao betDao;
+    @Inject
+    HorseDao horseDao;
 
     public void handler() {
 
