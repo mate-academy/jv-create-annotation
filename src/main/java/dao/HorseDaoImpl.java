@@ -2,8 +2,10 @@ package dao;
 
 import bd.Storage;
 import java.util.List;
+import lib.Dao;
 import model.Horse;
 
+@Dao
 public class HorseDaoImpl implements HorseDao {
 
     @Override

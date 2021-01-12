@@ -3,8 +3,6 @@ package controller;
 import dao.BetDao;
 import dao.HorseDao;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-
 import lib.Inject;
 import model.Bet;
 import model.Horse;
