@@ -20,13 +20,12 @@ public class Injector {
                 if (field.getType().equals(BetDao.class)
                             && Factory.getBetDao().getClass().isAnnotationPresent(Dao.class)) {
                     field.set(instance, Factory.getBetDao());
-                } else
-                    if (field.getType().equals(HorseDao.class)
+                } else if (field.getType().equals(HorseDao.class)
                             && Factory.getHorseDao().getClass().isAnnotationPresent(Dao.class)) {
-                        field.set(instance, Factory.getHorseDao());
-                    } else {
-                        throw new RuntimeException("Annotation's implementation is wrong");
-                    }
+                    field.set(instance, Factory.getHorseDao());
+                } else {
+                    throw new RuntimeException("Annotation's implementation is wrong");
+                }
             }
         }
         return instance;
