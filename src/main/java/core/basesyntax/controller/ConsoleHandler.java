@@ -2,12 +2,15 @@ package core.basesyntax.controller;
 
 import core.basesyntax.dao.BetDao;
 import core.basesyntax.dao.UserDao;
+import core.basesyntax.lib.Inject;
 import core.basesyntax.model.Bet;
 import core.basesyntax.model.User;
 import java.util.Scanner;
 
 public class ConsoleHandler {
+    @Inject
     private BetDao betDao;
+    @Inject
     private UserDao userDao;
 
     public ConsoleHandler(BetDao betDao, UserDao userDao) {
@@ -34,11 +37,13 @@ public class ConsoleHandler {
                 user = new User(userName, userAge);
 
             } catch (NumberFormatException e) {
-                System.out.println("Input correct data");
+                System.out.println("Input correct data: name, age, bet, risk");
             }
             if (bet != null && user != null) {
                 betDao.add(bet);
                 userDao.add(user);
+                System.out.println(user);
+                System.out.println(bet);
             }
         }
     }
